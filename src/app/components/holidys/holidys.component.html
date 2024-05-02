@@ -11,7 +11,7 @@
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="holidayName" name="holidayName"
                             placeholder="Enter Holiday Name" [(ngModel)]="holidayName">
-                        <div *ngIf="holidayNameField" id="require1" class="form-text text-danger ms-1">
+                        <div *ngIf="holidayNameField" id="require1" class="form-text text-danger m-0 p-0 ">
                             *Field is Required
                         </div>
                     </div>
@@ -22,10 +22,18 @@
                         <div *ngIf="holidayDateField" id="require1" class="form-text text-danger ms-1">
                             *Field is Required
                         </div>
+                        <ng-container *ngIf="!holidayDateField">
+                            <div *ngIf="ununiqHolidayDate" id="require12" class="form-text text-danger text-center ">
+                                Date Must be Uniqe
+                            </div>
+                        </ng-container>
                     </div>
                 </div>
-                <button type="click" class="btn btn-save px-5 me-2">
+                <button type="click" *ngIf="!update" class="btn btn-save px-5 me-2">
                     Add
+                </button>
+                <button type="click" *ngIf="update" class="btn btn-save px-5 me-2">
+                    Update
                 </button>
             </form>
             <div class="tableContainer">
