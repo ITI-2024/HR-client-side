@@ -1,9 +1,13 @@
+.container-fluid {
+    padding-top: 7vh;
+    height: 100vh;
+}
+
 .wrapper {
     width: 50%;
     margin-left: 30%;
-    margin-top: 7vh;
-    border: #2a6889 dotted 1px;
     border-radius: 20px;
+    background-color: white;
 }
 
 label {
