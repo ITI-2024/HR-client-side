@@ -9,21 +9,27 @@ import { HolidysComponent } from './components/holidys/holidys.component';
 import { SalaryReportComponent } from './components/salary-report/salary-report.component';
 import { EmployessComponent } from './components/employess/employess.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { PublicSettingPopUpComponent } from './components/public-setting/public-setting-pop-up/public-setting-pop-up.component';
 @NgModule({
   declarations: [
     AppComponent,
-   
     SidebarComponent,
-         PublicSettingComponent,
-         HolidysComponent,
-         SalaryReportComponent,
-         EmployessComponent
+    PublicSettingComponent,
+    HolidysComponent,
+    SalaryReportComponent,
+    EmployessComponent,
+    PublicSettingPopUpComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

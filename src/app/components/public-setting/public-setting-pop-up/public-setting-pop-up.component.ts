@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PublicSettingService } from 'src/app/services/public-setting.service';
-
+declare var window: any;
 @Component({
-  selector: 'app-public-setting',
-  templateUrl: './public-setting.component.html',
-  styleUrls: ['./public-setting.component.css']
+  selector: 'app-public-setting-pop-up',
+  templateUrl: './public-setting-pop-up.component.html',
+  styleUrls: ['./public-setting-pop-up.component.css']
 })
-export class PublicSettingComponent implements OnInit {
+export class PublicSettingPopUpComponent {
+  formModal: any;
   extraHours: any;
   deductionHours: any;
   weekendDay1: any;
@@ -17,20 +18,29 @@ export class PublicSettingComponent implements OnInit {
   weekendDay2Field: boolean = false;
   extraHoursInValid: boolean = false;
   deductionHoursInValid: boolean = false;
+  @Output() publicSetting = new EventEmitter();
   setting: any;
   constructor(public publicSettingsSerivices: PublicSettingService) { }
   ngOnInit(): void {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal'),
+      {
+        backdrop: 'static', // Prevents closing when clicking outside the modal
+        keyboard: false // Disables closing modal with the ESC key
+      }
+    );
     this.publicSettingsSerivices.getPuplicSetting().subscribe({
       next: data => {
         this.setting = data;
-        this.setting = this.setting[0];
-        this.extraHours = this.setting.extraHours;
-        this.deductionHours = this.setting.deductionHours;
-        this.weekendDay1 = this.setting.firstWeekend;
-        this.weekendDay2 = (this.setting.secondWeekend == null) ? null : this.setting.secondWeekend
+        if (this.setting.length == 0) this.openFormModal();
 
       }
     })
+
+  }
+
+  openFormModal() {
+    this.formModal.show();
   }
   save(e: any) {
     if (this.extraHours == undefined) this.extraHoursField = true;
@@ -39,21 +49,24 @@ export class PublicSettingComponent implements OnInit {
     if (this.deductionHours == undefined) this.deductionHoursField = true;
     else this.deductionHoursField = false;
 
+    if (this.weekendDay1 == undefined) this.weekendDay1Field = true;
+    else this.weekendDay1Field = false;
+    if (this.weekendDay2 == undefined) this.weekendDay2Field = true;
+    else this.weekendDay2Field = false;
+
     if (this.extraHours < 1 || this.extraHours > 4) this.extraHoursInValid = true;
     else this.extraHoursInValid = false;
     if (this.deductionHours < 1 || this.deductionHours > 4) this.deductionHoursInValid = true;
     else this.deductionHoursInValid = false;
 
     if (!this.extraHoursField && !this.deductionHoursField && !this.weekendDay1Field && !this.extraHoursInValid && !this.deductionHoursInValid) {
-      this.publicSettingsSerivices.editPublicSetting(this.setting.id, {
+      this.publicSetting.emit({
         "extraHours": this.extraHours,
         "deductionHours": this.deductionHours,
         "firstWeekend": this.weekendDay1,
-        "secondWeekend": this.weekendDay2 == 'none' ? null : this.weekendDay2
-      }).subscribe({
-        next: data => console.log(data)
-
+        "secondWeekend": this.weekendDay2 == undefined ? null : this.weekendDay2
       })
+      this.formModal.hide();
     }
   }
 }
