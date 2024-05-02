@@ -17,6 +17,7 @@ export class HolidaysService {
     return this.http.post(this.baseUrl, holiday);
   }
   editHoliday(holiday: any) {
+
     return this.http.put(`${this.baseUrl}/Edit`, holiday);
   }
   deleteHoliday(id: any) {
