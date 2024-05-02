@@ -9,6 +9,7 @@ input {
 .modal-header {
     position: relative;
     background-color: #2a6889;
+    border-radius: 0px;
 }
 
 .modal-title {
@@ -30,4 +31,8 @@ input {
 .btn-save {
     background-color: #2a6889;
     color: white;
+}
+
+.modal-content {
+    border-radius: 0px;
 }
