@@ -7,6 +7,7 @@ import { PublicSettingService } from 'src/app/services/public-setting.service';
   styleUrls: ['./public-setting.component.css']
 })
 export class PublicSettingComponent implements OnInit {
+  disabled: boolean = true;
   extraHours: any;
   deductionHours: any;
   weekendDay1: any;
@@ -51,9 +52,12 @@ export class PublicSettingComponent implements OnInit {
         "firstWeekend": this.weekendDay1,
         "secondWeekend": this.weekendDay2 == 'none' ? null : this.weekendDay2
       }).subscribe({
-        next: data => console.log(data)
+        next: data => this.toggleDisabled()
 
       })
     }
+  }
+  toggleDisabled() {
+    this.disabled = !this.disabled
   }
 }

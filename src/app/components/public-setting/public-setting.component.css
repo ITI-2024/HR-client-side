@@ -23,7 +23,8 @@ input {
 }
 
 .modal-body {
-    padding-inline: 5vw;
+    padding-left: 5vw;
+    padding-right: 2vw;
     padding-block: 5vh;
 }
 
