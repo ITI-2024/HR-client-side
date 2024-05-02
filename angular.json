@@ -29,7 +29,11 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.css"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.js"]
+            "scripts": 
+            ["node_modules/bootstrap/dist/js/bootstrap.bundle.js" 
+         
+
+          ]
           },
           "configurations": {
             "production": {
@@ -96,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "73560a13-6d7f-4260-bfd7-fe5320ad652b"
   }
 }
