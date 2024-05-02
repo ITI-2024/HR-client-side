@@ -1,0 +1,53 @@
+<div class="body">
+
+<div class="wrapper">
+    <span class="bg-animate"></span>
+    <div class="form-box login">
+        <div class="logo">
+            <img src="assets/images/logoligth.png" alt="">
+        </div>
+        <h2>Login</h2>
+        <form (submit)="loginHandler($event)" [formGroup]="loginForm">
+            <div class="input-box">
+               
+                  <i class="bi bi-person-fill"></i>
+                <input type="email" name="email" placeholder="" id="email" [(ngModel)]="email"  class="normalfont"
+                formControlName="email">
+                <label for="email">Email</label>
+                <ng-container *ngIf="getEmail.touched">
+                    <div *ngIf="getEmail.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">Email is
+                      Required</div>
+                    <div *ngIf="getEmail.hasError('invalidEmail')" id="emailHelp" class="form-text text-danger normalfont">This
+                      email does not match right email format</div>
+                  </ng-container>
+                  
+            </div>
+            <div class="input-box">
+             
+                <i class="bi bi-lock-fill"></i>
+                <input type="password" name="password" placeholder="" id="password" class="normalfont"
+                formControlName="password">
+                <label for="passward">Password</label>
+                <ng-container *ngIf="getPassword.touched">
+                    <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">
+                      Password is Required</div>
+                    <div *ngIf="getPassword.hasError('invalidPassword')" id="emailHelp" class="form-text text-danger normalfont">
+                      This password does not match right password format</div>
+                  </ng-container>
+                  
+            </div>
+            <div class="row">
+                <button type="submit" class="btn">Login</button>
+              </div>
+              <p *ngIf="myerror !== ''&& myerror!='[object Object]'" class="text-danger">{{ myerror }}</p>
+        </form>
+
+    </div>
+    <div class="info-text login">
+        <h2>Welcome Back!</h2>
+        <p>In HR System Pioneers</p>
+        <!-- <p>leos quidem qui nam a quaerat veniam consequuntur voluptatibus commodi voluptas temporibus!</p> -->
+  <img src="assets/images/1.png" alt="">
+    </div>
+</div>
+</div>

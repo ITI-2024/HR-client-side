@@ -1,6 +1,6 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
     <div class="logo-container">
-        <a (click)="toggleCollapse()" class="logo"><img src="assets/images/logo.jpeg" alt="hav"  ></a>
+        <a (click)="toggleCollapse()" class="logo"><img src="assets/images/logoligth.png" alt="hav"  ></a>
         <div class="logo-text" @fadeInOut *ngIf="collapsed">Pioneers</div>
         <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
             <i class="fal fa-times close-icon"></i>
@@ -20,15 +20,14 @@
         </li>
         <li class="border-top my-3"></li>
         <div class="dropdown mt-3 sidenav-nav-item ">
-            <a href="#" class="link-light text-decoration-none dropdown-toggle"  style="" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="link-light text-decoration-none  "  style="" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                 <!-- <i class="bi bi-person-circle" style="color: white; display:inline-block;  "> </i> -->
-                <img src="assets/images/user2.png" alt="hav"  style="width:3vw ; height:5vh;" class="mb-1">
+                <img src="assets/images/user2.png" alt="hav"  style="width:4vw ; height:6.5vh;" class="mb-1 ">
             </a>
-            <span @fadeInOut *ngIf="collapsed" class="text-light ms-3" >Habiba</span>
+            <span @fadeInOut *ngIf="collapsed" class="text-light ms-3" >{{username}}</span>
             <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser2" style="" >
             
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Premission</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">log out</a></li>
             </ul>
