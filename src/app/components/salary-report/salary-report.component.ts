@@ -18,6 +18,7 @@ export class SalaryReportComponent implements OnInit {
   Year: any;
   salaryReports: any;
   disablesSearch: boolean = true;
+  tableLoading: boolean = false;
   constructor(public salaryReportsServices: SalaryReportService) {
     const currentYear = new Date().getFullYear();
     for (let year = 2000; year <= currentYear; year++) {
@@ -25,8 +26,12 @@ export class SalaryReportComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.tableLoading = true;
     this.salaryReportsServices.getSalaryReports().subscribe({
-      next: data => this.salaryReports = data
+      next: data => {
+        this.salaryReports = data;
+        this.tableLoading = false;
+      }
     })
   }
   enabledSearch() {
@@ -34,17 +39,45 @@ export class SalaryReportComponent implements OnInit {
     else this.disablesSearch = true;
   }
   search() {
+    this.tableLoading = true;
     if (this.Search && this.Search != '') {
       if ((this.Month && this.Year)) this.salaryReportsServices.getSalaryReportByBoth(this.Year, this.Month, this.Search).subscribe({
-        next: data => this.salaryReports = data
+        next: data => {
+          this.salaryReports = data;
+          this.tableLoading = false;
+
+        }, error: e => {
+          this.tableLoading = false;
+          this.salaryReports = [];
+          alert(e.error);
+
+        }
       })
       else this.salaryReportsServices.getSalaryReportByName(this.Search).subscribe({
-        next: data => this.salaryReports = data
+        next: data => {
+          this.salaryReports = data;
+          this.tableLoading = false;
+
+        }, error: e => {
+          this.tableLoading = false;
+          this.salaryReports = [];
+          alert(e.error);
+
+        }
 
       })
     }
     else this.salaryReportsServices.getSalaryReportByDate(this.Year, this.Month).subscribe({
-      next: data => this.salaryReports = data
+      next: data => {
+        this.salaryReports = data;
+        this.tableLoading = false;
+
+      }, error: e => {
+        this.tableLoading = false;
+        this.salaryReports = [];
+        alert(e.error);
+
+      }
 
     })
   }

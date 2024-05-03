@@ -3,6 +3,7 @@
         <div class="modal-header">
             <h3 class="modal-title " id="exampleModalLabel">Official Holidays</h3>
             <img class="holidayimg" src="../../../assets/images/holidays.png" alt="">
+
         </div>
         <div class="modal-body">
             <form (submit)="addHoliday()">
@@ -56,6 +57,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div *ngIf="tableLoading" class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
         </div>
     </div>
