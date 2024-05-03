@@ -15,6 +15,7 @@ import { PublicSettingPopUpComponent } from './components/public-setting/public-
 import { AddPermissionComponent } from './components/add-permission/add-permission.component';
 import { LoginComponent } from './components/login/login.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
 
     LoginComponent,
     AttendanceComponent,
+    AddEmployeeComponent,
 
   ],
   imports: [
