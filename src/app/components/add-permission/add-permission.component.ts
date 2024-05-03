@@ -12,6 +12,7 @@ export class AddPermissionComponent implements OnInit {
 roles:any
 error:any
 roleName:any
+roleId:any
   formGroup=new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(3)]),
 
@@ -54,6 +55,7 @@ selectRow(id:any){
   this.permissionService.getById(id).subscribe({
     next: (data)=>{
       console.log(data)
+
     },
     error: (err)=>{console.log(err)}
   })

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'holidays', component: HolidysComponent },
   { path: 'public-setting', component: PublicSettingComponent },
   { path: 'employees', component:  EmployeesComponent },
-  { path: '**', component: NotFoundComponent },
+  /*{ path: '**', component: NotFoundComponent },*/
   { path: 'login', component: LoginComponent },
   { path: 'permissions', component: AddPermissionComponent },
 ];
