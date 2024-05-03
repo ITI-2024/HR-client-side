@@ -12,9 +12,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PublicSettingPopUpComponent } from './components/public-setting/public-setting-pop-up/public-setting-pop-up.component';
-
 import { AddPermissionComponent } from './components/add-permission/add-permission.component';
-
 import { LoginComponent } from './components/login/login.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 
@@ -41,7 +39,7 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
