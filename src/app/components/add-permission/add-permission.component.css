@@ -1,0 +1,165 @@
+:root {
+  --table-body-height: 40vh; /* Define a CSS variable for table body height */
+}
+.page  {
+  border-radius: 20px;
+  height: 95%;
+  background-color: white;
+  padding-bottom: 200px;
+
+
+  overflow: hidden; /* Hide overflow to prevent table border from extending beyond page border */
+}
+
+.page-title {
+  background-color: #036088;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: center;
+  color: white;
+  padding-top: 5px;
+  font-size: 30px;
+  border-bottom: 2px solid #036088;
+}
+.container{
+  height: 100vh;
+  padding-top: 90px;
+
+}
+
+.table-position {
+  border-radius: 20px;
+  margin: 0 50px;
+  margin-top: 70px;
+  margin-bottom: 300px;
+}
+
+.tableFixHead {
+  overflow: auto;
+  height: 30vh;
+}
+
+.table-fixed thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #036088;
+  color: #fff;
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px 10px;
+}
+
+.table-fixed tbody tr {
+  border-bottom: 1px solid #ddd; /* Add a border to the bottom of each row */
+}
+
+.table-fixed tbody tr td {
+  background: #fff;
+}
+
+.table-fixed>tbody>tr>td:last-child {
+  border-right: 0;
+}
+
+.table-fixed tbody td,
+.table-fixed thead>tr>th {
+  float: left;
+  font-size: 14px;
+  padding-left: 20px !important;
+}
+
+.table-fixed .col {
+  width: 25%;
+}
+
+.table-fixed tbody {
+  display: block;
+  height: calc(20vh - 2px); /* Adjusted height to account for scrollbar width */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.table-fixed tr {
+  display: block;
+}
+
+.table-fixed tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+
+
+/* Additional styles for the form position */
+.form-position {
+  padding-top: 50px;
+  margin-left: 40%;
+}
+
+/* Additional styles for the text input */
+.form-position .text {
+  border-radius: 50px;
+  padding: 5px 20px;
+  border: 1px solid #036088;
+  outline: #036088;
+  width: 50vh;
+  background-color: white;
+}
+
+/* Additional styles for the save button */
+.btn-save {
+  border-radius: 50px;
+  background-color: #036088;
+  color: white;
+  border: 1px solid #036088;
+  outline: #036088;
+  width: 10vh;
+  padding: 5px 20px;
+  margin-right: 20px;
+}
+
+/* Additional styles for the choose link */
+.choose {
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+/* Additional styles for the permission selection */
+.perm-select {
+  margin-left: 30vw;
+  padding-top: 20px;
+}
+
+/* Additional styles for the "All" and "Custom" buttons */
+.all {
+  background-color: rgb(7, 148, 230);
+  color: white;
+  padding: 5px 20px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.custom {
+  background-color: #ddd;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+/* Additional styles for the checkboxes within table cells */
+td input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+

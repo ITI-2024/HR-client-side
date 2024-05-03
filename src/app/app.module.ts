@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PublicSettingPopUpComponent } from './components/public-setting/public-setting-pop-up/public-setting-pop-up.component';
+import { AddPermissionComponent } from './components/add-permission/add-permission.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { PublicSettingPopUpComponent } from './components/public-setting/public-
     SalaryReportComponent,
     EmployessComponent,
     PublicSettingPopUpComponent,
+    AddPermissionComponent,
   ],
   imports: [
     BrowserModule,
