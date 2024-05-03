@@ -10,7 +10,7 @@
                     <label for="extraHours" class="col-sm-2 col-form-label">Holiday Name</label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="holidayName" name="holidayName"
-                            placeholder="Enter Holiday Name" [(ngModel)]="holidayName">
+                            placeholder="Enter Holiday Name" [(ngModel)]="holidayName" (input)="changeDisable()">
                         <div *ngIf="holidayNameField" id="require1" class="form-text text-danger m-0 p-0 ">
                             *Field is Required
                         </div>
@@ -18,7 +18,7 @@
                     <label for="extraHours" class="col-sm-2 col-form-label ms-5">Holiday Date</label>
                     <div class="col-sm-4 ">
                         <input type="date" class="form-control date" id="holidayDate" name="holidayDate"
-                            placeholder="Enter Holiday Date" [(ngModel)]="holidayDate">
+                            placeholder="Enter Holiday Date" [(ngModel)]="holidayDate" (input)="changeDisable()">
                         <div *ngIf="holidayDateField" id="require1" class="form-text text-danger ms-1">
                             *Field is Required
                         </div>
@@ -29,10 +29,10 @@
                         </ng-container>
                     </div>
                 </div>
-                <button type="click" *ngIf="!update" class="btn btn-save px-5 me-2">
+                <button type="click" *ngIf="!update" class="btn btn-save px-5 me-2" [disabled]="disabledHolidaybtn">
                     Add
                 </button>
-                <button type="click" *ngIf="update" class="btn btn-save px-5 me-2">
+                <button type="click" *ngIf="update" class="btn btn-save px-5 me-2" [disabled]="disabledHolidaybtn">
                     Update
                 </button>
             </form>

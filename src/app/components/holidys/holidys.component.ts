@@ -7,6 +7,7 @@ import { HolidaysService } from 'src/app/services/holidays.service';
   styleUrls: ['./holidys.component.css']
 })
 export class HolidysComponent implements OnInit {
+  disabledHolidaybtn: boolean = true;
   holidayName: any;
   holidayDate: any;
   holidayNameField: boolean = false;
@@ -83,6 +84,7 @@ export class HolidysComponent implements OnInit {
               // Reset input fields
               this.holidayName = '';
               this.holidayDate = '';
+              this.disabledHolidaybtn = true;
             }
 
           })
@@ -101,6 +103,7 @@ export class HolidysComponent implements OnInit {
         this.holidayName = this.tempholiday.name;
         this.holidayDate = this.tempholiday.holidayDate;
         this.update = true;
+        this.disabledHolidaybtn = false;
       }
     })
   }
@@ -112,5 +115,12 @@ export class HolidysComponent implements OnInit {
       }
 
     })
+  }
+  changeDisable() {
+    console.log(this.holidayDate);
+    console.log(this.holidayName);
+
+    if (this.holidayDate && this.holidayDate != '' && this.holidayName && this.holidayName != '') this.disabledHolidaybtn = false
+    else this.disabledHolidaybtn = true
   }
 }

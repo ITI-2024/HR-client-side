@@ -12,11 +12,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PublicSettingPopUpComponent } from './components/public-setting/public-setting-pop-up/public-setting-pop-up.component';
-<<<<<<< HEAD
 import { LoginComponent } from './components/login/login.component';
-=======
 import { AttendanceComponent } from './components/attendance/attendance.component';
->>>>>>> f09bb58a8d3b11a44b1de0861098c03f5f950922
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,11 +23,8 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
     SalaryReportComponent,
     EmployessComponent,
     PublicSettingPopUpComponent,
-<<<<<<< HEAD
     LoginComponent,
-=======
     AttendanceComponent,
->>>>>>> f09bb58a8d3b11a44b1de0861098c03f5f950922
   ],
   imports: [
     BrowserModule,

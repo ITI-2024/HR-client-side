@@ -13,9 +13,11 @@ export class SalaryReportComponent implements OnInit {
     'September', 'October', 'November', 'December'
   ];
   years: number[] = [];
+  Search: any;
   Month: any;
   Year: any;
   salaryReports: any;
+  disablesSearch: boolean = true;
   constructor(public salaryReportsServices: SalaryReportService) {
     const currentYear = new Date().getFullYear();
     for (let year = 2000; year <= currentYear; year++) {
@@ -27,7 +29,23 @@ export class SalaryReportComponent implements OnInit {
       next: data => this.salaryReports = data
     })
   }
+  enabledSearch() {
+    if ((this.Search && this.Search != '') || (this.Month && this.Year)) this.disablesSearch = false;
+    else this.disablesSearch = true;
+  }
   search() {
+    if (this.Search && this.Search != '') {
+      if ((this.Month && this.Year)) this.salaryReportsServices.getSalaryReportByBoth(this.Year, this.Month, this.Search).subscribe({
+        next: data => this.salaryReports = data
+      })
+      else this.salaryReportsServices.getSalaryReportByName(this.Search).subscribe({
+        next: data => this.salaryReports = data
 
+      })
+    }
+    else this.salaryReportsServices.getSalaryReportByDate(this.Year, this.Month).subscribe({
+      next: data => this.salaryReports = data
+
+    })
   }
 }
