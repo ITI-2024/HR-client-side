@@ -20,8 +20,8 @@ export const navbarData = [
         label: 'Official Holidays'
     },
     {
-        routeLink: 'employess',
-        icon: 'fal  fa-solid fa-user-tie', //e
+        routeLink: 'employees',
+        icon: 'fal fa-solid fa-user-tie', //e
         label: 'Employees'
     },
     {
