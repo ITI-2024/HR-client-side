@@ -13,4 +13,8 @@ export class LoginService {
   getlogin(User: any){
     return this.http.post(`${this.baseUrl}/login`,User)
  }
+ AddUser(User: any) {
+  console.log(User);
+  return this.http.post(`${this.baseUrl}`, User)
+}
 }

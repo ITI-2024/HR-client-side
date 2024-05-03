@@ -67,10 +67,11 @@ export class LoginComponent implements OnInit {
     password: this.loginForm.get('password')?.value}).subscribe({
       next: data=>{
       this.user = data;
+      console.log(data);
       //Static 
-      if(!this.user.token){
+      if(this.user.token){
         localStorage.setItem('username', this.user.username);
-        this.router.navigate([' ']);
+        this.router.navigate(['/']);
       }
 
     },

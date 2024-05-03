@@ -1,7 +1,7 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
     <div class="logo-container">
         <a (click)="toggleCollapse()" class="logo"><img src="assets/images/logoligth.png" alt="hav"  ></a>
-        <div class="logo-text" @fadeInOut *ngIf="collapsed">Pioneers</div>
+        <div class="logo-text" @fadeInOut *ngIf="collapsed">HR System</div>
         <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
             <i class="fal fa-times close-icon"></i>
         </button>
@@ -29,7 +29,7 @@
             
               <li><a class="dropdown-item" href="#">Premission</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">log out</a></li>
+              <li><a class="dropdown-item" href="#" routerLink="/login">log out</a></li>
             </ul>
           </div>
     </ul>
