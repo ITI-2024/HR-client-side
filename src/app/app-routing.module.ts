@@ -9,13 +9,11 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
 import { SalaryReportComponent } from './components/salary-report/salary-report.component';
 
 const routes: Routes = [
-<<<<<<< HEAD
+
   { path: '', component: EmployeesComponent },
-=======
   { path: '', component: AttendanceComponent },
   { path: 'salaryReport', component: SalaryReportComponent },
   { path: 'attendenceReport', component: AttendanceComponent },
->>>>>>> 5f48e29905d0f903af1d3b7f6259cd916097cb65
   { path: 'holidays', component: HolidysComponent },
   { path: 'public-setting', component: PublicSettingComponent },
   { path: 'employees', component:  EmployeesComponent },
