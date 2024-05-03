@@ -40,7 +40,8 @@ interface SideNavToggle {
   ]
 })
 export class SidebarComponent implements OnInit {
-
+  //edit when work Graud
+  username=localStorage.getItem('username');
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = false;
   screenWidth = 0;
