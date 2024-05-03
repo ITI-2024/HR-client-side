@@ -22,7 +22,7 @@ i {
 }
 
 .modal-title {
-    margin-left: 39%;
+    margin-left: 35%;
     color: #2a6889;
 }
 
@@ -71,6 +71,7 @@ i {
     height: 45vh;
     background-color: white;
     overflow-y: scroll;
+    position: relative;
 }
 
 thead {
@@ -80,4 +81,12 @@ thead {
 th {
     align-content: center;
     text-align: center;
+}
+
+.spinner-border {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3rem;
+    height: 3rem;
 }

@@ -10,17 +10,13 @@ export class SalaryReportService {
   getSalaryReports() {
     return this.http.get(this.baseUrl);
   }
-  /*  getHolidayById(id: any) {
-     return this.http.get(`${this.baseUrl}/id?id=${id}`);
-   }
-   addHoliday(holiday: any) {
-     return this.http.post(this.baseUrl, holiday);
-   }
-   editHoliday(holiday: any) {
- 
-     return this.http.put(`${this.baseUrl}/Edit`, holiday);
-   }
-   deleteHoliday(id: any) {
-     return this.http.delete(`${this.baseUrl}/Delete?id=${id}`);
-   } */
+  getSalaryReportByName(name: any) {
+    return this.http.get(`${this.baseUrl}/${name}`);
+  }
+  getSalaryReportByDate(year: any, month: any) {
+    return this.http.get(`${this.baseUrl}/${year}/${month}`);
+  }
+  getSalaryReportByBoth(year: any, month: any, name: any) {
+    return this.http.get(`${this.baseUrl}/BythreeEele?year=${year}&month=${month}&name=${name}`);
+  }
 }

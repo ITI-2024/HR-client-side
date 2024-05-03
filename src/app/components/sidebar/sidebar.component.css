@@ -2,7 +2,7 @@
     background: #036088;
     transition: all .5s ease;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     top: 0;
     width: 5rem;
     height: 100vh;
@@ -14,16 +14,15 @@
         padding: 0.938rem 0.938rem 0 0.938rem;
         width: 100%;
       img {
-        
+
         position: relative;
             width: 50px;
             border-radius: 50% ;
            height: 50px;
             cursor: pointer;
             border: none;
-            
+
         }
-    
 
         .logo-text {
             margin-left: 1.5rem;
@@ -105,7 +104,4 @@
     .sidenav-link-text {
         color: #000;
     }
-}
-.bi{
-
 }

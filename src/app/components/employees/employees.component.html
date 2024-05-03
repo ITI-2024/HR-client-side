@@ -1,0 +1,65 @@
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">BirthDate</th>
+                        <th scope="col">Nationality</th>
+                        <th scope="col">National ID</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Contract Date</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Arriving Time</th>
+                        <th scope="col">Leaving Time</th>
+                        <th scope="col">Department Name</th>
+                        <th scope="col" colspan="2">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+              <!-- get employees from database -->
+                      <tr *ngFor="let employee of employees">
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.gender }}</td>
+                        <td>{{ employee.birthDate }}</td>
+                        <td>{{ employee.nationality }}</td>
+                        <td>{{ employee.nationalID }}</td>
+                        <td>{{ employee.address }}</td>
+                        <td>{{ employee.phoneNumber }}</td>
+                        <td>{{ employee.contractDate }}</td>
+                        <td>{{ employee.salary }}</td>
+                        <td>{{ employee.arrivingTime }}</td>
+                        <td>{{ employee.leavingTime }}</td>
+                        <td>{{ employee.departmentName }}</td>
+
+                       <!-- icons  -->
+                        <td>
+                          <img [routerLink]="['/employee/details', employee.id]" src="../../../assets/images/edit.png">
+                          <img (click)="deleteEmployeeHandler(employee.nationalID)" src="../../../assets/images/delete.png">
+                        </td>
+                         
+                      </tr>
+              
+ 
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-addemp px-5 me-2" [routerLink]="['addemployee']">
+          Add Employee
+       </button>
+      </div>
+ 
+ 
+ 

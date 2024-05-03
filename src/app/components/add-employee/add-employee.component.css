@@ -1,0 +1,126 @@
+.container {
+    height: 1500px;
+}
+
+.header {
+    padding-block: 60px;
+    margin-left: 70px;
+    font-family: Poppins-Regular;
+    line-height: 1.2;
+    font-weight: unset!important; /* Remove default font weight */
+}
+
+.header__description {
+    color: #666;
+    font-size: 17px;
+}
+
+img {
+    margin-left: 250px;
+}
+
+.main {
+    margin-top: 80px;
+    margin-left: -90px;
+}
+
+.illustration {
+    width: 40%;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #5f6caf;
+    color: #fff;
+    border: 2px solid #5f6caf;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #444e83;
+    border-color: #444e83;
+}
+
+label {
+    margin-left: 1vw;
+}
+
+input {
+    width: 80%;
+}
+.form-check-input{
+    width: 5%;
+
+}
+ .radio-check{
+    display: inline;
+    margin-left: 30px;
+ }
+
+.modal-header {
+    position: relative;
+    background-color: #2a6889;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 185px;
+    width: 70vw;
+}
+
+.modal-title {
+    margin: auto;
+    color: white;
+}
+
+.modal-body {
+    padding-left: 5vw;
+    padding-right: 2vw;
+    padding-block: 5vh;
+    background-color: #fff;
+    margin-top: -3px;
+    width: 70vw;
+    margin-left: 185px;
+}
+
+.title {
+    color: #2a6889;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+}
+
+.btn-addemp {
+    background-color: #2a6889;
+    color: white;
+    width: 80px;
+}
+.btn-reset{
+    background-color: #dc3545;
+    color: white;
+    width: 80px;
+}
+.modal-header-personal{
+    position: relative;
+    background-color: #2a6889;
+    border-radius: 20px;
+    margin-left: 5px;
+    width: 12vw;  
+}
+.personaldata,.employmentdata{
+    font-family: Poppins-Regular;
+    padding: 5px;
+    font-weight: unset!important; /* Remove default font weight */
+    text-align: center;
+    color: white;
+}
+.modal-header-employmentdata{
+    position: relative;
+    background-color: #2a6889;
+    border-radius: 20px;
+    margin-left: 10px;
+    width: 15vw;  
+}
