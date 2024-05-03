@@ -3,7 +3,7 @@
 }
 .page  {
   border-radius: 20px;
-  height: 95%;
+  height: 80vh;
   background-color: white;
   padding-bottom: 200px;
 
@@ -29,14 +29,14 @@
 
 .table-position {
   border-radius: 20px;
-  margin: 0 50px;
+  margin: 0 5vw;
   margin-top: 70px;
   margin-bottom: 300px;
 }
 
 .tableFixHead {
   overflow: auto;
-  height: 30vh;
+  height: 20vh;
 }
 
 .table-fixed thead th {
@@ -50,7 +50,7 @@
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
 }
 
 th, td {
@@ -80,13 +80,18 @@ th, td {
   width: 25%;
 }
 
-.table-fixed tbody {
+/*.table-fixed tbody {
   display: block;
-  height: calc(20vh - 2px); /* Adjusted height to account for scrollbar width */
+  height: calc(10vh - 2px);
   overflow-x: hidden;
   overflow-y: auto;
 }
-
+*/
+.table-fixed tbody {
+  display: block;
+  height: 20vh;
+  overflow-y: auto;
+}
 .table-fixed tr {
   display: block;
 }
@@ -122,9 +127,10 @@ th, td {
   color: white;
   border: 1px solid #036088;
   outline: #036088;
-  width: 10vh;
-  padding: 5px 20px;
+  width: 7vw;
+  padding: 1vh 0vw;
   margin-right: 20px;
+  text-align: center;
 }
 
 /* Additional styles for the choose link */
@@ -141,7 +147,8 @@ th, td {
 
 /* Additional styles for the "All" and "Custom" buttons */
 .all {
-  background-color: rgb(7, 148, 230);
+
+  background-color: #ddd;
   color: white;
   padding: 5px 20px;
   border-radius: 50px;
@@ -155,11 +162,20 @@ th, td {
   border-radius: 50px;
   display: inline-block;
 }
-
+.all:focus{
+  background-color: rgb(7, 148, 230);
+  box-shadow: #ddd 0px 0px 0px 1px;
+}
+.custom:focus{
+  background-color: rgb(7, 148, 230);
+  box-shadow: #ddd 0px 0px 0px 1px;
+}
 /* Additional styles for the checkboxes within table cells */
 td input[type="checkbox"] {
   width: 20px;
   height: 20px;
   padding: 5px;
 }
-
+.validation-msg{
+  margin-left: 12vw;
+}

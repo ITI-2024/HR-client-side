@@ -2,7 +2,7 @@
     background: #036088;
     transition: all .5s ease;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     top: 0;
     width: 5rem;
     height: 100vh;
@@ -14,31 +14,15 @@
         padding: 0.938rem 0.938rem 0 0.938rem;
         width: 100%;
       img {
-        
+
         position: relative;
             width: 50px;
             border-radius: 50% ;
            height: 50px;
             cursor: pointer;
             border: none;
-            
+
         }
-<<<<<<< HEAD
-        /* img{
-            width: 10.5vw;
-            height: 10.5vh;
-
-            position: absolute;
-
-            top: -9px;
-            left: -44px;
-             background-color: #000;
-
-
-         }  */
-=======
-    
->>>>>>> 387371effe4fa7d2279f0d65ebf1a8ad3a7ea4eb
 
         .logo-text {
             margin-left: 1.5rem;
