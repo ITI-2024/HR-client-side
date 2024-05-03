@@ -7,12 +7,17 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PublicSettingComponent } from './components/public-setting/public-setting.component';
 import { HolidysComponent } from './components/holidys/holidys.component';
 import { SalaryReportComponent } from './components/salary-report/salary-report.component';
-import { EmployessComponent } from './components/employess/employess.component';
+import { EmployeesComponent } from './components/employees/employees.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PublicSettingPopUpComponent } from './components/public-setting/public-setting-pop-up/public-setting-pop-up.component';
+
 import { AddPermissionComponent } from './components/add-permission/add-permission.component';
+
+import { LoginComponent } from './components/login/login.component';
+import { AttendanceComponent } from './components/attendance/attendance.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +25,14 @@ import { AddPermissionComponent } from './components/add-permission/add-permissi
     PublicSettingComponent,
     HolidysComponent,
     SalaryReportComponent,
-    EmployessComponent,
+    EmployeesComponent,
     PublicSettingPopUpComponent,
+
     AddPermissionComponent,
+
+    LoginComponent,
+    AttendanceComponent,
+
   ],
   imports: [
     BrowserModule,

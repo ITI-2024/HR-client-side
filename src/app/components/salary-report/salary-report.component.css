@@ -1,0 +1,92 @@
+i {
+    color: #2a6889;
+}
+
+.container-fluid {
+    height: 100vh;
+    padding-top: 5vh;
+}
+
+.wrapper {
+    width: 92%;
+    margin-left: 7%;
+    background-color: white;
+    padding-bottom: 3vh;
+    padding-inline: 1vw;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6vh;
+}
+
+.modal-title {
+    margin-left: 35%;
+    color: #2a6889;
+}
+
+.salaryimg {
+    width: 10vw;
+    margin-right: 35%;
+}
+
+.inputWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5vw;
+
+}
+
+.searchContainer {
+    width: 20vw;
+    margin-left: 5vw;
+}
+
+.inputContainer {
+    width: 15vw;
+    display: flex;
+    justify-content: end;
+}
+
+.custom-select {
+    width: 8vw;
+}
+
+.label {
+    width: 8vw;
+    align-content: center;
+    text-align: end;
+    padding-right: 1vw;
+}
+
+.btn-search {
+    background-color: #2a6889;
+    color: white;
+    margin-block: 5vh;
+    margin-left: 45%;
+}
+
+.tableContainer {
+    height: 45vh;
+    background-color: white;
+    overflow-y: scroll;
+    position: relative;
+}
+
+thead {
+    font-size: 14px;
+}
+
+th {
+    align-content: center;
+    text-align: center;
+}
+
+.spinner-border {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3rem;
+    height: 3rem;
+}

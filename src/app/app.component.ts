@@ -7,6 +7,7 @@ import { PublicSettingService } from './services/public-setting.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   publicSetting: any;
   constructor(public publicSettingsSerivices: PublicSettingService) { }
   addpublicSetting(p: any) {

@@ -14,14 +14,16 @@
         padding: 0.938rem 0.938rem 0 0.938rem;
         width: 100%;
       img {
-            background-color: white;
+        
         position: relative;
             width: 50px;
             border-radius: 50% ;
            height: 50px;
             cursor: pointer;
             border: none;
+            
         }
+<<<<<<< HEAD
         /* img{
             width: 10.5vw;
             height: 10.5vh;
@@ -34,6 +36,9 @@
 
 
          }  */
+=======
+    
+>>>>>>> 387371effe4fa7d2279f0d65ebf1a8ad3a7ea4eb
 
         .logo-text {
             margin-left: 1.5rem;
@@ -111,7 +116,6 @@
 
 .active {
     background-color: #fff;
-
     .sidenav-link-icon,
     .sidenav-link-text {
         color: #000;
