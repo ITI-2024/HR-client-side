@@ -7,9 +7,10 @@
         <a href="#" class="choose all">All permissions</a>
         <a href="#"class="choose custom">Private Custom</a>
         </div>
-        <form class="form-position "  (submit)="addRole($event)" [formGroup]="formGroup" method="submit">
+        <form class="form-position "   [formGroup]="formGroup" method="submit">
           <!-- <p class="form-text text-danger validatin-msg" >{{error}}</p> -->
-          <input type="submit" class=" btn-save" value="Add">
+
+           <label for="roleName" class="form-label me-3">Group Name</label>
           <input type="text" class="text" id="roleName" placeholder="Group Name" name="name" formControlName="name" >
           <ng-container *ngIf="getName.touched">
             <div id="emailHelp" class="form-text text-danger validation-msg"   *ngIf="getName.hasError('required')">
@@ -29,24 +30,22 @@
               <thead>
                   <tr>
                       <th class="col">Group Name</th>
-                      <th class="col">Add</th>
-                      <th class="col">Eidet</th>
-                      <th class="col">Delete</th>
+                      <th class="col text-center">Add</th>
+                      <th class="col text-center">Eidet</th>
+                      <th class="col text-center">Delete</th>
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let role of roles" (click)="selectRow(role.id)">
-                      <td class="col">{{role.name}}</td>
-                      <td class="col"><input type="checkbox" id="" name="" value=""></td>
-                      <td class="col"><input type="checkbox" id="" name="" value=""></td>
-                      <td class="col"><input type="checkbox" id="" name="" value=""></td>
+                  <tr *ngFor="let sec of section" >
+                      <td class="col">{{sec}}</td>
+                      <td class="col text-center"><input type="checkbox" id="" name="" value=""></td>
+                      <td class="col text-center"><input type="checkbox" id="" name="" value=""></td>
+                      <td class="col text-center"><input type="checkbox" id="" name="" value=""></td>
                   </tr>
-
-
-
               </tbody>
           </table>
           </div>
+          <button class="btn-seve ">Save changes</button>
 
         </div>
       </div>
