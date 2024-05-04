@@ -18,7 +18,7 @@
                 <h5 class="modal-title " id="exampleModalLabel"> {{ employeeId == 0 ? "Add Employee" : "Edit Employee" }}</h5>
             </div>
             <div class="modal-body">
-                <form [formGroup]="addempform" class="row">
+                <form (submit)="employeeHandler($event)" [formGroup]="addempform" class="row">
                     <!-- Personal Data Section -->
                     <div class="col-md-6">
                         <div class="mb-3 modal-header-personal">
@@ -26,39 +26,39 @@
                         </div>
                         <div class="mb-3 mt-4">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="Name" formControlName="Name" placeholder="Enter Name">
+                            <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Enter Name">
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="Address" formControlName="Address" placeholder="Enter Address">
+                            <input type="text" class="form-control" id="address" name="address" formControlName="address" placeholder="Enter Address">
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="Phone"formControlName="Phone" placeholder="Enter Phone Number">
+                            <input type="text" class="form-control" id="phone" name="phoneNumber"formControlName="phoneNumber" placeholder="Enter Phone Number">
                         </div>
                         <!-- start of gender -->
                         <div class="mb-3">
                             <label class="form-label">Gender</label>
                             <div class="radio-check"> 
-                                <input class="form-check-input" type="radio" name="Gender" formControlName="Gender" id="male" value="male">
+                                <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="male" value="male">
                                 <label class="form-check-label" for="male">Male</label>
           
-                                <input class="form-check-input ms-4" type="radio" name="Gender" formControlName="Gender" id="female" value="female">
+                                <input class="form-check-input ms-4" type="radio" name="gender" formControlName="gender" id="female" value="female">
                                 <label class="form-check-label" for="female">Female</label>
                             </div> 
                         </div>
                           <!-- end of gender -->
                         <div class="mb-3">
                             <label for="nationality" class="form-label">Nationality</label>
-                            <input type="text" class="form-control" id="nationality" name="Nationality" formControlName="Nationality" placeholder="Enter Nationality">
+                            <input type="text" class="form-control" id="nationality" name="nationality" formControlName="nationality" placeholder="Enter Nationality">
                         </div>
                         <div class="mb-3">
                             <label for="birthdate" class="form-label">Birth Date</label>
-                            <input type="date" class="form-control" id="birth" name="Birth" formControlName="Birth">
+                            <input type="date" class="form-control" id="birth" name="birthDate" formControlName="birthDate">
                         </div>
                         <div class="mb-3">
                             <label for="id" class="form-label">National ID</label>
-                            <input type="text" class="form-control" id="id" name="Id" formControlName="Id" placeholder="Enter National ID">
+                            <input type="text" class="form-control" id="id" name="id" formControlName="id" placeholder="Enter National ID">
                         </div>
                     </div>
 
@@ -69,25 +69,25 @@
                         </div>
                         <div class="mb-3 mt-4">
                             <label for="contract" class="form-label">Contract Date</label>
-                            <input type="date" class="form-control" id="contract" name="Contract" formControlName="Contract">
+                            <input type="date" class="form-control" id="contract" name="contractDate" formControlName="contractDate">
                         </div>
                         <!-- select department -->
                         <label for="dept" class="form-label">Select Employee Department</label>
-                        <select class="form-select custom-select mb-3" id="dept" name="Dept" formControlName="Dept">
-                            <option *ngFor="let department of departments" [value]="department.name">{{ department.name }}</option>
+                        <select class="form-select custom-select mb-3" id="dept" name="idDept" formControlName="idDept">
+                            <option *ngFor="let department of departments" value={{department.id}}>{{ department.name }}</option>
                         </select>                                        
                         <!-- end of select -->
                         <div class="mb-3">
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="number" class="form-control" id="salary" name="Salary" formControlName="Salary" placeholder="Enter Salary">
+                            <input type="number" class="form-control" id="salary" name="salary" formControlName="salary" placeholder="Enter Salary">
                         </div>
                         <div class="mb-3">
                             <label for="arrive" class="form-label">Arriving Time</label>
-                            <input type="time" class="form-control" id="arrive" name="Arrive" formControlName="Arrive">
+                            <input type="time" class="form-control" id="arrive" name="arrivingTime" formControlName="arrivingTime">
                         </div>
                         <div class="mb-3">
                             <label for="leave" class="form-label">Leaving Time</label>
-                            <input type="time" class="form-control" id="leave" name="Leave" formControlName="Leave">
+                            <input type="time" class="form-control" id="leave" name="leavingTime" formControlName="leavingTime">
                         </div>
                     </div>
  

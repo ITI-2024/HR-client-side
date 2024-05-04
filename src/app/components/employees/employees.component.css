@@ -4,10 +4,10 @@
   
   .card {
     border-radius: .8rem;
-    margin-left: 17vw;
+    margin-left: 9vw;
     margin-top: 3vw;
-    width: 78%;
-    height: 550px;
+    width: 1100px;
+    height: 590px;
     overflow-y: scroll;
   }
   
@@ -16,8 +16,9 @@
     white-space: nowrap;
     text-align: center;
     width: 100%;
-    font-size: 18px; 
-    padding-block: 30px;
+    font-size: 19px; 
+    /*padding:20px*/
+    padding:10px;
   }
   
   .table-hover tbody tr:hover td {
@@ -32,7 +33,7 @@
     font-weight: unset!important;  /* Remove default font weight */
     position: sticky;
     top:0px;
-    padding-left: 20px;
+    padding-left: 40px;
   }
   
   /* Style for table rows */
@@ -44,6 +45,7 @@
   
   td {
     color: #666; /* Default text color for table cells */
+    margin-top: 50px;
   }
 .btn-addemp{
     background-color: #036088;

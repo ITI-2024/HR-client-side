@@ -11,8 +11,8 @@ export class EmployeesService {
   getAllEmployees() {
     return this.http.get(this.baseUrl);
   }
-  getEmployee(id: any) {
-    return this.http.get(`${this.baseUrl}/${id}`);
+  getEmployee(id: any , employee: any) {
+    return this.http.get(`${this.baseUrl}/${id}`,employee);
   }
   deleteEmployee(id: any) {
     return this.http.delete(`${this.baseUrl}/employees/${id}`);
