@@ -1,5 +1,7 @@
+import { EmployeesService } from './../../services/employees.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/department.service';
 
 @Component({
@@ -11,8 +13,14 @@ export class AddEmployeeComponent implements OnInit {
 
   addempform: FormGroup;
   departments: any;
-  
-  constructor(private formBuilder: FormBuilder , public x:DepartmentService) {
+  /* to know if it is add or edit */
+  employeeId: any;
+
+  constructor(
+    private formBuilder: FormBuilder , public x:DepartmentService , 
+    public activatedRoute: ActivatedRoute,
+    public employeesService: EmployeesService,
+    public router: Router) {
     this.addempform = this.formBuilder.group({
       Name: [''],
       Address: [''],
@@ -26,8 +34,11 @@ export class AddEmployeeComponent implements OnInit {
       Arrive: [''],
       Leave: ['']
     });
+ 
   }
   ngOnInit(): void {
+    /*capture employee ID */
+    this.employeeId = this.activatedRoute.snapshot.params['id'];
     this.departments = this.x.getDepartments().subscribe({
       next: (data) => {
         this.departments = data;

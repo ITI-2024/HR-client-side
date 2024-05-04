@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:'user', component:UserComponent},
   {path:'login', component: LoginComponent},
   { path: 'permissions', component: AddPermissionComponent },
-  {path:'addemployee', component:AddEmployeeComponent }
+  {path:'employee/:id/edit', component:AddEmployeeComponent }
 ];
 
 @NgModule({
