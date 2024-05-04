@@ -42,13 +42,13 @@
 
                        <!-- icons  -->
                         <td>
-                          <img [routerLink]="['/employee/details', employee.id]" src="../../../assets/images/edit.png">
+                          <img [routerLink]="['/employee', employee.nationalID , 'edit']" src="../../../assets/images/edit.png">
                           <img (click)="deleteEmployeeHandler(employee.nationalID)" src="../../../assets/images/delete.png">
                         </td>
-                         
+
                       </tr>
-              
- 
+
+
                     </tbody>
                   </table>
                 </div>
@@ -56,10 +56,10 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-addemp px-5 me-2" [routerLink]="['/addemployee']">
+        <button class="btn btn-addemp px-5 me-2" [routerLink]="['/employee', '0', 'edit']">
           Add Employee
        </button>
       </div>
- 
- 
- 
+
+
+

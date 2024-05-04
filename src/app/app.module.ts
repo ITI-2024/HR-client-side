@@ -16,6 +16,7 @@ import { AddPermissionComponent } from './components/add-permission/add-permissi
 import { LoginComponent } from './components/login/login.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,8 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
     SalaryReportComponent,
     EmployeesComponent,
     PublicSettingPopUpComponent,
-
+    UserComponent,
     AddPermissionComponent,
-
     LoginComponent,
     AttendanceComponent,
     AddEmployeeComponent,

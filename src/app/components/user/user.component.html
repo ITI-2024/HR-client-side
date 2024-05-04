@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <div class="wrapper">
+        <div class="model-header pt-5 ">
+            <i class="bi bi-person-fill-add"></i>
+            <h4 class="model-titel ">Add New User</h4>
+        </div>
+        <div class="model-body">
+            <!-- [formGroup]="registerForm" -->
+            <form (submit)="adduser($event)" [formGroup]="registerForm"  >
+                <div class="form-group">
+                <div class="row justify-content-sm-around">
+                  <div class="col-sm-5 input-g"> 
+                        <label for="fullName">Full Name</label>
+             
+                        <input type="text" placeholder="fullName" class="form-control normalfont" name="fullnameuser"
+                            formControlName="fullName" id="fullnameuser" [(ngModel)]="fullnameuser"/>
+                        <ng-container *ngIf="getName.touched">
+                            <div *ngIf="getName.hasError('required')" id="fullNameVild"
+                                class="form-text text-danger  p-0 m-0"> *Field is Required </div>
+                        </ng-container>
+                    
+                   
+                    </div> 
+                    <div class="col-sm-5 input-g">
+                        <label for="userName" >User Name</label>
+                        <input type="text" placeholder="Username" id="usernameuser" class="form-control normalfont"
+                            name="usernameuser" formControlName="username" [(ngModel)]="usernameuser"/>
+                        <!-- [(ngModel)] -->
+                        <ng-container *ngIf="getuserName.touched">
+                            <div *ngIf="getuserName.hasError('required')" id="useNameHelp"
+                                class="form-text text-danger  p-0 m-0" >*Field is Required </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="row  justify-content-sm-around">
+                    <div class="col-sm-5  input-g">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Email" class="form-control normalfont" id="emailuser" name="emailuser"
+                        formControlName="email" [(ngModel)]="emailuser"/>
+                    <ng-container *ngIf="getEmail.touched">
+                        <div *ngIf="getEmail.hasError('required')" class="form-text text-danger  p-0 m-0">*Field is Required</div>
+                        <div *ngIf="getEmail.hasError('invalidEmail')" class="form-text text-danger   p-0 m-0">*This
+                            email does not match format</div>
+                    </ng-container>
+                </div>
+                <div class="col-sm-5  input-g ">
+                    <label for="password" >Password</label>
+                    <input type="password" id="passworduser" placeholder="Password" class="form-control"
+                        name="passworduser" formControlName="password" [(ngModel)]="passworduser" />
+                    <ng-container *ngIf="getPassword.touched">
+                        <div *ngIf="getPassword.hasError('required')" class="form-text text-danger  p-0 m-0 ">
+                            *Field is Required</div>
+                        <div *ngIf="getPassword.hasError('invalidPassword')" class="form-text text-danger  p-0 m-0">
+                            *This password does not match format</div>
+                    </ng-container>
+                </div>
+                </div>
+                <div class="row  col-sm-4  mb-0  " style="margin-left: 2.5vw;">
+                    <label for="roles">Roles</label>
+                    <select class="w-75 role-select form-control" formControlName="rolename" id="roleuser" name="rolename" >
+                        <option selected disabled>Choose...</option>
+                        <option *ngFor="let role of rolesName" [value]="role">{{role}}</option>
+                    </select>
+                    <ng-container *ngIf="getRole.touched">
+                        <div *ngIf="getRole.hasError('required')" class="form-text text-danger  p-0 m-0">
+                            *Field is Required</div>
+                    </ng-container>
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-save px-5 ms-5 mt-3" [disabled]="!registerForm.valid ">
+                Add
+            </button>
+           
+            </form>
+            <div class="img-bage">
+                <img src="assets/images/12.svg" alt="name">
+            </div>
+
+        </div>
+        
+    </div>
+
+
+</div>
