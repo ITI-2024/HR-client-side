@@ -10,17 +10,17 @@
                       <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Gender</th>
-                        <th scope="col">BirthDate</th>
-                        <th scope="col">Nationality</th>
-                        <th scope="col">National ID</th>
+                        <!-- <th scope="col">BirthDate</th> -->
+                        <!-- <th scope="col">Nationality</th> -->
+                        <!-- <th scope="col">National ID</th> -->
                         <th scope="col">Address</th>
-                        <th scope="col">Phone Number</th>
+                        <!-- <th scope="col">Phone Number</th> -->
                         <th scope="col">Contract Date</th>
                         <th scope="col">Salary</th>
                         <th scope="col">Arriving Time</th>
                         <th scope="col">Leaving Time</th>
                         <th scope="col">Department Name</th>
-                        <th scope="col" colspan="2">Actions</th>
+                        <th scope="col" colspan="3">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -29,11 +29,11 @@
                       <tr *ngFor="let employee of employees">
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.gender }}</td>
-                        <td>{{ employee.birthDate }}</td>
-                        <td>{{ employee.nationality }}</td>
-                        <td>{{ employee.nationalID }}</td>
+                        <!-- <td>{{ employee.birthDate }}</td> -->
+                        <!-- <td>{{ employee.nationality }}</td> -->
+                        <!-- <td>{{ employee.nationalID }}</td> -->
                         <td>{{ employee.address }}</td>
-                        <td>{{ employee.phoneNumber }}</td>
+                        <!-- <td>{{ employee.phoneNumber }}</td> -->
                         <td>{{ employee.contractDate }}</td>
                         <td>{{ employee.salary }}</td>
                         <td>{{ employee.arrivingTime }}</td>
@@ -42,8 +42,9 @@
 
                        <!-- icons  -->
                         <td>
-                          <img [routerLink]="['/employee', employee.nationalID , 'edit']" src="../../../assets/images/edit.png"> 
-                          <img (click)="deleteEmployeeHandler(employee.nationalID)" src="../../../assets/images/delete.png">
+                          <i [routerLink]="['/employee', employee.nationalID , 'edit']"class="bi bi-pencil-fill fs-3 mx-2"></i>
+                          <i (click)="deleteEmployeeHandler(employee.nationalID)" class="bi bi-trash text-danger fs-3 mx-2"></i>
+                          <i class="bi bi-person-vcard fs-3 mx-2"></i>
                         </td>
                          
                       </tr>
