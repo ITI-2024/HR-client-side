@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicSettingComponent } from './components/public-setting/public-setting.component'
 /*import { NotFoundComponent } from './components/not-found/not-found.component';*/
@@ -10,6 +10,7 @@ import { UserComponent } from './components/user/user.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { SalaryReportComponent } from './components/salary-report/salary-report.component';
 import { AddPermissionComponent } from './components/add-permission/add-permission.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'user', component:UserComponent},
   {path:'login', component: LoginComponent},
   { path: 'permissions', component: AddPermissionComponent },
+  {path:'addemployee', component:AddEmployeeComponent }
 ];
 
 @NgModule({

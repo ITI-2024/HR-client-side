@@ -124,3 +124,6 @@ input {
     margin-left: 10px;
     width: 15vw;  
 }
+.custom-select {
+    width: 80%;
+}

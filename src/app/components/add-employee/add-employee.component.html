@@ -71,6 +71,13 @@
                             <label for="contract" class="form-label">Contract Date</label>
                             <input type="date" class="form-control" id="contract" name="Contract" formControlName="Contract">
                         </div>
+                        <!-- select department -->
+                        <label for="dept" class="form-label">Select Employee Department</label>
+                        <select class="form-select custom-select mb-3" id="dept" name="Dept" formControlName="Dept">
+                            <option *ngFor="let department of departments" [value]="department.name">{{ department.name }}</option>
+                        </select>                        
+                                              
+                        <!-- end of select -->
                         <div class="mb-3">
                             <label for="salary" class="form-label">Salary</label>
                             <input type="number" class="form-control" id="salary" name="Salary" formControlName="Salary" placeholder="Enter Salary">
