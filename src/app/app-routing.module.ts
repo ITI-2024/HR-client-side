@@ -13,7 +13,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 
 const routes: Routes = [
 
-  { path: '', component: EmployeesComponent },
+  /*{ path: '', component: EmployeesComponent },*/
   { path: '', component: AttendanceComponent },
   { path: 'salaryReport', component: SalaryReportComponent },
   { path: 'attendenceReport', component: AttendanceComponent },

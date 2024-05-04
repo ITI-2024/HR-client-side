@@ -41,7 +41,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

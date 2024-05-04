@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PublicSettingService } from 'src/app/services/public-setting.service';
 declare var window: any;
 @Component({
@@ -6,7 +6,7 @@ declare var window: any;
   templateUrl: './public-setting-pop-up.component.html',
   styleUrls: ['./public-setting-pop-up.component.css']
 })
-export class PublicSettingPopUpComponent {
+export class PublicSettingPopUpComponent implements OnInit {
   formModal: any;
   extraHours: any;
   deductionHours: any;
@@ -14,10 +14,11 @@ export class PublicSettingPopUpComponent {
   weekendDay2: any;
   extraHoursField: boolean = false;
   deductionHoursField: boolean = false;
-  weekendDay1Field: boolean = false;
+  weekendDay1Field: boolean = false
   weekendDay2Field: boolean = false;
   extraHoursInValid: boolean = false;
   deductionHoursInValid: boolean = false;
+
   @Output() publicSetting = new EventEmitter();
   setting: any;
   constructor(public publicSettingsSerivices: PublicSettingService) { }
@@ -29,12 +30,17 @@ export class PublicSettingPopUpComponent {
         keyboard: false // Disables closing modal with the ESC key
       }
     );
+    console.log("gfbfdv")
     this.publicSettingsSerivices.getPuplicSetting().subscribe({
       next: data => {
         this.setting = data;
+        console.log(data)
+        console.log("gfbfdv")
         if (this.setting.length == 0) this.openFormModal();
 
-      }
+      },
+      error:err=>{console.log(err.error)}
+
     })
 
   }
@@ -42,7 +48,13 @@ export class PublicSettingPopUpComponent {
   openFormModal() {
     this.formModal.show();
   }
-  save(e: any) {
+  save(e:any) {
+
+
+
+    console.log(this.extraHours)
+    console.log(this.deductionHours)
+
     if (this.extraHours == undefined) this.extraHoursField = true;
     else this.extraHoursField = false;
 
@@ -60,13 +72,16 @@ export class PublicSettingPopUpComponent {
     else this.deductionHoursInValid = false;
 
     if (!this.extraHoursField && !this.deductionHoursField && !this.weekendDay1Field && !this.extraHoursInValid && !this.deductionHoursInValid) {
+      console.log("reem")
       this.publicSetting.emit({
         "extraHours": this.extraHours,
         "deductionHours": this.deductionHours,
         "firstWeekend": this.weekendDay1,
         "secondWeekend": this.weekendDay2 == undefined ? null : this.weekendDay2
+
       })
       this.formModal.hide();
     }
   }
+
 }
