@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PublicSettingService {
-  baseUrl: string = 'http://localhost:5258/api/PublicSetting';
+  baseUrl: string = 'https://localhost:7291/api/PublicSetting';
   constructor(public http: HttpClient) { }
   getPuplicSetting() {
     return this.http.get(this.baseUrl);
