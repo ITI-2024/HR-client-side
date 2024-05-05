@@ -1,9 +1,7 @@
-:root {
-  --table-body-height: 40vh; /* Define a CSS variable for table body height */
-}
+
 .page  {
   border-radius: 20px;
-  height: 80vh;
+  height: 85vh;
   background-color: white;
   padding-bottom: 200px;
 
@@ -34,10 +32,10 @@
   margin-bottom: 300px;
 }
 
-.tableFixHead {
+/*.tableFixHead {
   overflow: auto;
   height: 20vh;
-}
+}*/
 
 .table-fixed thead th {
   position: sticky;
@@ -51,6 +49,7 @@
 table {
   border-collapse: collapse;
   width: 90%;
+  border: 1px solid;
 }
 
 th, td {
@@ -89,7 +88,7 @@ th, td {
 */
 .table-fixed tbody {
   display: block;
-  height: 20vh;
+  height: fit-content;
   overflow-y: auto;
 }
 .table-fixed tr {
@@ -178,4 +177,14 @@ td input[type="checkbox"] {
 }
 .validation-msg{
   margin-left: 12vw;
+}
+.btn-seve{
+  background-color: #036088;
+  color:white;
+  border-radius: 10px;
+  padding: .9vh 0vw;
+  width: 8vw;
+  border: none;
+  margin-top: 3vh;
+  margin-left: 67vw;
 }

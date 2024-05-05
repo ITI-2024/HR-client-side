@@ -9,8 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { SalaryReportComponent } from './components/salary-report/salary-report.component';
-import { AddPermissionComponent } from './components/add-permission/add-permission.component';
+import { AddPermissionComponent } from './components/roles/add-permission/add-permission.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { RolesComponent } from './components/roles/roles.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,9 @@ const routes: Routes = [
   //{ path: '**', component: NotFoundComponent },
   {path:'user', component:UserComponent},
   {path:'login', component: LoginComponent},
-  { path: 'permissions', component: AddPermissionComponent },
+  { path: 'permissions/:id', component: AddPermissionComponent },
+  { path: 'roles', component: RolesComponent },
+
   {path:'employee/:id/edit', component:AddEmployeeComponent }
 ];
 

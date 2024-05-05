@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PermissionService {
-  baseUrl:string="http://localhost:5258/api/RoleName";
+  baseUrl:string="https://localhost:7291/api/RoleName";
   constructor(public http:HttpClient) { }
   addRole(name:any){
     return this.http.post(this.baseUrl,name)

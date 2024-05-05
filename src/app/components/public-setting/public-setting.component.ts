@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { PublicSettingService } from 'src/app/services/public-setting.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class PublicSettingComponent implements OnInit {
   extraHoursInValid: boolean = false;
   deductionHoursInValid: boolean = false;
   setting: any;
+
   constructor(public publicSettingsSerivices: PublicSettingService) { }
   ngOnInit(): void {
     this.publicSettingsSerivices.getPuplicSetting().subscribe({

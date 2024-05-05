@@ -11,7 +11,13 @@ export class RoleService {
   getRole(){
     return this.http.get(this.baseUrl);
   }
+  getById(id:any){
+    return this.http.get(`${this.baseUrl}/${id}`)
+  }
   addRole(role: any){
     return this.http.post(this.baseUrl,role);
+  }
+  deleteRole(id:any){
+    return this.http.delete(this.baseUrl+"/"+id);
   }
 }
