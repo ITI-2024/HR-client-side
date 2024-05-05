@@ -11,8 +11,8 @@ export class EmployeesService {
   getAllEmployees() {
     return this.http.get(this.baseUrl);
   }
-  getEmployee(id: any , employee: any) {
-    return this.http.get(`${this.baseUrl}/${id}`,employee);
+  getEmployee(id: any) {
+    return this.http.get(`${this.baseUrl}/id?id=${id}`);
   }
   deleteEmployee(id: any) {
     return this.http.delete(`${this.baseUrl}/employees/${id}`);
@@ -20,6 +20,9 @@ export class EmployeesService {
   AddEmployee(employee:any)
   {
     return this.http.post(this.baseUrl,employee);
+  }
+  editEmployee(employee: any) {
+    return this.http.put(`${this.baseUrl}`, employee);
   }
  
 }

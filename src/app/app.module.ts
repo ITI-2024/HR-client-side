@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { UserComponent } from './components/user/user.component';
+import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UserComponent } from './components/user/user.component';
     LoginComponent,
     AttendanceComponent,
     AddEmployeeComponent,
+    EmployeeDetailsComponent,
 
   ],
   imports: [
