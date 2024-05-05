@@ -1,3 +1,4 @@
+import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicSettingComponent } from './components/public-setting/public-setting.component'
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'permissions/:id', component: AddPermissionComponent },
   { path: 'roles', component: RolesComponent },
 
-  {path:'employee/:id/edit', component:AddEmployeeComponent }
+  {path:'employee/:id/edit', component:AddEmployeeComponent },
+  {path:'employeedetails/:id', component:EmployeeDetailsComponent }
 ];
 
 @NgModule({
