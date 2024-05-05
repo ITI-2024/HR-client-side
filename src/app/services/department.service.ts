@@ -13,4 +13,7 @@ export class DepartmentService {
   addDepartment(department: any) {
     return this.http.post(this.baseUrl, department);
   }
+  getDepartmentById(id: any) {
+    return this.http.get(`${this.baseUrl}/id?id=${id}`);
+  }
 }
