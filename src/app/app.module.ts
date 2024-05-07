@@ -19,6 +19,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { UserComponent } from './components/user/user.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
+import { PdfContentComponent } from './components/salary-report/pdf-content/pdf-content.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EmployeeDetailsComponent } from './components/employee-details/employee
     AttendanceComponent,
     AddEmployeeComponent,
     RolesComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    PdfContentComponent
 
 
   ],
