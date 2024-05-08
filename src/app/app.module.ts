@@ -19,6 +19,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { UserComponent } from './components/user/user.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
+import { PdfContentComponent } from './components/salary-report/pdf-content/pdf-content.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 
 
@@ -37,6 +38,8 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     AttendanceComponent,
     AddEmployeeComponent,
     RolesComponent,
+    EmployeeDetailsComponent,
+    PdfContentComponent
     EmployeeDetailsComponent,
     AllUsersComponent
 
