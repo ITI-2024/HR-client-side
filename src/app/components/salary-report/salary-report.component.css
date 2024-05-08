@@ -15,6 +15,31 @@ i {
     padding-inline: 1vw;
 }
 
+.pdf-container {
+    height: 0px;
+    overflow: hidden;
+    width: 55vw;
+    margin: auto;
+}
+
+.prop-group {
+    margin-block: 2vh;
+    display: flex;
+    margin: auto;
+    width: fit-content;
+}
+
+.prop-title {
+    width: 15vw;
+    margin-right: 10vw;
+}
+
+.prop-content {
+    width: 8vw;
+    font-size: 12px;
+}
+
+
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -89,4 +114,11 @@ th {
     left: 50%;
     width: 3rem;
     height: 3rem;
+}
+
+.printbtn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    /* Optional: removes any default padding */
 }

@@ -4,10 +4,10 @@
   <div class="page">
   <div class="page-title">Roles</div>
 
-    <div class="form-position " >
-      <!-- <p class="form-text text-danger validatin-msg" >{{error}}</p>
-
-      <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" formControlName="groupName" >
+    <form class="form-position "  (submit)="addRole($event)" [formGroup]="formGroup" method="submit">
+      <!-- <p class="form-text text-danger validatin-msg" >{{error}}</p> -->
+      <input type="submit" class=" btn-save" value="Add" [routerLink]="['/permissions']">
+      <input type="text" class="text" id="roleName" placeholder="Group Name" name="name" formControlName="name" >
       <ng-container *ngIf="getName.touched">
         <div id="emailHelp" class="form-text text-danger validation-msg"   *ngIf="getName.hasError('required')">
           This field is required
@@ -30,8 +30,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let role of roles"  >
-            <td    [routerLink]="['/permissions',role.id]" class="pb-3">{{role.groupName}}</td>
+          <tr *ngFor="let role of roles "  >
+            <td><a [routerLink]="['/permissions/', role.id]">{{role.groupName}}</a></td>
             <!-- icons  -->
 
 

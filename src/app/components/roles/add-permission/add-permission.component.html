@@ -10,7 +10,7 @@
       <form   (submit)="onSubmit()" >
         <div class="form-position">
         <label for="roleName" class="form-label me-3">Group Name</label>
-        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName"  [value]="roleName">
+        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" >
         </div>
       <div class="row table-position">
         <table class="col-10 table-bordered table-striped table-condensed table-fixed">
@@ -28,22 +28,26 @@
             <tr *ngFor="let prem of permissions; let i = index"  >
               <td class="col">{{prem.name}}</td>
               <td class="col text-center">
-                <input type="checkbox" name="view" [id]="prem.name + '_view'" [checked]="prem.view">
+                <input type="checkbox" name="view" [id]="prem.name + '_view'">
 
               </td>
               <td class="col text-center">
-                  <input type="checkbox" name="create" [id]="prem.name + '_create'" [checked]="prem.create">
+                  <input type="checkbox" name="create" [id]="prem.name + '_create'">
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="update" [id]="prem.name + '_update'" [checked]="prem.update">
+                <input type="checkbox" name="update" [id]="prem.name + '_update'">
 
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="delete" [id]="prem.name + '_delete'" [checked]="prem.delete">
+                <input type="checkbox" name="delete" [id]="prem.name + '_delete'">
               </td>
           </tr>
 
 
+              <!-- <td class="col text-center"><input type="checkbox" id="view" name="view" formControlName=" view" ></td>
+              <td class="col text-center"><input type="checkbox" id="create" name="create" formControlName="create" ></td>
+              <td class="col text-center"><input type="checkbox" id="update" name="update" value="" formControlName=" update" ></td>
+              <td class="col text-center"><input type="checkbox" id="delete" name="delete" value="" formControlName="delete"></td> -->
 
           </tbody>
         </table>
