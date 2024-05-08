@@ -27,6 +27,7 @@ const routes: Routes = [
   {path:'user', component:UserComponent},
   {path:'login', component: LoginComponent},
   { path: 'permissions/:id', component: AddPermissionComponent },
+  { path: 'permissins', component: AddPermissionComponent },
   { path: 'roles', component: RolesComponent },
 
   {path:'employee/:id/edit', component:AddEmployeeComponent },

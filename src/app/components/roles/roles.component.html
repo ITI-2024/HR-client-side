@@ -4,10 +4,10 @@
   <div class="page">
   <div class="page-title">Roles</div>
 
-    <form class="form-position "  (submit)="addRole($event)" [formGroup]="formGroup" method="submit">
-      <!-- <p class="form-text text-danger validatin-msg" >{{error}}</p> -->
-      <input type="submit" class=" btn-save" value="Add">
-      <input type="text" class="text" id="roleName" placeholder="Group Name" name="name" formControlName="name" >
+    <div class="form-position " >
+      <!-- <p class="form-text text-danger validatin-msg" >{{error}}</p>
+
+      <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" formControlName="groupName" >
       <ng-container *ngIf="getName.touched">
         <div id="emailHelp" class="form-text text-danger validation-msg"   *ngIf="getName.hasError('required')">
           This field is required
@@ -15,9 +15,11 @@
         <div id="emailHelp" class="form-text text-danger validatin-msg" *ngIf="getName.hasError('minlength')">
           Group name must be at least 3 characters
         </div>
-      </ng-container>
+      </ng-container> -->
+      <button type="button" class=" btn-save"  [routerLink]="['/permissins']">Add</button>
+    </div>
 
-    </form>
+
 
     <div class=" row table-position">
 
@@ -29,16 +31,14 @@
         </thead>
         <tbody>
           <tr *ngFor="let role of roles"  >
-            <td    [routerLink]="['/permissions',role.id]">{{role.name}}</td>
+            <td    [routerLink]="['/permissions',role.id]" class="pb-3">{{role.groupName}}</td>
             <!-- icons  -->
 
-            <td class="icon">
-              <i  (click)="delete(role.id)" class="bi bi-trash text-danger"></i>
 
-            </td>
           </tr>
         </tbody>
       </table>
+
 
     </div>
   </div>
