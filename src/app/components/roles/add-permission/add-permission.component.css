@@ -1,11 +1,9 @@
 
 .page  {
   border-radius: 20px;
-  height: 85vh;
+  height: 200vh;
   background-color: white;
   padding-bottom: 200px;
-
-
   overflow: hidden; /* Hide overflow to prevent table border from extending beyond page border */
 }
 
@@ -76,7 +74,7 @@ th, td {
 }
 
 .table-fixed .col {
-  width: 25%;
+  width: 20%;
 }
 
 /*.table-fixed tbody {

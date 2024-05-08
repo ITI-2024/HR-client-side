@@ -23,8 +23,10 @@ export class RolesComponent implements OnInit {
   constructor(public roleService:RoleService){}
   ngOnInit(): void {
     this.roleService.getRole().subscribe({
+      
       next: (data)=>{
         this.roles=data
+     
       },
     error: (err: any)=>{console.log(err)}
     })
@@ -82,7 +84,6 @@ delete(id: any) {
   });
 }
 selectRow(id:any){
-
   this.roleService.getById(id).subscribe({
     next: (data)=>{
       console.log(data)

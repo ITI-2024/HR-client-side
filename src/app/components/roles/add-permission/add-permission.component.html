@@ -1,56 +1,65 @@
-
-    <div class="container">
-      <div class="page">
-      <div class="page-title">Permissions</div>
-      <div class="row">
-        <div class="perm-select">
+<div class="container">
+  <div class="page">
+    <div class="page-title">Permissions</div>
+    <div class="row">
+      <div class="perm-select">
         <a href="#" class="choose all">All permissions</a>
-        <a href="#"class="choose custom">Private Custom</a>
+        <a href="#" class="choose custom">Private Custom</a>
+      </div>
+      <!-- (ngSubmit)=" onSubmit()" -->
+      <form   (submit)="onSubmit()" >
+        <div class="form-position">
+        <label for="roleName" class="form-label me-3">Group Name</label>
+        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" >
         </div>
-        <form class="form-position "   [formGroup]="formGroup" method="submit">
-          <!-- <p class="form-text text-danger validatin-msg" >{{error}}</p> -->
+      <div class="row table-position">
+        <table class="col-10 table-bordered table-striped table-condensed table-fixed">
+          <thead>
+            <tr>
+              <th class="col">Group Name</th>
+              <th class="col text-center">View</th>
+              <th class="col text-center">Create</th>
+              <th class="col text-center">Update</th>
+              <th class="col text-center">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+      
+            <tr *ngFor="let prem of permissions; let i = index"  >
+              <td class="col">{{prem.name}}</td>
+              <td class="col text-center">
+                <input type="checkbox" name="view" [id]="prem.name + '_view'">
+               
+              </td>
+              <td class="col text-center">
+                  <input type="checkbox" name="create" [id]="prem.name + '_create'">
+              </td>
+              <td class="col text-center">
+                <input type="checkbox" name="update" [id]="prem.name + '_update'">
+                
+              </td>
+              <td class="col text-center">
+                <input type="checkbox" name="delete" [id]="prem.name + '_delete'">
+              </td>
+          </tr>
+          
 
-           <label for="roleName" class="form-label me-3">Group Name</label>
-          <input type="text" class="text" id="roleName" placeholder="Group Name" name="name" formControlName="name" >
-          <ng-container *ngIf="getName.touched">
-            <div id="emailHelp" class="form-text text-danger validation-msg"   *ngIf="getName.hasError('required')">
-              This field is required
-            </div>
-            <div id="emailHelp" class="form-text text-danger validatin-msg" *ngIf="getName.hasError('minlength')">
-              Group name must be at least 3 characters
-            </div>
-          </ng-container>
-
-        </form>
-
-        <div class=" row table-position">
-
-          <div class="">
-            <table class="col-xs-7 table-bordered table-striped table-condensed table-fixed">
-              <thead>
-                  <tr>
-                      <th class="col">Group Name</th>
-                      <th class="col text-center">Add</th>
-                      <th class="col text-center">Eidet</th>
-                      <th class="col text-center">Delete</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let sec of section" >
-                      <td class="col">{{sec}}</td>
-                      <td class="col text-center"><input type="checkbox" id="" name="" value=""></td>
-                      <td class="col text-center"><input type="checkbox" id="" name="" value=""></td>
-                      <td class="col text-center"><input type="checkbox" id="" name="" value=""></td>
-                  </tr>
-              </tbody>
-          </table>
-          </div>
-          <button class="btn-seve ">Save changes</button>
-
-        </div>
+              <!-- <td class="col text-center"><input type="checkbox" id="view" name="view" formControlName=" view" ></td>
+              <td class="col text-center"><input type="checkbox" id="create" name="create" formControlName="create" ></td>
+              <td class="col text-center"><input type="checkbox" id="update" name="update" value="" formControlName=" update" ></td>
+              <td class="col text-center"><input type="checkbox" id="delete" name="delete" value="" formControlName="delete"></td> -->
+       
+          </tbody>
+        </table>
+        <button type="submit"class="btn-seve">Save changes</button>
       </div>
 
+      </form>
     </div>
 
+
+  </div>
+
+</div>
 
 

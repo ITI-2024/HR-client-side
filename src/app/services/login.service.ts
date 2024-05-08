@@ -10,6 +10,9 @@ export class LoginService {
   constructor(public http: HttpClient) { 
     
   }
+  getAllusers(){
+    return this.http.get(this.baseUrl);
+  }
   getlogin(User: any){
     return this.http.post(`${this.baseUrl}/login`,User)
  }

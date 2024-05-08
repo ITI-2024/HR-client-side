@@ -13,6 +13,7 @@ import { SalaryReportComponent } from './components/salary-report/salary-report.
 import { AddPermissionComponent } from './components/roles/add-permission/add-permission.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { RolesComponent } from './components/roles/roles.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 
 const routes: Routes = [
@@ -27,8 +28,9 @@ const routes: Routes = [
   {path:'user', component:UserComponent},
   {path:'login', component: LoginComponent},
   { path: 'permissions/:id', component: AddPermissionComponent },
+  { path: 'permissions', component: AddPermissionComponent },
   { path: 'roles', component: RolesComponent },
-
+{path:'allUsers', component: AllUsersComponent},
   {path:'employee/:id/edit', component:AddEmployeeComponent },
   {path:'employeedetails/:id', component:EmployeeDetailsComponent }
 ];
