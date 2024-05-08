@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
- import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
- import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { RoleService } from 'src/app/services/role.service';
 import Swal from 'sweetalert2';
 
@@ -73,7 +69,7 @@ import Swal from 'sweetalert2';
 
 
 
-  constructor(public router: Router, public roleservice: RoleService, public activeRoute: ActivatedRoute, public formbuilder:FormBuilder) {
+  constructor(public router: Router, public roleservice: RoleService, public activeRoute: ActivatedRoute) {
 
    }
 

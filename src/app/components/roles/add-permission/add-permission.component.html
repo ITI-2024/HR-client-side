@@ -10,7 +10,7 @@
       <form   (submit)="onSubmit()" >
         <div class="form-position">
         <label for="roleName" class="form-label me-3">Group Name</label>
-        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" >
+        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" [value]="roleName" >
         </div>
       <div class="row table-position">
         <table class="col-10 table-bordered table-striped table-condensed table-fixed">
@@ -28,18 +28,18 @@
             <tr *ngFor="let prem of permissions; let i = index"  >
               <td class="col">{{prem.name}}</td>
               <td class="col text-center">
-                <input type="checkbox" name="view" [id]="prem.name + '_view'">
+                <input type="checkbox" name="view" [id]="prem.name + '_view'" [checked]="prem.view">
 
               </td>
               <td class="col text-center">
-                  <input type="checkbox" name="create" [id]="prem.name + '_create'">
+                  <input type="checkbox" name="create" [id]="prem.name + '_create'" [checked]="prem.create">
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="update" [id]="prem.name + '_update'">
+                <input type="checkbox" name="update" [id]="prem.name + '_update'" [checked]="prem.update">
 
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="delete" [id]="prem.name + '_delete'">
+                <input type="checkbox" name="delete" [id]="prem.name + '_delete'" [checked]="prem.delete">
               </td>
           </tr>
 

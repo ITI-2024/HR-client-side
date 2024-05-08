@@ -39,7 +39,7 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     AddEmployeeComponent,
     RolesComponent,
     EmployeeDetailsComponent,
-    PdfContentComponent
+    PdfContentComponent,
     EmployeeDetailsComponent,
     AllUsersComponent
 
