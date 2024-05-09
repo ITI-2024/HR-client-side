@@ -9,6 +9,7 @@
     padding-bottom: 10%;
     background-color: white;
     border-radius: 20px;
+    height: 93%;
     overflow: hidden;
 }
 
@@ -47,14 +48,13 @@
 
 .img-bage {
     position: absolute;
-    bottom: -20vh;
-    left: 40vw;
+    bottom: -13vh;
+    left: 42vw;
 
 
 }
 
 .img-bage img {
-
     height: 35vh;
 }
 
@@ -73,7 +73,7 @@ label {
     color: white;
 }
 .form-group input:focus{
-    height: 5vh;
+    height: 6vh;
     margin: 0;
     padding: 0;
 }
@@ -85,6 +85,5 @@ label {
 
 .input-g {
     margin: 2vh 0;
-
-
 }
+

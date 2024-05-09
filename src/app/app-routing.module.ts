@@ -15,6 +15,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { RolesComponent } from './components/roles/roles.component';
 import { AttendenceComponent } from './components/attendence/attendence.component';
 import { AddAttendenceComponent } from './components/add-attendence/add-attendence.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path: 'permissions/:id', component: AddPermissionComponent },
   {path: 'roles', component: RolesComponent },
+  { path: 'permissions/:id', component: AddPermissionComponent },
+  { path: 'permissions', component: AddPermissionComponent },
+  { path: 'roles', component: RolesComponent },
+{path:'allUsers', component: AllUsersComponent},
   {path:'employee/:id/edit', component:AddEmployeeComponent },
   {path:'employeedetails/:id', component:EmployeeDetailsComponent },
   {path:'attendenceReport', component: AttendenceComponent},

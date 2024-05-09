@@ -5,7 +5,7 @@ export const navbarData = [
         label: 'Attendence Report'
     },
     {
-        routeLink: 'user',
+        routeLink: 'allUsers',
         icon: 'fal fa-solid fa-user-plus', //us
         label: 'User'
     },

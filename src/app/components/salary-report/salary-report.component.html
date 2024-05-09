@@ -1,8 +1,10 @@
 <div class="container-fluid">
     <div class="wrapper">
         <div class="modal-header">
-            <h3 class="modal-title " id="exampleModalLabel">Salary Report</h3>
+            <h3 class="modal-title " id="header">Salary Report</h3>
             <img class="salaryimg" src="../../../assets/images/salaryReport.png" alt="">
+        </div>
+        <div class="container mt-5" id="pdfContent" style="height: 1vh;">
         </div>
         <div class="modal-body">
             <form (submit)="search()">
@@ -61,15 +63,16 @@
                             <th scope="row">{{index+1}}</th>
                             <td>{{item.empName}}</td>
                             <td>{{item.deptName}}</td>
-                            <td>{{item.mainSalary}}</td>
+                            <td>{{item.mainSalary | currency:'EG'}}</td>
                             <td>{{item.attendDay}}</td>
                             <td>{{item.absentDay}}</td>
                             <td>{{item.extraHours}}</td>
                             <td>{{item.dedectionHours}}</td>
                             <td>{{item.totalExtra}}</td>
                             <td>{{item.totalDiscount}}</td>
-                            <td>{{item.totalNetSalary}}</td>
-                            <td><i class="bi bi-printer-fill"></i></td>
+                            <td>{{item.totalNetSalary | currency:'EG'}}</td>
+                            <td><button class="printbtn" (click)="generatePDF(index)"><i
+                                        class="bi bi-printer-fill"></i></button></td>
                         </tr>
                     </tbody>
                 </table>

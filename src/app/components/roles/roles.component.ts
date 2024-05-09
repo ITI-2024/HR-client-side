@@ -16,40 +16,43 @@ export class RolesComponent implements OnInit {
   roleInfo:any
   roleId:any
     formGroup=new FormGroup({
-      name:new FormControl('',[Validators.required,Validators.minLength(3)]),
+      groupName:new FormControl('',[Validators.required,Validators.minLength(3)]),
 
     })
 
   constructor(public roleService:RoleService){}
   ngOnInit(): void {
     this.roleService.getRole().subscribe({
+      
       next: (data)=>{
         this.roles=data
+     
       },
     error: (err: any)=>{console.log(err)}
     })
   }
   get getName(){
-    return this.formGroup.controls['name'];
+    return this.formGroup.controls['groupName'];
   }
-addRole(e:any){
-  e.preventDefault();
-  if(this.formGroup.status=="VALID"){
+// addRole(e:any){
+//   e.preventDefault();
+//   if(this.formGroup.status=="VALID"){
 
-    this.roleService.addRole(this.formGroup.value).subscribe({
+//     this.roleService.addRole(this.formGroup.value).subscribe({
 
-      next: (data)=>{
-        window.location.reload();
+//       next: (data)=>{
+//         window.location.reload();
 
-        console.log(data)
-      },
-      error: (err)=>{console.log(err)
-       this.error=err.error.title
-       console.log(typeof(this.formGroup.value.name))
-      }
-    })
-}
-}
+//         console.log(data)
+//       },
+//       error: (err)=>{console.log(err)
+//        this.error=err.error.title
+//        console.log(this.formGroup.value)
+//        console.log(typeof(this.formGroup.value))
+//       }
+//     })
+// }
+//}
 delete(id: any) {
   // Display SweetAlert confirmation dialog
   Swal.fire({
@@ -82,7 +85,6 @@ delete(id: any) {
   });
 }
 selectRow(id:any){
-
   this.roleService.getById(id).subscribe({
     next: (data)=>{
       console.log(data)

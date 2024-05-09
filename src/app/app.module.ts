@@ -20,6 +20,8 @@ import { RolesComponent } from './components/roles/roles.component';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { AttendenceComponent } from './components/attendence/attendence.component';
 import { AddAttendenceComponent } from './components/add-attendence/add-attendence.component';
+import { PdfContentComponent } from './components/salary-report/pdf-content/pdf-content.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 
 @NgModule({
@@ -40,6 +42,10 @@ import { AddAttendenceComponent } from './components/add-attendence/add-attenden
     EmployeeDetailsComponent,
     AttendenceComponent,
     AddAttendenceComponent
+    EmployeeDetailsComponent,
+    PdfContentComponent,
+    EmployeeDetailsComponent,
+    AllUsersComponent
 
 
   ],

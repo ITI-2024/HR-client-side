@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { RoleService } from 'src/app/services/role.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -28,14 +28,20 @@ export class UserComponent implements OnInit {
    
     this.role.getRole().subscribe({
       next:data=>{
-      
         this.roledata=data;
-        this.roledata.forEach((ele: { name: any; }) => {
-          this.name=ele.name;
-          this.rolesName.push(this.name);
-          
+        console.log(this.roledata);
+        // this.roledata.forEach((ele: any) => {
+        //   this.name=ele.groupName;
+        //   this.rolesName.push(this.name);
+        // });
+       if (this.roledata.length==0){
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Please enter a role first!',
         });
-    
+        this.router.navigate(['/permissions']);
+       }
        
       }
                     
@@ -89,7 +95,7 @@ export class UserComponent implements OnInit {
         this.passwordFormatValidator,
       ]
     ),
-    rolename: new FormControl('', [ Validators.required, ]),
+    roleid: new FormControl('', [ Validators.required, ]),
   });
   get getName() {
     return this.registerForm.controls['fullName'];
@@ -101,7 +107,7 @@ export class UserComponent implements OnInit {
     return this.registerForm.controls['username'];
   }
   get getRole() {
-   return this.registerForm.controls['rolename'];
+   return this.registerForm.controls['roleid'];
   }
   get getPassword() {
     return this.registerForm.controls['password'];
@@ -109,11 +115,17 @@ export class UserComponent implements OnInit {
   adduser(e:any){
     e.preventDefault();
     if(this.registerForm.status == 'VALID'){
-      console.log(this.registerForm.value+' successfully');
+      console.log(this.registerForm.value +' successfully');
       this.userService.AddUser(this.registerForm.value).subscribe({
         next:data=>{
           this.user=data;
           console.log(this.user);
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'User added successfully!'
+          });
+          this.router.navigate(['/allUsers']);
         }
         ,
         error: (error) => {
@@ -121,7 +133,7 @@ export class UserComponent implements OnInit {
           console.log(error)
         },
       })
-
+     
     }
   }
 
