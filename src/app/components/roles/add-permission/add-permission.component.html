@@ -10,7 +10,7 @@
       <form   (submit)="onSubmit()" >
         <div class="form-position">
         <label for="roleName" class="form-label me-3">Group Name</label>
-        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" >
+        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" [disabled]="wel">
         </div>
       <div class="row table-position">
         <table class="col-10 table-bordered table-striped table-condensed table-fixed">

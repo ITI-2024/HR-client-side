@@ -14,12 +14,13 @@ import { AddPermissionComponent } from './components/roles/add-permission/add-pe
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
-
   { path: 'employees', component: EmployeesComponent },
-  { path: '', component: AttendanceComponent },
+  { path: 'attendance', component: AttendanceComponent },
+  { path: ' ', component: HomeComponent },
   { path: 'salaryReport', component: SalaryReportComponent },
   { path: 'attendenceReport', component: AttendanceComponent },
   { path: 'holidays', component: HolidysComponent },
@@ -30,7 +31,7 @@ const routes: Routes = [
   { path: 'permissions/:id', component: AddPermissionComponent },
   { path: 'permissions', component: AddPermissionComponent },
   { path: 'roles', component: RolesComponent },
-{path:'allUsers', component: AllUsersComponent},
+  {path:'allUsers', component: AllUsersComponent},
   {path:'employee/:id/edit', component:AddEmployeeComponent },
   {path:'employeedetails/:id', component:EmployeeDetailsComponent }
 ];

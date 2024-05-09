@@ -70,8 +70,13 @@ export class LoginComponent implements OnInit {
       console.log(data);
       //Static 
       if(this.user.token){
-        localStorage.setItem('username', this.user.username);
-        this.router.navigate(['/']);
+        localStorage.removeItem('username');
+        localStorage.setItem('token', this.user.token);
+        localStorage.setItem('rolename', this.user.roleName);
+        const roles=this.user.roles;
+        const rolesString = JSON.stringify(roles);
+        localStorage.setItem('roles',rolesString);
+        this.router.navigate([' ']);
       }
 
     },

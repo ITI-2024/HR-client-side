@@ -66,6 +66,7 @@ constructor(public role:RoleService,public router:Router){
 
 ]
 view:any;
+wel:boolean = false;
 
   ngOnInit(): void {
 
@@ -83,6 +84,7 @@ view:any;
     
     })
    let getName=document.getElementById("roleName")as HTMLInputElement;
+  this. wel=true;
 
    let newrole={
     name:getName.value,

@@ -21,6 +21,7 @@ import { RolesComponent } from './components/roles/roles.component';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { PdfContentComponent } from './components/salary-report/pdf-content/pdf-content.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -39,9 +40,10 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     AddEmployeeComponent,
     RolesComponent,
     EmployeeDetailsComponent,
-    PdfContentComponent
+    PdfContentComponent,
     EmployeeDetailsComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    HomeComponent
 
 
   ],
