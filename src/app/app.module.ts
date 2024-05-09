@@ -41,7 +41,7 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     RolesComponent,
     EmployeeDetailsComponent,
     AttendenceComponent,
-    AddAttendenceComponent
+    AddAttendenceComponent,
     EmployeeDetailsComponent,
     PdfContentComponent,
     EmployeeDetailsComponent,

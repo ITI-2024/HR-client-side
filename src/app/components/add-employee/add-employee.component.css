@@ -3,7 +3,7 @@
 }
 
 .header {
-    padding-block: 60px;
+    padding-block: 30px;
     margin-left: 60px;
     font-family: Poppins-Regular;
     line-height: 1.2;
@@ -20,8 +20,8 @@ img {
 }
 
 .main {
-    margin-top: 80px;
-    margin-left: -90px;
+    margin-top: 40px;
+    margin-left: -140px;
 }
 
 .illustration {
@@ -128,4 +128,7 @@ input {
 }
 .custom-select {
     width: 80%;
+}
+.img-fluid{
+    width: 10vw;
 }
