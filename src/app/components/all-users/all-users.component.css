@@ -13,6 +13,7 @@ i {
     background-color: white;
     padding-bottom: 3vh;
     padding-inline: 1vw;
+    border-radius: 20px;
 }
 
 .modal-header {

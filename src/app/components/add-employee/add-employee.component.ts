@@ -140,6 +140,7 @@ export class AddEmployeeComponent implements OnInit {
     formData.arrivingTime = this.convertToTimeSpan(formData.arrivingTime);
     formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
     formData.idDept = parseInt(formData.idDept, 10);
+
     if (this.employeeId == '0') {
       // Add new employee
       this.employeesService.AddEmployee(formData).subscribe({
