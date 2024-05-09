@@ -47,15 +47,12 @@
 
 .img-bage {
     position: absolute;
-    bottom: -20vh;
-    left: 40vw;
-
-
+    bottom: -25vh;
+    left: 48vw;
 }
 
 .img-bage img {
-
-    height: 35vh;
+    height: 32vh;
 }
 
 label {

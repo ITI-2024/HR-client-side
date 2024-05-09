@@ -1,15 +1,14 @@
+.container-fluid {
+    height: 105vh;
+    padding-top: 5vh;
+}
 i {
     color: #2a6889;
 }
 
-.container-fluid {
-    height: 100vh;
-    padding-top: 5vh;
-}
-
 .wrapper {
-    width: 92%;
-    margin-left: 7%;
+    width: 67vw;
+    margin-left:20%;
     background-color: white;
     padding-bottom: 3vh;
     padding-inline: 1vw;
@@ -23,13 +22,14 @@ i {
 }
 
 .modal-title {
-    margin-left: 35%;
+    margin-left: 25%;
+    margin-top: 2vh;
     color: #2a6889;
 }
 
-.salaryimg {
+.attendanceimg {
     width: 10vw;
-    margin-right: 35%;
+    margin-right: 30%;
 }
 
 .inputWrapper {
@@ -45,31 +45,21 @@ i {
 }
 
 .inputContainer {
-    width: 15vw;
+    width: 32vw;
     display: flex;
     justify-content: end;
-}
-
-.custom-select {
-    width: 8vw;
-}
-
-.label {
-    width: 8vw;
-    align-content: center;
-    text-align: end;
-    padding-right: 1vw;
 }
 
 .btn-search {
     background-color: #2a6889;
     color: white;
     margin-block: 5vh;
-    margin-left: 45%;
+    margin-left: 44%;
 }
 
 .tableContainer {
     height: 45vh;
+    width: 65vw;
     background-color: white;
     overflow-y: scroll;
     position: relative;
@@ -92,4 +82,8 @@ th {
     left: 50%;
     width: 3rem;
     height: 3rem;
+}
+
+.mylabel {
+    padding: 10px;
 }

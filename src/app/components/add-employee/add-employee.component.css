@@ -85,6 +85,8 @@ input {
     margin-top: -3px;
     width: 70vw;
     margin-left: 190px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .title {

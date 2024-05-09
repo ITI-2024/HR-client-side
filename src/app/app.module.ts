@@ -14,11 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { PublicSettingPopUpComponent } from './components/public-setting/public-setting-pop-up/public-setting-pop-up.component';
 import { AddPermissionComponent } from './components/roles/add-permission/add-permission.component';
 import { LoginComponent } from './components/login/login.component';
-import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { UserComponent } from './components/user/user.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
+import { AttendenceComponent } from './components/attendence/attendence.component';
+import { AddAttendenceComponent } from './components/add-attendence/add-attendence.component';
 
 
 @NgModule({
@@ -33,10 +34,12 @@ import { EmployeeDetailsComponent } from './components/employee-details/employee
     UserComponent,
     AddPermissionComponent,
     LoginComponent,
-    AttendanceComponent,
+    AttendenceComponent,
     AddEmployeeComponent,
     RolesComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    AttendenceComponent,
+    AddAttendenceComponent
 
 
   ],

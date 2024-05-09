@@ -1,0 +1,52 @@
+
+<div class="container-fluid">
+    <div class="wrapper">
+        <div class="model-header pt-5 ">
+            <i class="bi bi-person-lines-fill me-2"></i>
+            <h4 class="model-titel ">{{ attendanceId == 0 ? "Add Attendance" : "Edit Attendance" }}</h4>
+        </div>
+        <div class="model-body">
+            <form (submit)="attendanceHandler($event)"  [formGroup]="addAttendanceForm">
+                <div class="form-group">
+                <div class="row justify-content-sm-around">
+                  <div class="col-sm-5 input-g"> 
+                        <label for="name">Name</label>
+                        <!-- Use a dropdown menu for employee selection -->
+                        <select class="form-select normalfont" id="name" name="employeeName" formControlName="employeeName">
+                            <option *ngFor="let employee of employees" [value]="employee.idemp">{{ employee.name }}</option>
+                        </select>
+                    </div> 
+                    <div class="col-sm-5 input-g">
+                        <label for="arrivingtime" >Arriving Time</label>
+                        <input type="Time" class="form-control normalfont"
+                        id="arrivingtime" name="arrivingTime" formControlName="arrivingTime"/>
+                    </div>
+                </div>
+                <div class="row justify-content-sm-around">
+                    <div class="col-sm-5  input-g">
+                    <label for="date">Date</label>
+                    <input type="Date" placeholder="Enter Date" class="form-control normalfont"
+                     id="Date" name="dayDate" formControlName="dayDate"/> 
+                </div>
+                <div class="col-sm-5  input-g ">
+                    <label for="leavingtime" >Leaving Time</label>
+                    <input type="time" placeholder="Password" class="form-control"
+                    id="leavingtime" name="leavingTime" formControlName="leavingTime"/>       
+                </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-save px-5 ms-5 mt-3">
+                {{ attendanceId == 0 ? "Add" : "Edit" }}
+            </button>
+           
+            </form>
+            <div class="img-bage">
+                <img src="../../../assets/images/attendance.png" alt="name">
+            </div>
+
+        </div>
+        
+    </div>
+
+
+</div>

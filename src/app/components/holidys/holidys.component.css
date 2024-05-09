@@ -16,11 +16,12 @@ label {
 .wrapper {
     width: 65%;
     padding-left: 5vw;
-    margin-left: 24%;
+    margin-left: 23%;
     margin-top: 4vh;
     padding-bottom: 5vh;
     padding-top: 3vh;
     background-color: white;
+    border-radius: 20px;
 }
 
 .date {
@@ -60,7 +61,7 @@ label {
 }
 
 .form-group {
-    height: 10vh;
+    height: 20vh;
 }
 
 .spinner-border {

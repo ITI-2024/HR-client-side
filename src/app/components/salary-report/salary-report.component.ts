@@ -38,6 +38,7 @@ export class SalaryReportComponent implements OnInit {
     if ((this.Search && this.Search != '') || (this.Month && this.Year)) this.disablesSearch = false;
     else this.disablesSearch = true;
   }
+
   search() {
     this.tableLoading = true;
     if (this.Search && this.Search != '') {
