@@ -21,14 +21,15 @@
 }
 .container{
   height: 100vh;
-  padding-top: 90px;
+  padding-top: 50px;
+margin-left: 10vw;
 
 }
 
 .table-position {
   border-radius: 20px;
   margin: 0 7vw;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 300px;
   margin-left: 10vw;
 
@@ -109,7 +110,7 @@ th, td {
 
 /* Additional styles for the form position */
 .form-position {
-  padding-top: 30px;
+  padding-top: 10px;
   margin-left: 40%;
 }
 
@@ -191,4 +192,8 @@ td input[type="checkbox"] {
   border: none;
   margin-top: 3vh;
   margin-left: 53vw;
+}
+.error{
+  color: red ;
+  margin-left: 55%;
 }

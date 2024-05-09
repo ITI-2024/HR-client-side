@@ -52,7 +52,8 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

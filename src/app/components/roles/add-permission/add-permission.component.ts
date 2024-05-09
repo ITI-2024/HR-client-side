@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
 import Swal from 'sweetalert2';
@@ -14,6 +15,10 @@ import Swal from 'sweetalert2';
    role: any;
    roleId: any;
   roleName: any='';
+  uniqueError: any;
+  validPemission: any;
+  isDiabled: boolean = false;
+
    permissions: any=[{
     "name": 'Employee',
     "create": false,
@@ -77,6 +82,7 @@ import Swal from 'sweetalert2';
 
 
   ngOnInit(): void {
+
     this.roleId=this.activeRoute.snapshot.params['id'];
     this.roleservice.getById(this.roleId).subscribe({
       next: (data:any) => {
@@ -84,6 +90,7 @@ import Swal from 'sweetalert2';
         this.permissions=data.permissions
         const HtmlElement=document.getElementById("roleName")as HTMLInputElement;
         HtmlElement.value=this.roleName
+        this.isDiabled=true;
         this.permissions.forEach((perm: any) => {
           // Get checkbox elements based on permission name
           const viewCheckbox = document.getElementById(`${perm.name}_view`) as HTMLInputElement;
@@ -118,8 +125,11 @@ import Swal from 'sweetalert2';
 
 
 
-  onSubmit(): void {
+  onSubmit(myForm:NgForm): void {
 
+
+
+     if(this.roleId==0){
     this.permissions.forEach((prem:any,index:any) => {
       let view=document.getElementById(`${prem.name}_view`)as HTMLInputElement;
       let create=document.getElementById(`${prem.name}_create`)as HTMLInputElement;
@@ -131,13 +141,26 @@ import Swal from 'sweetalert2';
       this.permissions[index].view=view.checked;
 
     })
+
+    this.uniqueError = '';
+    this.validPemission = '';
+    const hasPermission = this.permissions.some((prem:any) => prem.view || prem.create || prem.update || prem.delete);
+    if (!hasPermission) {
+      this.validPemission = 'You must determine at least one permission';
+      return;
+    }
+
    let getName=document.getElementById("roleName")as HTMLInputElement;
+
+
 
    let newrole={
     name:getName.value,
     permissions:this.permissions
    }
-   this.roleservice.addRole(newrole).subscribe({
+  this.roleservice.getByName(getName.value).subscribe({
+  next: (data:any) => {
+  this.roleservice.addRole(newrole).subscribe({
     next: (data:any) => {
     console.log(data);
 
@@ -153,14 +176,96 @@ import Swal from 'sweetalert2';
       result.isConfirmed ? this.router.navigate(['/roles']) : null
     })
     },
-    error: (err:any)=>{console.log(err)}
-   });
-
-  }
+    error: (err:any)=>{console.log(err)
 
     }
+   });
+
+   },
+error: (err:any)=>{console.log(err)
+  this.uniqueError=err.error;}
+})
+  //end getbyname
 
 
+}
+ //end add function
+     //else update function
+     else{
+
+
+      this.permissions.forEach((prem:any,index:any) => {
+        let view=document.getElementById(`${prem.name}_view`)as HTMLInputElement;
+        let create=document.getElementById(`${prem.name}_create`)as HTMLInputElement;
+        let update=document.getElementById(`${prem.name}_update`)as HTMLInputElement;
+        let deelete=document.getElementById(`${prem.name}_delete`)as HTMLInputElement;
+        this.permissions[index].create=create.checked;
+        this.permissions[index].update=update.checked;
+        this.permissions[index].delete=deelete.checked;
+        this.permissions[index].view=view.checked;
+
+      })
+
+      this.uniqueError = '';
+      this.validPemission = '';
+      const hasPermission = this.permissions.some((prem:any) => prem.view || prem.create || prem.update || prem.delete);
+      if (!hasPermission) {
+        this.validPemission = 'You must determine at least one permission';
+        return;
+      }
+     let getName=document.getElementById("roleName")as HTMLInputElement;
+getName.value=this.roleName
+console.log(this.roleName);
+console.log(getName.value);
+
+
+
+
+
+
+
+     let newrole={
+      name:getName.value,
+      permissions:this.permissions
+     }
+     this.roleservice.updateRole(newrole,this.roleId).subscribe({
+      next: (data:any) => {
+      console.log(data);
+
+      Swal.fire({
+        title: 'Success!',
+        text: 'Group updated Successfully',
+        icon: 'success', // Custom icon HTML
+        showCancelButton: false,
+        confirmButtonColor: 'purple',
+        confirmButtonText: 'Ok',
+
+      }).then((result) => {
+        result.isConfirmed ? this.router.navigate(['/roles']) : null
+      })
+    },
+      error: (err:any)=>{console.log(err)
+        console.log(getName.value);
+
+
+
+      }
+    })
+
+
+     }//end else
+
+
+
+  
+
+
+  }
+
+
+
+
+ }
 
 
 

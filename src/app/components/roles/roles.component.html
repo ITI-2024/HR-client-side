@@ -5,7 +5,7 @@
   <div class="page-title">Roles</div>
 
     <div class="form-position">
-      <button type="button" class=" btn-save"  [routerLink]="['/permissions']">Add</button>
+      <button type="button" class=" btn-save"  [routerLink]="['/permissions','0','edit']">Add</button>
     </div>
     <div class=" row table-position">
 
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let role of roles "  >
-            <td [routerLink]="['/permissions/', role.id]">{{role.groupName}}</td>
+            <td [routerLink]="['/permissions/', role.id,'edit']" >{{role.groupName}}</td>
           </tr>
         </tbody>
       </table>

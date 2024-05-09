@@ -21,7 +21,8 @@
 }
 .container{
   height: 100vh;
-  padding-top: 90px;
+  padding-top: 50px;
+  margin-left: 10vw;
 
 }
 
@@ -67,7 +68,7 @@ border-bottom: 3px solid #036088;
 /* Additional styles for the text input */
 .form-position .text {
   border-radius: 50px;
-  padding: 5px 20px;
+
   border: 1px solid #036088;
   outline: #036088;
   width: 50vh;
@@ -81,8 +82,9 @@ border-bottom: 3px solid #036088;
   color: white;
   border: 1px solid #036088;
   outline: #036088;
-  width: 7vw;
+  width: 10vw;
   padding: 1vh 0vw;
-  margin-right: 20px;
+  margin-left: 50vw;
+
   text-align: center;
 }

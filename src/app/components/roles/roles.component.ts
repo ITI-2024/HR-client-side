@@ -23,10 +23,10 @@ export class RolesComponent implements OnInit {
   constructor(public roleService:RoleService){}
   ngOnInit(): void {
     this.roleService.getRole().subscribe({
-      
+
       next: (data)=>{
         this.roles=data
-     
+
       },
     error: (err: any)=>{console.log(err)}
     })
@@ -53,37 +53,37 @@ export class RolesComponent implements OnInit {
 //     })
 // }
 //}
-delete(id: any) {
-  // Display SweetAlert confirmation dialog
-  Swal.fire({
-    title: 'Are you sure you want to delete?',
-    text: 'Once deleted, you will not be able to recover data',
-    iconHtml: '<i class="bi bi-trash text-danger"></i>', // Custom icon HTML
-    showCancelButton: true,
-    confirmButtonColor: '#dc3545',
-    cancelButtonColor: '#036088',
-    confirmButtonText: 'Delete',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // If user confirms, proceed with deletion
-      this.roleService.deleteRole(id).subscribe({
-        next: () => {
-          // Remove the deleted employee from the employees array
-          this.roles = this.roles.filter(
-            (role: any) => role.roleId != id
-          );
-          // Show success message using SweetAlert
-          window.location.reload();
-        },
-        error: (error) => {
-          console.log(error);
-          // Show error message using SweetAlert
-          Swal.fire('Error!', 'An error occurred while deleting the role.', 'error');
-        },
-      });
-    }
-  });
-}
+// delete(id: any) {
+//   // Display SweetAlert confirmation dialog
+//   Swal.fire({
+//     title: 'Are you sure you want to delete?',
+//     text: 'Once deleted, you will not be able to recover data',
+//     iconHtml: '<i class="bi bi-trash text-danger"></i>', // Custom icon HTML
+//     showCancelButton: true,
+//     confirmButtonColor: '#dc3545',
+//     cancelButtonColor: '#036088',
+//     confirmButtonText: 'Delete',
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       // If user confirms, proceed with deletion
+//       this.roleService.deleteRole(id).subscribe({
+//         next: () => {
+//           // Remove the deleted employee from the employees array
+//           this.roles = this.roles.filter(
+//             (role: any) => role.roleId != id
+//           );
+//           // Show success message using SweetAlert
+//           window.location.reload();
+//         },
+//         error: (error) => {
+//           console.log(error);
+//           // Show error message using SweetAlert
+//           Swal.fire('Error!', 'An error occurred while deleting the role.', 'error');
+//         },
+//       });
+//     }
+//   });
+// }
 selectRow(id:any){
   this.roleService.getById(id).subscribe({
     next: (data)=>{
