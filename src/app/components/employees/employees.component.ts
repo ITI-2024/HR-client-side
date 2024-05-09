@@ -49,7 +49,7 @@ export class EmployeesComponent implements OnInit {
           error: (error) => {
             console.log(error);
             // Show error message using SweetAlert
-            Swal.fire('Error!', 'An error occurred while deleting the employee.', 'error');
+            Swal.fire('Error!', 'An error occurred while deleting the employee', 'error');
           },
         });
       }

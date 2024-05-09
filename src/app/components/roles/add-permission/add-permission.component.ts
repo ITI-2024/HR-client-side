@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
- import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
- import { PermissionService } from 'src/app/services/permission.service';
 import { RoleService } from 'src/app/services/role.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-permission',
@@ -10,68 +10,126 @@ import { RoleService } from 'src/app/services/role.service';
    styleUrls: ['./add-permission.component.css']
  })
  export class AddPermissionComponent implements OnInit {
- //sections: any=['Employee', 'Holiday', 'Public Setting', 'Users', 'Salary Report', 'Permissions', 'Attendance'];
-constructor(public role:RoleService,public router:Router){
 
-}
- permissions: any=[{
-  "name": 'Employee',
-  "create": false,
-  "delete": false,
-  "view": false,
-  "update":false
-},
-{
-  "name": 'Holiday',
-  "create": false,
-  "delete": false,
-  "view": false,
-  "update":false
-},
-{
-  "name": 'PublicSetting',
-  "create": false,
-  "delete": false,
-  "view": false,
-  "update":false
-},
-{
-  "name": 'Users',
-  "create": false,
-  "delete": false,
-  "view": false,
-  "update":false
-},
-{
-  "name": 'Permissions',
-  "create": false,
-  "delete": false,
-  "view": false,
-  "update":false
-},
-{
-  "name": 'SalaryReport',
-  "create": false,
-  "delete": false,
-  "view": false,
-  "update":false
-},
-{
-  "name": 'Attendance',
-  "create": false,
-  "delete": false,
-  "view": false,
-  "update":false
-},
 
-]
-view:any;
-wel:boolean = false;
+   role: any;
+   roleId: any;
+  roleName: any='';
+  uniqueError: any;
+  validPemission: any;
+  isDiabled: boolean = false;
+
+   permissions: any=[{
+    "name": 'Employee',
+    "create": false,
+    "delete": false,
+    "view": false,
+    "update":false
+  },
+  {
+    "name": 'Holiday',
+    "create": false,
+    "delete": false,
+    "view": false,
+    "update":false
+  },
+  {
+    "name": 'Public Setting',
+    "create": false,
+    "delete": false,
+    "view": false,
+    "update":false
+  },
+  {
+    "name": 'Users',
+    "create": false,
+    "delete": false,
+    "view": false,
+    "update":false
+  },
+  {
+    "name": 'Permissions',
+    "create": false,
+    "delete": false,
+    "view": false,
+    "update":false
+  },
+  {
+    "name": 'Salary Report',
+    "create": false,
+    "delete": false,
+    "view": false,
+    "update":false
+  },
+  {
+    "name": 'Attendance',
+    "create": false,
+    "delete": false,
+    "view": false,
+    "update":false
+  },
+
+  ]
+  view:any;
+
+
+
+  constructor(public router: Router, public roleservice: RoleService, public activeRoute: ActivatedRoute) {
+
+   }
+
+
+
 
   ngOnInit(): void {
 
+    this.roleId=this.activeRoute.snapshot.params['id'];
+    this.roleservice.getById(this.roleId).subscribe({
+      next: (data:any) => {
+        this.roleName=data.groupName
+        this.permissions=data.permissions
+        const HtmlElement=document.getElementById("roleName")as HTMLInputElement;
+        HtmlElement.value=this.roleName
+        this.isDiabled=true;
+        this.permissions.forEach((perm: any) => {
+          // Get checkbox elements based on permission name
+          const viewCheckbox = document.getElementById(`${perm.name}_view`) as HTMLInputElement;
+          const createCheckbox = document.getElementById(`${perm.name}_create`) as HTMLInputElement;
+          const updateCheckbox = document.getElementById(`${perm.name}_update`) as HTMLInputElement;
+          const deleteCheckbox = document.getElementById(`${perm.name}_delete`) as HTMLInputElement;
+
+
+          if (perm.view) {
+              viewCheckbox.checked = true;
+              viewCheckbox.setAttribute('checked', 'true');
+
+          }
+          if (perm.create) {
+              createCheckbox.checked = true;
+              createCheckbox.setAttribute('checked', 'true');
+          }
+          if (perm.update) {
+              updateCheckbox.checked = true;
+              updateCheckbox.setAttribute('checked', 'true');
+          }
+          if (perm.delete) {
+              deleteCheckbox.checked = true;
+              deleteCheckbox.setAttribute('checked', 'true');
+          }
+      });
+      },
+      error: (err:any)=>{console.log(err)}
+    })
+
   }
-  onSubmit():void {
+
+
+
+  onSubmit(myForm:NgForm): void {
+
+
+
+     if(this.roleId==0){
     this.permissions.forEach((prem:any,index:any) => {
       let view=document.getElementById(`${prem.name}_view`)as HTMLInputElement;
       let create=document.getElementById(`${prem.name}_create`)as HTMLInputElement;
@@ -81,26 +139,137 @@ wel:boolean = false;
       this.permissions[index].update=update.checked;
       this.permissions[index].delete=deelete.checked;
       this.permissions[index].view=view.checked;
-    
+
     })
+
+    this.uniqueError = '';
+    this.validPemission = '';
+    const hasPermission = this.permissions.some((prem:any) => prem.view || prem.create || prem.update || prem.delete);
+    if (!hasPermission) {
+      this.validPemission = 'You must determine at least one permission';
+      return;
+    }
+
    let getName=document.getElementById("roleName")as HTMLInputElement;
-  this. wel=true;
+
+
 
    let newrole={
     name:getName.value,
     permissions:this.permissions
    }
-   this.role.addRole(newrole).subscribe({
-    next: data=>{
-      console.log("Role");
+  this.roleservice.getByName(getName.value).subscribe({
+  next: (data:any) => {
+  this.roleservice.addRole(newrole).subscribe({
+    next: (data:any) => {
+    console.log(data);
+
+    Swal.fire({
+      title: 'Success!',
+      text: 'Group Added Successfully',
+      icon: 'success', // Custom icon HTML
+      showCancelButton: false,
+      confirmButtonColor: 'purple',
+      confirmButtonText: 'Ok',
+
+    }).then((result) => {
+      result.isConfirmed ? this.router.navigate(['/roles']) : null
+    })
+    },
+    error: (err:any)=>{console.log(err)
+
     }
    });
+
+   },
+error: (err:any)=>{console.log(err)
+  this.uniqueError=err.error;}
+})
+  //end getbyname
+
+
+}
+ //end add function
+     //else update function
+     else{
+
+
+      this.permissions.forEach((prem:any,index:any) => {
+        let view=document.getElementById(`${prem.name}_view`)as HTMLInputElement;
+        let create=document.getElementById(`${prem.name}_create`)as HTMLInputElement;
+        let update=document.getElementById(`${prem.name}_update`)as HTMLInputElement;
+        let deelete=document.getElementById(`${prem.name}_delete`)as HTMLInputElement;
+        this.permissions[index].create=create.checked;
+        this.permissions[index].update=update.checked;
+        this.permissions[index].delete=deelete.checked;
+        this.permissions[index].view=view.checked;
+
+      })
+
+      this.uniqueError = '';
+      this.validPemission = '';
+      const hasPermission = this.permissions.some((prem:any) => prem.view || prem.create || prem.update || prem.delete);
+      if (!hasPermission) {
+        this.validPemission = 'You must determine at least one permission';
+        return;
+      }
+     let getName=document.getElementById("roleName")as HTMLInputElement;
+getName.value=this.roleName
+console.log(this.roleName);
+console.log(getName.value);
+
+
+
+
+
+
+
+     let newrole={
+      name:getName.value,
+      permissions:this.permissions
+     }
+     this.roleservice.updateRole(newrole,this.roleId).subscribe({
+      next: (data:any) => {
+      console.log(data);
+
+      Swal.fire({
+        title: 'Success!',
+        text: 'Group updated Successfully',
+        icon: 'success', // Custom icon HTML
+        showCancelButton: false,
+        confirmButtonColor: 'purple',
+        confirmButtonText: 'Ok',
+
+      }).then((result) => {
+        result.isConfirmed ? this.router.navigate(['/roles']) : null
+      })
+    },
+      error: (err:any)=>{console.log(err)
+        console.log(getName.value);
+
+
+
+      }
+    })
+
+
+     }//end else
+
+
+
+  
+
 
   }
 
 
 
 
-
-
  }
+
+
+
+
+
+
+

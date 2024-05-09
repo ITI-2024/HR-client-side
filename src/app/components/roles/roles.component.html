@@ -4,21 +4,9 @@
   <div class="page">
   <div class="page-title">Roles</div>
 
-    <form class="form-position "  (submit)="addRole($event)" [formGroup]="formGroup" method="submit">
-      <!-- <p class="form-text text-danger validatin-msg" >{{error}}</p> -->
-      <input type="submit" class=" btn-save" value="Add" [routerLink]="['/permissions']">
-      <input type="text" class="text" id="roleName" placeholder="Group Name" name="name" formControlName="name" >
-      <ng-container *ngIf="getName.touched">
-        <div id="emailHelp" class="form-text text-danger validation-msg"   *ngIf="getName.hasError('required')">
-          This field is required
-        </div>
-        <div id="emailHelp" class="form-text text-danger validatin-msg" *ngIf="getName.hasError('minlength')">
-          Group name must be at least 3 characters
-        </div>
-      </ng-container>
-
-    </form>
-
+    <div class="form-position">
+      <button type="button" class=" btn-save"  [routerLink]="['/permissions','0','edit']">Add</button>
+    </div>
     <div class=" row table-position">
 
       <table class="table ">
@@ -29,19 +17,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let role of roles "  >
-            <td><a [routerLink]="['/permissions/', role.id]">{{role.groupName}}</a></td>
-            <!-- icons  -->
-
-            <td class="icon">
-              <i  (click)="delete(role.id)" class="bi bi-trash text-danger"></i>
-
-            </td>
+            <td [routerLink]="['/permissions/', role.id,'edit']" >{{role.groupName}}</td>
           </tr>
         </tbody>
       </table>
 
+
     </div>
   </div>
-
 </div>
+
+
 

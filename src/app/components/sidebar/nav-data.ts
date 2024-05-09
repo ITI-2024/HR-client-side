@@ -15,7 +15,7 @@ export const navbarData = [
         label: 'User'
     },
     {
-        routeLink: 'addAttendence',
+        routeLink:'/addAttendence/0/edit',
         icon: 'fal fa-solid fa-clipboard-user',//at
         label: 'Add Attendence'
     },

@@ -1,9 +1,11 @@
 
 .page  {
   border-radius: 20px;
-  height: 200vh;
+  height: 86vh;
   background-color: white;
-  padding-bottom: 200px;
+  padding-bottom: 0;
+
+
   overflow: hidden; /* Hide overflow to prevent table border from extending beyond page border */
 }
 
@@ -19,15 +21,19 @@
 }
 .container{
   height: 100vh;
-  padding-top: 90px;
+  padding-top: 50px;
+margin-left: 10vw;
 
 }
 
 .table-position {
   border-radius: 20px;
-  margin: 0 5vw;
-  margin-top: 70px;
+  margin: 0 7vw;
+  margin-top: 10px;
   margin-bottom: 300px;
+  margin-left: 10vw;
+
+
 }
 
 /*.tableFixHead {
@@ -75,6 +81,7 @@ th, td {
 
 .table-fixed .col {
   width: 20%;
+  width: 20%;
 }
 
 /*.table-fixed tbody {
@@ -86,7 +93,7 @@ th, td {
 */
 .table-fixed tbody {
   display: block;
-  height: fit-content;
+  height: max-content;
   overflow-y: auto;
 }
 .table-fixed tr {
@@ -103,7 +110,7 @@ th, td {
 
 /* Additional styles for the form position */
 .form-position {
-  padding-top: 50px;
+  padding-top: 10px;
   margin-left: 40%;
 }
 
@@ -184,5 +191,9 @@ td input[type="checkbox"] {
   width: 8vw;
   border: none;
   margin-top: 3vh;
-  margin-left: 67vw;
+  margin-left: 53vw;
+}
+.error{
+  color: red ;
+  margin-left: 55%;
 }

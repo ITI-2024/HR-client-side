@@ -13,13 +13,17 @@ export class RoleService {
     return this.http.get(this.baseUrl+"GetAllRoles");
   }
   getById(id:any){
-    return this.http.get(`${this.baseUrl}/${id}`)
+    return this.http.get(`${this.baseUrl}GetGroupById/${id}`)
   }
   addRole(role: any){
 
-    return this.http.post(this.baseUrl+"createRole",role);
+    return this.http.post(`${this.baseUrl}CreateRole`,role);
   }
-  deleteRole(id:any){
-    return this.http.delete(this.baseUrl+"GetGroupById"+"/"+id);
+
+  updateRole(role:any,id:any){
+    return this.http.put(`${this.baseUrl}UpdateRole/${id}`,role);
+  }
+  getByName(name:any){
+    return this.http.get(`${this.baseUrl}GetByName/${name}`)
   }
 }

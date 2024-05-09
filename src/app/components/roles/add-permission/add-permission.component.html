@@ -7,12 +7,27 @@
         <a href="#" class="choose custom">Private Custom</a>
       </div>
       <!-- (ngSubmit)=" onSubmit()" -->
-      <form   (submit)="onSubmit()" >
+      <form  #myForm="ngForm"  (submit)="onSubmit(myForm)" >
+        <div>
+          <span class="text-danger ms-5">{{validPemission}}</span>
+        </div>
         <div class="form-position">
         <label for="roleName" class="form-label me-3">Group Name</label>
-        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" [disabled]="wel">
+        <input type="text" class="text" id="roleName" placeholder="Group Name" name="groupName" [value]="roleName"
+         [disabled]="isDiabled" ngModel required minlength="3" >
         </div>
+        <div *ngIf="myForm.controls['groupName'].errors?.['required'] && myForm.controls['groupName'].touched">
+          <span class="error">Name is required</span>
+        </div>
+        <div *ngIf="myForm.controls['groupName'].errors?.['minlength'] && myForm.controls['groupName'].touched">
+          <span class="error">Name must be at least 3 characters long</span>
+        </div>
+        <div>
+          <span class="error">{{uniqueError}}</span>
+        </div>
+
       <div class="row table-position">
+
         <table class="col-10 table-bordered table-striped table-condensed table-fixed">
           <thead>
             <tr>
@@ -24,34 +39,30 @@
             </tr>
           </thead>
           <tbody>
-      
+
             <tr *ngFor="let prem of permissions; let i = index"  >
               <td class="col">{{prem.name}}</td>
               <td class="col text-center">
-                <input type="checkbox" name="view" [id]="prem.name + '_view'">
-               
+                <input type="checkbox" name="view" [id]="prem.name + '_view'" [checked]="prem.view">
+
               </td>
               <td class="col text-center">
-                  <input type="checkbox" name="create" [id]="prem.name + '_create'">
+                  <input type="checkbox" name="create" [id]="prem.name + '_create'" [checked]="prem.create">
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="update" [id]="prem.name + '_update'">
-                
+                <input type="checkbox" name="update" [id]="prem.name + '_update'" [checked]="prem.update">
+
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="delete" [id]="prem.name + '_delete'">
+                <input type="checkbox" name="delete" [id]="prem.name + '_delete'" [checked]="prem.delete">
               </td>
           </tr>
-          
 
-              <!-- <td class="col text-center"><input type="checkbox" id="view" name="view" formControlName=" view" ></td>
-              <td class="col text-center"><input type="checkbox" id="create" name="create" formControlName="create" ></td>
-              <td class="col text-center"><input type="checkbox" id="update" name="update" value="" formControlName=" update" ></td>
-              <td class="col text-center"><input type="checkbox" id="delete" name="delete" value="" formControlName="delete"></td> -->
-       
+
+
           </tbody>
         </table>
-        <button type="submit"class="btn-seve">Save changes</button>
+        <button type="submit"class="btn-seve" >Save changes</button>
       </div>
 
       </form>
