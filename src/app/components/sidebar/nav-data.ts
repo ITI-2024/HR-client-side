@@ -1,5 +1,10 @@
 export const navbarData = [
     {
+        routeLink: ' ',
+        icon: 'bi bi-house-door',//attenr
+        label: 'Home'
+    },
+    {
         routeLink: 'attendenceReport',
         icon: 'fal fa-regular fa-address-book',//attenr
         label: 'Attendence Report'

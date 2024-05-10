@@ -2,6 +2,7 @@
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { navbarData } from './nav-data';
+import { LoginService } from 'src/app/services/login.service';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -40,6 +41,7 @@ interface SideNavToggle {
   ]
 })
 export class SidebarComponent implements OnInit {
+  constructor(public loginService: LoginService){}
   //edit when work Graud
   username=localStorage.getItem('username');
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
@@ -69,5 +71,8 @@ export class SidebarComponent implements OnInit {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+  }
+  logout(): void{
+    this.loginService.logOut();
   }
 }

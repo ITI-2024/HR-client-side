@@ -30,16 +30,13 @@ export class PublicSettingPopUpComponent implements OnInit {
         keyboard: false // Disables closing modal with the ESC key
       }
     );
-    console.log("gfbfdv")
     this.publicSettingsSerivices.getPuplicSetting().subscribe({
       next: data => {
         this.setting = data;
-        console.log(data)
-        console.log("gfbfdv")
         if (this.setting.length == 0) this.openFormModal();
 
       },
-      error:err=>{console.log(err.error)}
+      error: err => { console.log(err.error) }
 
     })
 
@@ -48,13 +45,7 @@ export class PublicSettingPopUpComponent implements OnInit {
   openFormModal() {
     this.formModal.show();
   }
-  save(e:any) {
-
-
-
-    console.log(this.extraHours)
-    console.log(this.deductionHours)
-
+  save(e: any) {
     if (this.extraHours == undefined) this.extraHoursField = true;
     else this.extraHoursField = false;
 
@@ -72,7 +63,6 @@ export class PublicSettingPopUpComponent implements OnInit {
     else this.deductionHoursInValid = false;
 
     if (!this.extraHoursField && !this.deductionHoursField && !this.weekendDay1Field && !this.extraHoursInValid && !this.deductionHoursInValid) {
-      console.log("reem")
       this.publicSetting.emit({
         "extraHours": this.extraHours,
         "deductionHours": this.deductionHours,

@@ -22,6 +22,7 @@ import { AttendenceComponent } from './components/attendence/attendence.componen
 import { AddAttendenceComponent } from './components/add-attendence/add-attendence.component';
 import { PdfContentComponent } from './components/salary-report/pdf-content/pdf-content.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     EmployeeDetailsComponent,
     PdfContentComponent,
     EmployeeDetailsComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    HomeComponent
 
 
   ],

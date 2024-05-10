@@ -1,7 +1,7 @@
 
 .page  {
   border-radius: 20px;
-  height: 86vh;
+  height: 95vh;
   background-color: white;
   padding-bottom: 0;
 
@@ -21,7 +21,7 @@
 }
 .container{
   height: 100vh;
-  padding-top: 50px;
+  padding-top: 10px;
 margin-left: 10vw;
 
 }
@@ -110,7 +110,7 @@ th, td {
 
 /* Additional styles for the form position */
 .form-position {
-  padding-top: 10px;
+  padding-top: 1vh;
   margin-left: 40%;
 }
 
@@ -187,10 +187,10 @@ td input[type="checkbox"] {
   background-color: #036088;
   color:white;
   border-radius: 10px;
-  padding: .9vh 0vw;
-  width: 8vw;
+  padding: 1.5vh 1vw;
+  width: 10vw;
   border: none;
-  margin-top: 3vh;
+  margin-top: 2vh;
   margin-left: 53vw;
 }
 .error{

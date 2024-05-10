@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicSettingService } from './services/public-setting.service';
 import { DepartmentService } from './services/department.service';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
 
   publicSetting: any;
   departments: any;
-  constructor(public publicSettingsSerivices: PublicSettingService, public deparmentsServices: DepartmentService) { }
+  constructor(public publicSettingsSerivices: PublicSettingService, public deparmentsServices: DepartmentService,public login:LoginService) { }
   ngOnInit(): void {
     this.deparmentsServices.getDepartments().subscribe({
       next: data => {
@@ -46,5 +47,8 @@ export class AppComponent implements OnInit {
       next: data => console.log(data)
 
     })
+  }
+  IsLoggedIn(): boolean {
+    return this.login.IsLoggedIn();
   }
 }

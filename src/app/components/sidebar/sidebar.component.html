@@ -19,28 +19,26 @@
             </a>
         </li>
         <li class="border-top my-3"></li>
-        <div class="dropdown mt-3 sidenav-nav-item ">
+        <div class="dropdown mt-2 sidenav-nav-item  " style="position: relative;">
 
             <!-- <a href="#" class="link-light text-decoration-none dropdown-toggle"   id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false"> -->
 
             <a href="#" class="link-light text-decoration-none  "  style="" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
 
                 <!-- <i class="bi bi-person-circle" style="color: white; display:inline-block;  "> </i> -->
-                <img src="assets/images/user2.png" alt="hav"  style="width:4vw ; height:6.5vh;" class="mb-1 ">
+                <img src="assets/images/user2.png" alt="hav"  style="width:4vw ; height:6.5vh;" class="mb-5">
+             
             </a>
-
-            <!-- <span @fadeInOut *ngIf="collapsed" class="text-light ms-3" >Habiba</span>
-            <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser2"  >
-
-              <li><a class="dropdown-item"  [routerLink]="['/permissions']" >Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li> -->
-            <span @fadeInOut *ngIf="collapsed" class="text-light ms-3" >{{username}}</span>
+      
+            <!-- <div class="pb-5 bg-dark" style="margin: 10%;"> -->
+                <strong @fadeInOut *ngIf="collapsed " class="text-light  p-0  " style="position: absolute; top:1.5vh;" >{{username}}</strong>
+            <!-- </div> -->
             <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser2" style="" >
 
               <li><a class="dropdown-item"  [routerLink]="['/roles']" >Permissions</a></li>
 
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#" routerLink="/login">log out</a></li>
+              <li><a class="dropdown-item" href="#" (click)="logout()">log out</a></li>
             </ul>
 
         </div>

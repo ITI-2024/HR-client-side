@@ -16,15 +16,17 @@ import { RolesComponent } from './components/roles/roles.component';
 import { AttendenceComponent } from './components/attendence/attendence.component';
 import { AddAttendenceComponent } from './components/add-attendence/add-attendence.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
-
-  {path: 'employees', component: EmployeesComponent },
-  {path: 'salaryReport', component: SalaryReportComponent },
-
-  {path: 'holidays', component: HolidysComponent },
-  {path: 'public-setting', component: PublicSettingComponent },
+  { path: 'employees', component: EmployeesComponent },
+  
+  { path: ' ', component: HomeComponent },
+  { path: 'salaryReport', component: SalaryReportComponent },
+  { path: 'attendenceReport', component: AttendenceComponent },
+  { path: 'holidays', component: HolidysComponent },
+  { path: 'public-setting', component: PublicSettingComponent },
   //{ path: '**', component: NotFoundComponent },
   {path:'user', component:UserComponent},
   {path:'login', component: LoginComponent},
@@ -32,7 +34,7 @@ const routes: Routes = [
   { path: 'permissions/:id/edit', component: AddPermissionComponent },
 
   { path: 'roles', component: RolesComponent },
-{path:'allUsers', component: AllUsersComponent},
+  {path:'allUsers', component: AllUsersComponent},
   {path:'employee/:id/edit', component:AddEmployeeComponent },
   {path:'employeedetails/:id', component:EmployeeDetailsComponent },
   {path:'attendenceReport', component: AttendenceComponent},

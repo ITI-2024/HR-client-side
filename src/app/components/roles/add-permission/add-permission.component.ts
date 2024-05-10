@@ -201,7 +201,7 @@ error: (err:any)=>{console.log(err)
  //end add function
      //else update function
      else{
-
+      console.log('add function')
 
       this.permissions.forEach((prem:any,index:any) => {
         let view=document.getElementById(`${prem.name}_view`)as HTMLInputElement;
@@ -223,16 +223,9 @@ error: (err:any)=>{console.log(err)
         return;
       }
      let getName=document.getElementById("roleName")as HTMLInputElement;
-getName.value=this.roleName
-console.log(this.roleName);
-console.log(getName.value);
-
-
-
-
-
-
-
+        getName.value=this.roleName
+        console.log(this.roleName);
+        console.log(getName.value);
      let newrole={
       name:getName.value,
       permissions:this.permissions
@@ -255,7 +248,7 @@ console.log(getName.value);
     },
       error: (err:any)=>{console.log(err)
         console.log(getName.value);
-
+        console.log(newrole);
 
 
       }
@@ -275,10 +268,3 @@ console.log(getName.value);
 
 
  }
-
-
-
-
-
-
-

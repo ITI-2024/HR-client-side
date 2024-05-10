@@ -18,7 +18,7 @@
         position: relative;
             width: 50px;
             border-radius: 50% ;
-           height: 50px;
+          height: 50px;
             cursor: pointer;
             border: none;
 
@@ -65,7 +65,7 @@
 
     .sidenav-nav-item {
         width: 100%;
-        margin-bottom: 0.625rem;
+        margin-bottom: 0.4rem;
 
         .sidenav-nav-link {
             display: flex;
