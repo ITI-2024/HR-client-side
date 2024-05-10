@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
       console.log(data);
       //Static 
       if(this.user.token){
-        localStorage.removeItem('username');
+        localStorage.setItem('username',this.user.username)
         localStorage.setItem('token', this.user.token);
         localStorage.setItem('rolename', this.user.roleName);
         const roles=this.user.roles;

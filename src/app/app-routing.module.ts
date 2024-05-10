@@ -21,10 +21,10 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: 'employees', component: EmployeesComponent },
-  { path: 'attendance', component: AttendanceComponent },
+  
   { path: ' ', component: HomeComponent },
   { path: 'salaryReport', component: SalaryReportComponent },
-  { path: 'attendenceReport', component: AttendanceComponent },
+  { path: 'attendenceReport', component: AttendenceComponent },
   { path: 'holidays', component: HolidysComponent },
   { path: 'public-setting', component: PublicSettingComponent },
   //{ path: '**', component: NotFoundComponent },
