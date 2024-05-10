@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EncryptionService } from 'src/app/services/encryption.service';
 import { RoleService } from 'src/app/services/role.service';
 import Swal from 'sweetalert2';
 
@@ -71,10 +72,11 @@ import Swal from 'sweetalert2';
 
   ]
   view:any;
+  decryptedId: any;
 
 
 
-  constructor(public router: Router, public roleservice: RoleService, public activeRoute: ActivatedRoute) {
+  constructor(public router: Router, public roleservice: RoleService, public activeRoute: ActivatedRoute,private encryptionService: EncryptionService) {
 
    }
 
@@ -83,8 +85,15 @@ import Swal from 'sweetalert2';
 
   ngOnInit(): void {
 
-    this.roleId=this.activeRoute.snapshot.params['id'];
-    this.roleservice.getById(this.roleId).subscribe({
+   // this.roleId=this.activeRoute.snapshot.params['id'];
+   const encryptedId = this.activeRoute.snapshot.paramMap.get('id');
+
+   if(encryptedId==null) return
+   this.decryptedId = this.encryptionService.decryptData(encryptedId);
+   this.roleId=this.decryptedId
+   console.log(this.roleId);
+
+    this.roleservice.getById(this.decryptedId).subscribe({
       next: (data:any) => {
         this.roleName=data.groupName
         this.permissions=data.permissions
@@ -228,7 +237,7 @@ console.log(getName.value);
       name:getName.value,
       permissions:this.permissions
      }
-     this.roleservice.updateRole(newrole,this.roleId).subscribe({
+     this.roleservice.updateRole(newrole,this.decryptedId).subscribe({
       next: (data:any) => {
       console.log(data);
 

@@ -30,6 +30,7 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   /*{ path: 'permissions/:id', component: AddPermissionComponent },*/
   { path: 'permissions/:id/edit', component: AddPermissionComponent },
+
   { path: 'roles', component: RolesComponent },
 {path:'allUsers', component: AllUsersComponent},
   {path:'employee/:id/edit', component:AddEmployeeComponent },
