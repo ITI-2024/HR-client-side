@@ -2,13 +2,14 @@
     height: 105vh;
     padding-top: 5vh;
 }
+
 i {
     color: #2a6889;
 }
 
 .wrapper {
     width: 67vw;
-    margin-left:20%;
+    margin-left: 20%;
     background-color: white;
     padding-bottom: 3vh;
     padding-inline: 1vw;
@@ -73,7 +74,7 @@ th {
     align-content: center;
     text-align: center;
     position: sticky;
-    top:0px;
+    top: 0px;
 }
 
 .spinner-border {
@@ -86,4 +87,14 @@ th {
 
 .mylabel {
     padding: 10px;
+}
+
+.bi-filetype-xlsx {
+    font-size: 32px;
+    margin-left: 2vw;
+
+}
+
+i {
+    cursor: pointer;
 }
