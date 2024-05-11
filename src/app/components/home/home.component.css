@@ -2,7 +2,7 @@
     height: 100vh;
     display: flex;
     justify-content: end;
-    background-image: url("../../../assets/images/welcome14.jpg");
+    background-image: url("../../../assets/images/welcome7.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -12,10 +12,10 @@
 .welcomeWrapper {
     display: flex;
     justify-content: end;
-    align-items: center;
+    align-items: end;
     width: 10vw;
     text-align: center;
-    margin-right: 8vw;
+    margin-right: 2vw;
     font-weight: 200;
 
 }
@@ -24,6 +24,7 @@
     color: white;
     line-height: 10vh;
     letter-spacing: 1vw;
+    font-style: italic;
 }
 
 .welcome {
