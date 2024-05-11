@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormControl,FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceService } from 'src/app/services/attendance.service';
 import { DepartmentService } from 'src/app/services/department.service';
@@ -16,17 +16,21 @@ export class AddAttendenceComponent implements OnInit {
   addAttendanceForm: FormGroup;
   departments: any;
   attendanceId: any;
-  attendId:any;
+  attendId: any;
   tempData: any;
-  employees:any;
-  leavingError:boolean=false;
-  arrivingError:boolean=false;
-  officialHoliday:boolean=false;
-  weekendHoliday:boolean=false;
-  attendanceExist:boolean=false;
+  employees: any;
+  leavingError: boolean = false;
+  arrivingError: boolean = false;
+  officialHoliday: boolean = false;
+  weekendHoliday: boolean = false;
+  attendanceExist: boolean = false;
   isEditMode: boolean = false;
   isArrivingEmpty: boolean = false;
   isLeavingEmpty: boolean = false;
+  unValidDate: boolean = false;
+  dateError: any;
+  employeesList: any;
+
 
   constructor(
     public formBuilder: FormBuilder,
@@ -34,12 +38,12 @@ export class AddAttendenceComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public attendanceService: AttendanceService,
     public router: Router,
-    public employeesService:EmployeesService,
+    public employeesService: EmployeesService,
   ) {
-    this.addAttendanceForm= this.formBuilder.group({
-      employeeName: new FormControl('',[Validators.required]),
+    this.addAttendanceForm = this.formBuilder.group({
+      employeeName: new FormControl('', [Validators.required]),
       arrivingTime: [''],
-      dayDate: new FormControl('',[Validators.required]),
+      dayDate: new FormControl('', [Validators.required]),
       leavingTime: [''],
     });
   }
@@ -48,42 +52,51 @@ export class AddAttendenceComponent implements OnInit {
     this.isEditMode = this.attendanceId !== '0';
     this.loadDepartments();
     this.loadEmployees(); // Load the list of employees
-    this.activatedRoute.params.subscribe({
-      next:data=>{
-        this.attendanceId = parseInt(data['id']);
-        console.log("the attendance id:" ,this.attendanceId)
-        this.getName.setValue('');
-        this.getDate.setValue('');
-        this.getArrivingTime.setValue('');
-        this.getLeavingTime.setValue('');
-      }
-      
-    });
-    if (this.attendanceId != 0) {
-      this.attendanceService.getAttendanceById(this.attendanceId).subscribe({
-        next:data=>{
-          this.tempData=data;
-          this.isEditMode=true;
-          this.loadEmployees();
-          console.log("employees:",this.employees)
-          this.getName.setValue(this.tempData.employeeName);
-          this.getDate.setValue(this.tempData.dayDate);
-          this.getArrivingTime.setValue(this.tempData.arrivingTime);
-          this.getLeavingTime.setValue(this.tempData.leavingTime);
-          this.employees.forEach((emp:any) =>  {
-            if(emp.nationalID==this.tempData.idemp){
-              this.getName.setValue(emp.name);
+    console.log(this.addAttendanceForm);
 
+    this.activatedRoute.params.subscribe({
+      next: data => {
+        this.attendanceId = parseInt(data['id']);
+        if (this.attendanceId != 0) {
+          this.attendanceService.getAttendanceById(this.attendanceId).subscribe({
+            next: data => {
+              this.tempData = data;
+              this.isEditMode = true;
+              this.employeesService.getAllEmployees().subscribe({
+                next: (data) => {
+                  this.employeesList = data;
+                  this.employeesList.forEach((emp: any) => {
+                    if (emp.nationalID == this.tempData.idemp) {
+                      this.getName.setValue(emp.name);
+                    }
+                  });
+                  this.getDate.setValue(this.tempData.dayDate);
+                  this.getArrivingTime.setValue(this.tempData.arrivingTime);
+                  this.getLeavingTime.setValue(this.tempData.leavingTime);
+                  console.log(this.addAttendanceForm);
+
+                },
+                error: (error) => {
+                  console.log(error);
+                },
+              });
             }
-          });
-          console.log(this.tempData)
+          }
+
+          )
+        }
+        else {
+          this.getName.setValue('');
+          this.getDate.setValue('');
+          this.getArrivingTime.setValue('');
+          this.getLeavingTime.setValue('');
         }
       }
 
-      )
-    }
+    });
+
   }
- 
+
   get getName() {
     return this.addAttendanceForm.controls['employeeName'];
   }
@@ -108,7 +121,7 @@ export class AddAttendenceComponent implements OnInit {
       },
     });
   }
-  
+
   loadEmployees() {
     this.employeesService.getAllEmployees().subscribe({
       next: (data) => {
@@ -123,119 +136,136 @@ export class AddAttendenceComponent implements OnInit {
   attendanceHandler(e: any) {
     e.preventDefault();
 
-        var formData = this.addAttendanceForm.value;
-        if(formData.arrivingTime &&formData.leavingTime){
-        formData.arrivingTime = this.convertToTimeOnly(formData.arrivingTime);
-        formData.leavingTime = this.convertToTimeOnly(formData.leavingTime);
-        this.isArrivingEmpty==formData.arrivingTime;
-        this.isLeavingEmpty==formData.leavingTime;
-        console.log("isArrivingEmpty",this.isArrivingEmpty)
-        } 
-        if((formData.arrivingTime &&formData.leavingTime)||(formData.arrivingTime ==null && formData.leavingTime==null)||(formData.arrivingTime =="" && formData.leavingTime==""))
-          {
-            this.leavingError=false;
-            this.arrivingError=false;
-            if(formData.arrivingTime=="" &&formData.leavingTime==""){
-              formData.arrivingTime=null;
-              formData.leavingTime=null;
-            }
-          
-            if (this.attendanceId == '0') {
-              // Add new employee
-              this.attendanceService.addAttendance(formData).subscribe({
-                next: (data) => {
-                  this.router.navigate(['/attendenceReport']);
-                  this.officialHoliday=false;
-                  this.weekendHoliday=false;
-                },
-                error: (error) => {
-                  if(error.error=="This day is official holiday"){
-                    this.officialHoliday=true;
-                    this.attendanceExist=false;
-                    if(error.error=="this is weekend holiday"){
-                      this.weekendHoliday=true;
-                    }else{
-                      this.weekendHoliday=false;
-                    }
-                  }
-                  else if (error.error=="this is weekend holiday"){
-                    this.weekendHoliday=true;
-                    this.officialHoliday=false;
-                    this.attendanceExist=false;
-                  }
-                  else if (error.error=="This attendence already exist"){
-                    this.attendanceExist=true;
-                  }
-                   else {
-                    this.officialHoliday=false;
-                    this.weekendHoliday=false;
-                    this.attendanceExist=false;
-                  };console.log(error.error)
-                }
-              });
-            } 
-            else {
-              // Edit existing employee
-              this.attendanceService.getAttendanceById(this.attendanceId).subscribe({
-                next:data=>{
-                  this.tempData=data;
-                  this.employees.forEach((emp:any) =>  {
-                    if(emp.nationalID==this.tempData.idemp){
-                      formData.employeeName=emp.name
-                    }
-                    
-                  });
-                  formData.id = this.attendanceId;
-                 console.log("form data:",formData)
-                 this.attendanceService.editAttendance(formData.id,formData).subscribe({
-                  next:data=>{
-                  this.router.navigate(['/attendenceReport']);
-                },
-                error: (error) => {
-                  if(error.error=="This day is official holiday"){
-                    this.officialHoliday=true;
-                    this.attendanceExist=false;
-                    if(error.error=="this is weekend holiday"){
-                      this.weekendHoliday=true;
-                    }else{
-                      this.weekendHoliday=false;
-                    }
-                  }
-                  else if (error.error=="this is weekend holiday"){
-                    this.weekendHoliday=true;
-                    this.officialHoliday=false;
-                    this.attendanceExist=false;
-                  }
-                  else if (error.error=="This Attendence Already Exist"){
-                    this.attendanceExist=true;
-                    console.log("exist error")
-                  }
-                   else {
-                    this.officialHoliday=false;
-                    this.weekendHoliday=false;
-                    this.attendanceExist=false;
-                  };console.log(error.error)
-                }
-              }  
-              );
-                }
+    var formData = this.addAttendanceForm.value;
+    if (formData.arrivingTime && formData.leavingTime) {
+      formData.arrivingTime = this.convertToTimeOnly(formData.arrivingTime);
+      this.getArrivingTime.setValue(formData.arrivingTime);
+      formData.leavingTime = this.convertToTimeOnly(formData.leavingTime);
+      this.getLeavingTime.setValue(formData.leavingTime);
+    }
+    this.isArrivingEmpty = (formData.arrivingTime == null || formData.arrivingTime == "");
+    this.isLeavingEmpty = (formData.leavingTime == null || formData.leavingTime == "");
+    if ((formData.arrivingTime && formData.leavingTime) || (formData.arrivingTime == null && formData.leavingTime == null) || (formData.arrivingTime == "" && formData.leavingTime == "")) {
+      this.leavingError = false;
+      this.arrivingError = false;
+      if (formData.arrivingTime == "" && formData.leavingTime == "") {
+        formData.arrivingTime = null;
+        formData.leavingTime = null;
+      }
+
+      if (this.attendanceId == '0') {
+        // Add new employee
+        this.attendanceService.addAttendance(formData).subscribe({
+          next: (data) => {
+            this.router.navigate(['/attendenceReport']);
+            this.officialHoliday = false;
+            this.weekendHoliday = false;
+          },
+          error: (error) => {
+            if (error.error == "This day is official holiday") {
+              this.officialHoliday = true;
+              this.attendanceExist = false;
+              this.unValidDate = false;
+              if (error.error == "this is weekend holiday") {
+                this.weekendHoliday = true;
+              } else {
+                this.weekendHoliday = false;
               }
-        
-              )
-               
+            }
+            else if (error.error == "this is weekend holiday") {
+              this.unValidDate = false;
+              this.weekendHoliday = true;
+              this.officialHoliday = false;
+              this.attendanceExist = false;
+            }
+            else if (error.error == "This attendence already exist") {
+              this.unValidDate = false;
+              this.attendanceExist = true;
+            }
+            else {
+              this.unValidDate = true;
+              this.dateError = error.error;
+              this.officialHoliday = false;
+              this.weekendHoliday = false;
+              this.attendanceExist = false;
+            }; console.log(error.error)
+          }
+        });
+      }
+      else {
+        // Edit existing employee
+
+        formData.employeeName = this.getName.value
+        formData.id = this.attendanceId;
+        var dataupdated = {
+          employeeName: this.getName.value,
+          dayDate: this.getDate.value,
+          arrivingTime: this.getArrivingTime.value,
+          leavingTime: this.getLeavingTime.value
         }
-    }else if(this.isArrivingEmpty==false){
-      this.leavingError=true;
-    }else if(this.isLeavingEmpty==false){
-      this.leavingError=false;
-      this.arrivingError=true;
+        console.log("dataupdated", this.attendanceId, dataupdated);
+        console.log({
+          employeeName: this.getName.value,
+          arrivingTime: this.getArrivingTime.value,
+          leavingTime: this.getLeavingTime.value,
+          dayDate: this.getDate.value
+        });
+
+        this.attendanceService.editAttendance(this.attendanceId, dataupdated).subscribe({
+          next: data => {
+            this.router.navigate(['/attendenceReport']);
+          },
+          error: (error) => {
+            if (error.error == "This day is official holiday") {
+              this.unValidDate = false;
+              this.officialHoliday = true;
+              this.attendanceExist = false;
+              if (error.error == "this is weekend holiday") {
+                this.weekendHoliday = true;
+              } else {
+                this.weekendHoliday = false;
+              }
+            }
+            else if (error.error == "this is weekend holiday") {
+              this.weekendHoliday = true;
+              this.officialHoliday = false;
+              this.attendanceExist = false;
+              this.unValidDate = false;
+            }
+            else if (error.error == "This Attendence Already Exist") {
+              this.attendanceExist = true;
+              console.log("exist error")
+              this.unValidDate = false;
+            }
+            else {
+              this.unValidDate = true;
+              this.dateError = error.error;
+              this.officialHoliday = false;
+              this.weekendHoliday = false;
+              this.attendanceExist = false;
+            }; console.log(error.error)
+          }
+        }
+        );
+
+      }
+    } else if (this.isArrivingEmpty == false) {
+      this.leavingError = true;
+      this.arrivingError = false;
+    } else if (this.isLeavingEmpty == false) {
+      this.leavingError = false;
+      this.arrivingError = true;
     }
   }
   convertToTimeOnly(inputValue: string): string {
+    console.log("inputValue", inputValue);
+
     const parts = inputValue.split(':');
     const hours = parseInt(parts[0], 10);
     const minutes = parseInt(parts[1], 10);
     const timeOnly = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00`;
+    console.log("timeOnly", timeOnly);
+
     return timeOnly;
   }
 }

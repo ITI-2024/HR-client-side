@@ -11,11 +11,12 @@
             </p>
         </div>
     </div>
-   
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title " id="exampleModalLabel"> {{ employeeId == 0 ? "Add Employee" : "Edit Employee" }}</h5>
+                <h5 class="modal-title " id="exampleModalLabel"> {{ employeeId == 0 ? "Add Employee" : "Edit Employee"
+                    }}</h5>
             </div>
             <div class="modal-body">
                 <form (submit)="employeeHandler($event)" [formGroup]="addempform" class="row">
@@ -26,39 +27,47 @@
                         </div>
                         <div class="mb-3 mt-4">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Enter Name">
+                            <input type="text" class="form-control" id="name" name="name" formControlName="name"
+                                placeholder="Enter Name">
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" formControlName="address" placeholder="Enter Address">
+                            <input type="text" class="form-control" id="address" name="address"
+                                formControlName="address" placeholder="Enter Address">
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="phoneNumber"formControlName="phoneNumber" placeholder="Enter Phone Number">
+                            <input type="text" class="form-control" id="phone" name="phoneNumber"
+                                formControlName="phoneNumber" placeholder="Enter Phone Number">
                         </div>
                         <!-- start of gender -->
                         <div class="mb-3">
                             <label class="form-label">Gender</label>
-                            <div class="radio-check"> 
-                                <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="male" value="male">
+                            <div class="radio-check">
+                                <input class="form-check-input" type="radio" name="gender" formControlName="gender"
+                                    id="male" value="male">
                                 <label class="form-check-label" for="male">Male</label>
-          
-                                <input class="form-check-input ms-4" type="radio" name="gender" formControlName="gender" id="female" value="female">
+
+                                <input class="form-check-input ms-4" type="radio" name="gender" formControlName="gender"
+                                    id="female" value="female">
                                 <label class="form-check-label" for="female">Female</label>
-                            </div> 
+                            </div>
                         </div>
-                          <!-- end of gender -->
+                        <!-- end of gender -->
                         <div class="mb-3">
                             <label for="nationality" class="form-label">Nationality</label>
-                            <input type="text" class="form-control" id="nationality" name="nationality" formControlName="nationality" placeholder="Enter Nationality">
+                            <input type="text" class="form-control" id="nationality" name="nationality"
+                                formControlName="nationality" placeholder="Enter Nationality">
                         </div>
                         <div class="mb-3">
                             <label for="birthdate" class="form-label">Birth Date</label>
-                            <input type="date" class="form-control" id="birth" name="birthDate" formControlName="birthDate">
+                            <input type="date" class="form-control" id="birth" name="birthDate"
+                                formControlName="birthDate">
                         </div>
                         <div class="mb-3">
                             <label for="id" class="form-label">National ID</label>
-                            <input type="text" class="form-control" id="id" name="id" formControlName="id" placeholder="Enter National ID">
+                            <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                                placeholder="Enter National ID">
                         </div>
                     </div>
 
@@ -69,34 +78,39 @@
                         </div>
                         <div class="mb-3 mt-4">
                             <label for="contract" class="form-label">Contract Date</label>
-                            <input type="date" class="form-control" id="contract" name="contractDate" formControlName="contractDate">
+                            <input type="date" class="form-control" id="contract" name="contractDate"
+                                formControlName="contractDate">
                         </div>
                         <!-- select department -->
                         <label for="dept" class="form-label">Select Employee Department</label>
                         <select class="form-select custom-select mb-3" id="dept" name="idDept" formControlName="idDept">
-                            <option *ngFor="let department of departments" value={{department.id}}>{{ department.name }}</option>
-                        </select>                                        
+                            <option *ngFor="let department of departments" value={{department.id}}>{{ department.name }}
+                            </option>
+                        </select>
                         <!-- end of select -->
                         <div class="mb-3">
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="number" class="form-control" id="salary" name="salary" formControlName="salary" placeholder="Enter Salary">
+                            <input type="number" class="form-control" id="salary" name="salary" formControlName="salary"
+                                placeholder="Enter Salary">
                         </div>
                         <div class="mb-3">
                             <label for="arrive" class="form-label">Arriving Time</label>
-                            <input type="time" class="form-control" id="arrive" name="arrivingTime" formControlName="arrivingTime">
+                            <input type="time" class="form-control" id="arrive" name="arrivingTime"
+                                formControlName="arrivingTime">
                         </div>
                         <div class="mb-3">
                             <label for="leave" class="form-label">Leaving Time</label>
-                            <input type="time" class="form-control" id="leave" name="leavingTime" formControlName="leavingTime">
+                            <input type="time" class="form-control" id="leave" name="leavingTime"
+                                formControlName="leavingTime">
                         </div>
                     </div>
- 
+
                     <!-- Add Button -->
                     <div class="col-md-12 mt-3 d-flex justify-content-end">
                         <button class="btn btn-addemp" type="submit">{{ employeeId == 0 ? "Add" : "Edit" }}</button>
-                        <button class="btn btn-reset ms-4" (click)="resetForm()" >Delete</button>
+                        <button class="btn btn-reset ms-4" (click)="resetForm()">Clear</button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

@@ -19,7 +19,6 @@ export class AttendenceComponent implements OnInit {
 
   constructor(public x: AttendanceService) { }
   ngOnInit(): void {
-    console.log(this.fromDate)
     this.tableLoading = true;
     this.attendences = this.x.getAttendance().subscribe({
       next: (data) => {
