@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EncryptionService } from 'src/app/services/encryption.service';
 
 import { RoleService } from 'src/app/services/role.service';
 import Swal from 'sweetalert2';
@@ -20,7 +22,14 @@ export class RolesComponent implements OnInit {
 
     })
 
-  constructor(public roleService:RoleService){}
+  constructor(public roleService:RoleService,public router:Router, private encriptionService:EncryptionService){}
+  navigateToDetails(id: number): void {
+    this.roleId==id
+
+    const encryptedId = this.encriptionService.encryptData(id);
+    this.router.navigate(['/permissions',  encryptedId ,'edit']);
+  }
+
   ngOnInit(): void {
     this.roleService.getRole().subscribe({
 
