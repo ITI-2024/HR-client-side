@@ -82,6 +82,11 @@ label {
 
 .input-g {
     margin: 2vh 0;
-
-
+}
+.normalfont{
+    font-family: sans-serif;
+    font-size: medium;   
+}
+.timeError{
+    
 }
