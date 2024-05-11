@@ -9,16 +9,16 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user:any;
-  myerror:any;
-  email: string = ''; 
+  user: any;
+  myerror: any;
+  email: string = '';
   password: string = '';
-  
-  constructor(public userServies: LoginService,public router:Router){
+
+  constructor(public userServies: LoginService, public router: Router) {
 
   }
   ngOnInit(): void {
-      
+
 
   }
 
@@ -50,38 +50,39 @@ export class LoginComponent implements OnInit {
       [
         Validators.required,
         this.passwordFormatValidator
-       
+
       ]
     )
   });
-  get getEmail(){
+  get getEmail() {
     return this.loginForm.controls['email'];
   }
-  get getPassword(){
+  get getPassword() {
     return this.loginForm.controls['password'];
   }
-  loginHandler(e: any){
+  loginHandler(e: any) {
     e.preventDefault();
-    this.userServies.getlogin({ 
-    email: this.loginForm.get('email')?.value,
-    password: this.loginForm.get('password')?.value}).subscribe({
-      next: data=>{
-      this.user = data;
-      console.log(data);
-      //Static 
-      if(this.user.token){
-        localStorage.setItem('username',this.user.username)
-        localStorage.setItem('token', this.user.token);
-        localStorage.setItem('rolename', this.user.roleName);
-        const roles=this.user.roles;
-        const rolesString = JSON.stringify(roles);
-        localStorage.setItem('roles',rolesString);
-        this.router.navigate([' ']);
-      }
+    this.userServies.getlogin({
+      email: this.loginForm.get('email')?.value,
+      password: this.loginForm.get('password')?.value
+    }).subscribe({
+      next: data => {
+        this.user = data;
+        console.log(data);
+        //Static 
+        if (this.user.token) {
+          localStorage.setItem('username', this.user.username)
+          localStorage.setItem('token', this.user.token);
+          localStorage.setItem('rolename', this.user.roleName);
+          const roles = this.user.roles;
+          const rolesString = JSON.stringify(roles);
+          localStorage.setItem('roles', rolesString);
+          this.router.navigate(['']);
+        }
 
-    },
-      error: data=>{
-        this.myerror=data.error;
+      },
+      error: data => {
+        this.myerror = data.error;
         console.log(this.myerror);
 
       }

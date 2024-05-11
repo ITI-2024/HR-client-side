@@ -1,6 +1,6 @@
 export const navbarData = [
     {
-        routeLink: ' ',
+        routeLink: '',
         icon: 'bi bi-house-door',//attenr
         label: 'Home'
     },
@@ -15,7 +15,7 @@ export const navbarData = [
         label: 'User'
     },
     {
-        routeLink:'/addAttendence/0/edit',
+        routeLink: '/addAttendence/0/edit',
         icon: 'fal fa-solid fa-clipboard-user',//at
         label: 'Add Attendence'
     },

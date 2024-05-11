@@ -1,0 +1,33 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: end;
+    background-image: url("../../../assets/images/welcome14.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+
+.welcomeWrapper {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 10vw;
+    text-align: center;
+    margin-right: 8vw;
+    font-weight: 200;
+
+}
+
+.welcomeParagraph {
+    color: white;
+    line-height: 10vh;
+    letter-spacing: 1vw;
+}
+
+.welcome {
+    width: 3vw;
+    height: 7vh;
+    margin-bottom: 5vh;
+}
