@@ -17,29 +17,31 @@
                 <ng-container *ngIf="getEmail.touched">
                     <div *ngIf="getEmail.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">Email is
                       Required</div>
-                    <div *ngIf="getEmail.hasError('invalidEmail')" id="emailHelp" class="form-text text-danger normalfont">This
-                      email does not match right email format</div>
+                    <div *ngIf="getEmail.hasError('invalidEmail')" id="emailHelp" class="form-text text-danger normalfont"> does not match right email format</div>
                   </ng-container>
                   
             </div>
             <div class="input-box">
              
-                <i class="bi bi-lock-fill"></i>
+                <!-- <i class="bi bi-lock-fill"></i> -->
                 <input type="password" name="password" placeholder="" id="password" class="normalfont"
                 formControlName="password">
                 <label for="passward">Password</label>
+                <span class="toggle-password" (click)="togglePasswordVisibility()">
+                  <i class="bi" [ngClass]="{ 'bi-eye': !showPassword, 'bi-eye-slash': showPassword }"></i>
+              </span>
                 <ng-container *ngIf="getPassword.touched">
                     <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">
                       Password is Required</div>
                     <div *ngIf="getPassword.hasError('invalidPassword')" id="emailHelp" class="form-text text-danger normalfont">
-                      This password does not match right password format</div>
+                      does not match right password format</div>
                   </ng-container>
                   
             </div>
             <div class="row">
                 <button type="submit" class="btn">Login</button>
               </div>
-              <p *ngIf="myerror !== ''&& myerror!='[object Object]'" class="text-danger">{{ myerror }}</p>
+              <p *ngIf="myerror !== ''&& myerror!='[object Object]'" class="text-danger mt-1">{{ myerror }}</p>
         </form>
 
     </div>

@@ -62,11 +62,13 @@
     color: #fff;
     font-weight: 500;
     padding-right: 23px;
+
 }
 .input-box input:focus,
 .input-box input:valid{
     border-bottom-color:#88b3c6 ;
     outline: none ;
+   
 }
 
 .input-box label {

@@ -13,13 +13,20 @@ export class LoginComponent implements OnInit {
   myerror: any;
   email: string = '';
   password: string = '';
-
+  showPassword: boolean = false;
   constructor(public userServies: LoginService, public router: Router) {
 
   }
   ngOnInit(): void {
 
 
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword; // Toggle password visibility
+    const passwordInput = document.getElementById('password');
+    if (passwordInput) {
+      passwordInput.setAttribute('type', this.showPassword ? 'text' : 'password');
+    }
   }
 
   emailFormatValidator(control: FormControl): { [key: string]: any } | null {
@@ -89,5 +96,6 @@ export class LoginComponent implements OnInit {
 
     });
   }
+  
 
 }

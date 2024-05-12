@@ -21,6 +21,7 @@ export class UserComponent implements OnInit {
   roleuser:any;
   user:any;
   errorRegister:any;
+  showPassword: boolean = false
     constructor(public userService: LoginService, public router: Router , public role: RoleService){
 
   }
@@ -47,6 +48,14 @@ export class UserComponent implements OnInit {
                     
     })
   }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword; // Toggle password visibility
+    const passwordInput = document.getElementById('passworduser');
+    if (passwordInput) {
+      passwordInput.setAttribute('type', this.showPassword ? 'text' : 'password');
+    }
+  }
+
     nameFormatValidator(control: FormControl): { [key: string]: any } | null {
       const namePattern = /^[^\d]+$/;
       if (control.value && !namePattern.test(control.value)) {
