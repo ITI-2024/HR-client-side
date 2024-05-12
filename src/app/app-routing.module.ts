@@ -30,7 +30,7 @@ const routes: Routes = [
       role:["Employee.View","Admin"]
     },
    },
-   {path:'employee/:id/edit', component:AddEmployeeComponent 
+   {path:'employee/:id/edit', component:AddEmployeeComponent
    ,
    canActivate: [authGuard,roleAuthGuard],
    data:{
@@ -38,20 +38,20 @@ const routes: Routes = [
      role:["Admin","Employee.Create","Employee.Update"],
    },
    },
-   {path:'employeedetails/:id', component:EmployeeDetailsComponent 
+   {path:'employeedetails/:id', component:EmployeeDetailsComponent
    ,
    canActivate: [authGuard,roleAuthGuard],
    data:{
      role:["Admin","Employee.View"]
    },
    },
-  
+
   { path: ' ', component: HomeComponent
   ,
   canActivate: [authGuard],
    },
 
-  { path: 'salaryReport', component: SalaryReportComponent 
+  { path: 'salaryReport', component: SalaryReportComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
@@ -66,7 +66,7 @@ const routes: Routes = [
   },
    },
    /////
-  { path: 'holidays', component: HolidysComponent 
+  { path: 'holidays', component: HolidysComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
@@ -110,23 +110,20 @@ const routes: Routes = [
   },
   //pemission
   { path: 'user', component: UserComponent },
-  { path: 'login', component: LoginComponent },
-  /*{ path: 'permissions/:id', component: AddPermissionComponent },*/
-  { path: 'permissions/:id/edit', component: AddPermissionComponent
-  ,
+
+
+  { path: 'permissions/:id/edit', component: AddPermissionComponent,
   canActivate: [authGuard,roleAuthGuard],
   data:{
-    role:["Admin"]
-  },
-   },
-  { path: 'roles', component: RolesComponent 
+    role:["Admin"] },},
+  { path: 'roles', component: RolesComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
     role:["Admin","Permissions.View"]
   },
   },
-  
+
 
   {path:'addAttendence/:id/edit', component:  AddAttendenceComponent
   ,
@@ -134,15 +131,9 @@ const routes: Routes = [
   data:{
     role:["Admin","Attendence.Create"]
   },
-  }
-  { path: 'permissions/:id/edit', component: AddPermissionComponent },
+  },
 
-  { path: 'roles', component: RolesComponent },
-  { path: 'allUsers', component: AllUsersComponent },
-  { path: 'employee/:id/edit', component: AddEmployeeComponent },
-  { path: 'employeedetails/:id', component: EmployeeDetailsComponent },
-  { path: 'attendenceReport', component: AttendenceComponent },
-  { path: 'addAttendence/:id/edit', component: AddAttendenceComponent }
+
 
 ];
 
