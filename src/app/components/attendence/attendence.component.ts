@@ -105,4 +105,47 @@ export class AttendenceComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, 'Attendence Report.xlsx');
   }
+  sweet(){
+    Swal.fire({
+      title: "Don't have permission",
+      text: "You don't have permission to access this page.",
+      icon: 'warning',// Replace with your custom HTML icon
+      timer: 1600,
+      showConfirmButton: false,
+      position: 'top'
+    });
+    
+   
+  }
+  onClickUpdate():any {
+    const rolesString = localStorage.getItem('roles');
+    if(rolesString!=null){
+      const rolesArray = JSON.parse(rolesString); 
+      for(const role of rolesArray){
+      if (role  === 'Attendance.Update'){
+      
+        return true;
+      }} 
+   
+      this.sweet()
+      return false;
+    
+  }
+  }
+
+  onClickDelete(id:any):any{
+    const rolesString = localStorage.getItem('roles');
+    if(rolesString!=null){
+      const rolesArray = JSON.parse(rolesString); 
+      for(const role of rolesArray){
+      if (role  == 'Attendance.Delete'){
+        this.deleteAttendanceHandler(id);
+        return true;
+      } }
+    
+      this.sweet()
+      return false;
+    
+  }
+  }
 }

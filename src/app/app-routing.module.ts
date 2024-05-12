@@ -24,6 +24,8 @@ import { roleAuthGuard } from './components/services/role-auth.guard';
 
 
 const routes: Routes = [
+
+  //Employee
   { path: 'employees', component: EmployeesComponent ,
     canActivate: [authGuard,roleAuthGuard],
     data:{
@@ -45,12 +47,12 @@ const routes: Routes = [
      role:["Admin","Employee.View"]
    },
    },
-
-  { path: ' ', component: HomeComponent
+  //home
+  { path: '', component: HomeComponent
   ,
   canActivate: [authGuard],
    },
-
+//salary
   { path: 'salaryReport', component: SalaryReportComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
@@ -58,6 +60,7 @@ const routes: Routes = [
     role:["Admin","SalaryReport.View"]
   },
   },
+  //attendence
   { path: 'attendenceReport', component: AttendenceComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
@@ -65,23 +68,31 @@ const routes: Routes = [
     role:["Admin","Attendance.View"]
   },
    },
-   /////
+   {path:'addAttendence/:id/edit', component:  AddAttendenceComponent
+   ,
+   canActivate: [authGuard,roleAuthGuard],
+   data:{
+     role:["Admin","Attendance.Create","Attendance.Update"]
+   },
+   },
+   //holidays
   { path: 'holidays', component: HolidysComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
     role:["Admin","Holiday.View"]
   },
-  ///////
+  //public
   },
   { path: 'public-setting', component: PublicSettingComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
-    role:["Admin","PublicSetting.View"]
+    role:["Admin","PublicSetting.View","PublicSetting.Create"]
   },
 
    },
+   //user
    {path:'allUsers', component: AllUsersComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
@@ -89,14 +100,7 @@ const routes: Routes = [
     role:["Admin","Users.View"]
   },
   },
-  { path: 'employees', component: EmployeesComponent },
 
-  { path: '', component: HomeComponent },
-  { path: 'salaryReport', component: SalaryReportComponent },
-  { path: 'attendenceReport', component: AttendenceComponent },
-  { path: 'holidays', component: HolidysComponent },
-  { path: 'public-setting', component: PublicSettingComponent },
-  //{ path: '**', component: NotFoundComponent },
   {path:'user', component:UserComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
@@ -104,15 +108,16 @@ const routes: Routes = [
     role:["Admin","Users.Create"]
   },
   },
+  //login
   {path:'login', component: LoginComponent ,
   canActivate: [priventLoginGuard],
 
   },
   //pemission
-  { path: 'user', component: UserComponent },
 
-
-  { path: 'permissions/:id/edit', component: AddPermissionComponent,
+  /*{ path: 'permissions/:id', component: AddPermissionComponent },*/
+  { path: 'permissions/:id/edit', component: AddPermissionComponent
+  ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
     role:["Admin"] },},
@@ -120,18 +125,14 @@ const routes: Routes = [
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
-    role:["Admin","Permissions.View"]
+    role:["Admin","Groups.View"]
   },
   },
 
 
-  {path:'addAttendence/:id/edit', component:  AddAttendenceComponent
-  ,
-  canActivate: [authGuard,roleAuthGuard],
-  data:{
-    role:["Admin","Attendence.Create"]
-  },
-  },
+
+
+
 
 
 

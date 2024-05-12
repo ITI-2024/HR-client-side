@@ -27,7 +27,7 @@ export class LoginService {
 }
 
 logOut(){
-  console.log('handle');
+ 
   localStorage.clear();
   this.router.navigateByUrl('/login');
 }

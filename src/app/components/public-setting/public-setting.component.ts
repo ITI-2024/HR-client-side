@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PublicSettingService } from 'src/app/services/public-setting.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-public-setting',
@@ -61,5 +62,32 @@ export class PublicSettingComponent implements OnInit {
   }
   toggleDisabled() {
     this.disabled = !this.disabled
+  }
+  sweet(){
+    Swal.fire({
+      title: "Don't have permission",
+      text: "You don't have permission to access this page.",
+      icon: 'warning',
+      timer: 1600,
+      showConfirmButton: false,
+      position: 'top'
+    });
+    
+   
+  }
+  onClickUpdate():any {
+    const rolesString = localStorage.getItem('roles');
+    if(rolesString!=null){
+      const rolesArray = JSON.parse(rolesString); 
+      for(const role of rolesArray){
+      if (role  === 'PublicSetting.Update'){
+       this.toggleDisabled();
+        return true;
+      }} 
+   
+      this.sweet()
+      return false;
+    
+  }
   }
 }

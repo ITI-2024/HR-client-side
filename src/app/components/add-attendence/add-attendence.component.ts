@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceService } from 'src/app/services/attendance.service';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeesService } from 'src/app/services/employees.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -282,6 +283,7 @@ export class AddAttendenceComponent implements OnInit {
 
     return timeOnly;
   }
+
 }
 
 

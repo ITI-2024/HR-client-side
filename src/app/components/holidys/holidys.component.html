@@ -52,8 +52,7 @@
                             <th scope="row">{{index+1}}</th>
                             <td>{{item.name}}</td>
                             <td><span class="text-secondary">{{item.dayName}} , </span>{{item.holidayDate}}</td>
-                            <td><i (click)="editHoliday(item.id)" class="bi bi-pencil-fill fs-4"></i><i
-                                    (click)="deleteHoliday(item.id)" class="bi bi-trash text-danger fs-4"></i></td>
+                           
                             <td><i (click)="onClickUpdate(item.id)"  class="bi bi-pencil-fill"></i><i
                                     (click)="onClickDelete(item.id)"  class="bi bi-trash text-danger"></i></td>
                                     <!-- deleteHoliday(item.id)
