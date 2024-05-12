@@ -106,9 +106,9 @@ import Swal from 'sweetalert2';
           const createCheckbox = document.getElementById(`${perm.name}_create`) as HTMLInputElement;
           const updateCheckbox = document.getElementById(`${perm.name}_update`) as HTMLInputElement;
           const deleteCheckbox = document.getElementById(`${perm.name}_delete`) as HTMLInputElement;
-       
-       
-     
+
+
+
 
           if (perm.view) {
               viewCheckbox.checked = true;
@@ -120,7 +120,7 @@ import Swal from 'sweetalert2';
               createCheckbox.setAttribute('checked', 'true');
           }
           if (perm.update) {
-          
+
               updateCheckbox.checked = true;
               updateCheckbox.setAttribute('checked', 'true');
           }
@@ -176,7 +176,7 @@ import Swal from 'sweetalert2';
 
 if (create.checked || update.checked || deelete.checked) {
   this.permissions[index].view = true;
-} 
+}
     })
 
     this.uniqueError = '';
@@ -186,6 +186,7 @@ if (create.checked || update.checked || deelete.checked) {
       this.validPemission = 'You must determine at least one permission';
       return;
     }
+
 
    let getName=document.getElementById("roleName")as HTMLInputElement;
 
@@ -243,7 +244,7 @@ error: (err:any)=>{console.log(err)
 // Check 'view' permission if any other permission is checked
   if (create.checked || update.checked || deelete.checked) {
     this.permissions[index].view = true;
-  } 
+  }
       })
 
       this.uniqueError = '';
@@ -293,7 +294,7 @@ error: (err:any)=>{console.log(err)
 
   }
 
- 
+
 
 
  }

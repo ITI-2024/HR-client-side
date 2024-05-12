@@ -32,7 +32,7 @@ const routes: Routes = [
       role:["Employee.View","Admin"]
     },
    },
-   {path:'employee/:id/edit', component:AddEmployeeComponent 
+   {path:'employee/:id/edit', component:AddEmployeeComponent
    ,
    canActivate: [authGuard,roleAuthGuard],
    data:{
@@ -40,7 +40,7 @@ const routes: Routes = [
      role:["Admin","Employee.Create","Employee.Update"],
    },
    },
-   {path:'employeedetails/:id', component:EmployeeDetailsComponent 
+   {path:'employeedetails/:id', component:EmployeeDetailsComponent
    ,
    canActivate: [authGuard,roleAuthGuard],
    data:{
@@ -53,7 +53,7 @@ const routes: Routes = [
   canActivate: [authGuard],
    },
 //salary
-  { path: 'salaryReport', component: SalaryReportComponent 
+  { path: 'salaryReport', component: SalaryReportComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
@@ -76,7 +76,7 @@ const routes: Routes = [
    },
    },
    //holidays
-  { path: 'holidays', component: HolidysComponent 
+  { path: 'holidays', component: HolidysComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
@@ -120,20 +120,18 @@ const routes: Routes = [
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
-    role:["Admin"]
-  },
-   },
-  { path: 'roles', component: RolesComponent 
+    role:["Admin"] },},
+  { path: 'roles', component: RolesComponent
   ,
   canActivate: [authGuard,roleAuthGuard],
   data:{
     role:["Admin","Groups.View"]
   },
   },
-  
 
- 
- 
+
+
+
 
 
 
