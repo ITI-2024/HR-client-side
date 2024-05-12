@@ -14,11 +14,8 @@ export const priventLoginGuard: CanActivateFn = (route, state) => {
       showConfirmButton: false,
       timer: 1500 
     });
-    // .then(() => {
-    //   router.navigateByUrl(state.url); // Redirect to the current route (refreshes the page)
-    // });
 
-   
+   router.navigate(['/']);
     return false;
   }
 };

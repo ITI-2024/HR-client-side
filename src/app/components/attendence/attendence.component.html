@@ -55,9 +55,9 @@
                             <td>{{ attendence.dayName + ' : ' + attendence.dayDate }}</td>
 
                             <td>
-                                <i [routerLink]="['/addAttendence', attendence.id , 'edit']"
+                                <i  (click)="onClickUpdate()" [routerLink]="['/addAttendence', attendence.id , 'edit']"
                                     class="bi bi-pencil-fill fs-4 mx-2"></i>
-                                <i (click)="deleteAttendanceHandler(attendence.id)"
+                                <i (click)="onClickDelete(attendence.id)"
                                     class="bi bi-trash text-danger fs-4 mx-2"></i>
                             </td>
                         </tr>

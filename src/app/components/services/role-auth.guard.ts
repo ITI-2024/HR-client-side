@@ -25,10 +25,12 @@ export const roleAuthGuard: CanActivateFn = (route, state) => {
   Swal.fire({
     title: "Don't have permission",
     text: "You don't have permission to access this page.",
-    iconHtml: '<i class="bi bi-emoji-frown text-danger "></i>',// Replace with your custom HTML icon
+    icon: 'warning',
+  
     timer: 1600,
     showConfirmButton: false,
-    position: 'top'
+    position: 'top',
+    
   });
   
 

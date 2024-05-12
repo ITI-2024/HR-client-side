@@ -166,7 +166,7 @@ export class HolidysComponent implements OnInit {
     Swal.fire({
       title: "Don't have permission",
       text: "You don't have permission to access this page.",
-      iconHtml: '<i class="bi bi-emoji-frown text-danger "></i>',// Replace with your custom HTML icon
+      iconHtml: 'warning',// Replace with your custom HTML icon
       timer: 1600,
       showConfirmButton: false,
       position: 'top'
