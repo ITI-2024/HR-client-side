@@ -148,7 +148,13 @@ import Swal from 'sweetalert2';
       this.permissions[index].update=update.checked;
       this.permissions[index].delete=deelete.checked;
       this.permissions[index].view=view.checked;
-
+  // Check 'view' permission if any other permission is checked
+  if (create.checked || update.checked || deelete.checked) {
+    this.permissions[index].view = true;
+  } else {
+    // Uncheck 'view' permission if no other permission is checked
+   // this.permissions[index].view = false;
+  }
     })
 
     this.uniqueError = '';
@@ -158,6 +164,7 @@ import Swal from 'sweetalert2';
       this.validPemission = 'You must determine at least one permission';
       return;
     }
+
 
    let getName=document.getElementById("roleName")as HTMLInputElement;
 
@@ -212,6 +219,13 @@ error: (err:any)=>{console.log(err)
         this.permissions[index].update=update.checked;
         this.permissions[index].delete=deelete.checked;
         this.permissions[index].view=view.checked;
+        // Check 'view' permission if any other permission is checked
+  if (create.checked || update.checked || deelete.checked) {
+    this.permissions[index].view = true;
+  } else {
+    // Uncheck 'view' permission if no other permission is checked
+   // this.permissions[index].view = false;
+  }
 
       })
 

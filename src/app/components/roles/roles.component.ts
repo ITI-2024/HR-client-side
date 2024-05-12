@@ -24,7 +24,7 @@ export class RolesComponent implements OnInit {
 
   constructor(public roleService:RoleService,public router:Router, private encriptionService:EncryptionService){}
   navigateToDetails(id: number): void {
-    this.roleId==id
+
 
     const encryptedId = this.encriptionService.encryptData(id);
     this.router.navigate(['/permissions',  encryptedId ,'edit']);
