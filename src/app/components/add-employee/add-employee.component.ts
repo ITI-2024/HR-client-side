@@ -1,6 +1,6 @@
 import { EmployeesService } from './../../services/employees.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/department.service';
 
@@ -9,6 +9,7 @@ import { DepartmentService } from 'src/app/services/department.service';
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.css']
 })
+
 export class AddEmployeeComponent implements OnInit {
 
   addempform: FormGroup;
@@ -16,6 +17,10 @@ export class AddEmployeeComponent implements OnInit {
   employeeId: any;
   tempData: any;
   empId: any;
+  invalidId: boolean = false;
+  dublicateEmpName: boolean = false;
+  iseditMode: boolean = false;
+
 
   constructor(
     public formBuilder: FormBuilder,
@@ -24,29 +29,61 @@ export class AddEmployeeComponent implements OnInit {
     public employeesService: EmployeesService,
     public router: Router
   ) {
+    function ageValidator(minAge: number): ValidatorFn {
+      return (control: AbstractControl): { [key: string]: any } | null => {
+        const birthDate = new Date(control.value);
+        const today = new Date();
+        const age = today.getFullYear() - birthDate.getFullYear();
+        if (age < minAge) {
+          return { 'minAge': { value: control.value } };
+        }
+        return null;
+      };
+    }
+    function contractDateValidator(): ValidatorFn {
+      return (control: AbstractControl): { [key: string]: any } | null => {
+        const contractDate = new Date(control.value);
+        const minContractDate = new Date('2007-12-31'); // Minimum contract date: January 1, 2007
+        if (contractDate <= minContractDate) {
+          return { 'minContractDate': { value: control.value } };
+        }
+        return null;
+      };
+    }
     this.addempform = this.formBuilder.group({
-      name: [''],
-      address: [''],
-      phoneNumber: [''],
-      gender: [''],
-      nationality: [''],
-      birthDate: [''],
-      id: [''],
-      contractDate: [''],
-      salary: [''],
-      arrivingTime: [''],
-      leavingTime: [''],
-      idDept: ['']
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      address: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      phoneNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^01[0|1|2|5]{1}[0-9]{8}$/)
+      ]),
+      gender: new FormControl('', [Validators.required]),
+      nationality: new FormControl('', [Validators.required]),
+      birthDate: new FormControl('', [
+        Validators.required,
+        ageValidator(20)
+      ]),
+      id: new FormControl('', [Validators.required,
+      Validators.pattern(/^[2|3]\d{13}$/)]),
+      contractDate: new FormControl('', [
+        Validators.required,
+        contractDateValidator() // Using the custom contract date validator
+      ]),
+      salary: new FormControl('', [Validators.required]),
+      arrivingTime: new FormControl('', [Validators.required]),
+      leavingTime: new FormControl('', [Validators.required]),
+      idDept: new FormControl('', [Validators.required])
     });
   }
 
   ngOnInit(): void {
+
     this.employeeId = this.activatedRoute.snapshot.params['id'];
     this.loadDepartments();
     this.activatedRoute.params.subscribe({
-      next:data=>{
-        this.employeeId= data['id'];
-        this.empId=this.employeeId.toString();
+      next: data => {
+        this.employeeId = data['id'];
+        this.empId = this.employeeId.toString();
         this.getEmployeename.setValue('');
         this.getEmployeeaddress.setValue('');
         this.getEmployeegender.setValue('');
@@ -62,9 +99,11 @@ export class AddEmployeeComponent implements OnInit {
       }
     });
     if (this.employeeId != 0) {
+      this.addempform.get('id')?.disable();
+      this.iseditMode = true;
       this.employeesService.getEmployee(this.empId).subscribe({
-        next:data=>{
-          this.tempData=data;
+        next: data => {
+          this.tempData = data;
           this.getEmployeename.setValue(this.tempData.name);
           this.getEmployeeaddress.setValue(this.tempData.address);
           this.getEmployeegender.setValue(this.tempData.gender);
@@ -82,6 +121,10 @@ export class AddEmployeeComponent implements OnInit {
       }
 
       )
+    }
+    else {
+      this.iseditMode = false;
+      this.addempform.get('id')?.enable();
     }
 
   }
@@ -121,7 +164,7 @@ export class AddEmployeeComponent implements OnInit {
   get getEmployeephoneNumber() {
     return this.addempform.controls['phoneNumber'];
   }
- 
+
 
   loadDepartments() {
     this.departments = this.x.getDepartments().subscribe({
@@ -141,6 +184,7 @@ export class AddEmployeeComponent implements OnInit {
     formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
     formData.idDept = parseInt(formData.idDept, 10);
 
+
     if (this.employeeId == '0') {
       // Add new employee
       this.employeesService.AddEmployee(formData).subscribe({
@@ -148,7 +192,12 @@ export class AddEmployeeComponent implements OnInit {
           this.router.navigate(['/employees']);
         },
         error: (error) => {
-          console.log(error);
+          if (error.error == "Employee already exist") {
+            this.invalidId = true;
+          }
+          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
+
+
         }
       });
     } else {
@@ -157,12 +206,16 @@ export class AddEmployeeComponent implements OnInit {
       formData.arrivingTime = this.convertToTimeSpan(formData.arrivingTime);
       formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
       this.employeesService.editEmployee(formData).subscribe({
-        next:data=>{
+        next: data => {
           this.router.navigate(['/employees']);
+        },
+        error: (error) => {
+          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
         }
-      }  
+      }
       );
     }
+
   }
 
   convertToTimeSpan(inputValue: string): string {
@@ -175,5 +228,11 @@ export class AddEmployeeComponent implements OnInit {
 
   resetForm() {
     this.addempform.reset();
+  }
+  removeInvalidId() {
+    this.invalidId = false;
+  }
+  removedublicateEmpNameError() {
+    this.dublicateEmpName = false;
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HolidaysService } from 'src/app/services/holidays.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-holidys',
@@ -7,6 +9,7 @@ import { HolidaysService } from 'src/app/services/holidays.service';
   styleUrls: ['./holidys.component.css']
 })
 export class HolidysComponent implements OnInit {
+  
   disabledHolidaybtn: boolean = true;
   holidayName: any;
   holidayDate: any;
@@ -19,7 +22,8 @@ export class HolidysComponent implements OnInit {
   tempholiday: any;
   tempForDelete: any;
   tableLoading: boolean = false;
-  constructor(public holidayServices: HolidaysService) { }
+  userRole:any;
+  constructor(public holidayServices: HolidaysService,public router:Router) { }
   holidaysSort(holidaysList: any) {
     for (let i = 0; i < holidaysList.length - 1; i++) {
       for (let j = i + 1; j < holidaysList.length; j++) {
@@ -34,6 +38,7 @@ export class HolidysComponent implements OnInit {
     return holidaysList;
   }
   ngOnInit(): void {
+    
     this.tableLoading = true
     this.holidayServices.getHolidays().subscribe({
       next: data => {
@@ -157,4 +162,64 @@ export class HolidysComponent implements OnInit {
     if (this.holidayDate && this.holidayDate != '' && this.holidayName && this.holidayName != '') this.disabledHolidaybtn = false
     else this.disabledHolidaybtn = true
   }
+  sweet(){
+    Swal.fire({
+      title: "Don't have permission",
+      text: "You don't have permission to access this page.",
+      iconHtml: '<i class="bi bi-emoji-frown text-danger "></i>',// Replace with your custom HTML icon
+      timer: 1600,
+      showConfirmButton: false,
+      position: 'top'
+    });
+    
+   
+  }
+
+ onClickUpdate(id:any):any {
+  const rolesString = localStorage.getItem('roles');
+  if(rolesString!=null){
+    const rolesArray = JSON.parse(rolesString); 
+    for(const role of rolesArray){
+    if (role  === 'Holiday.Update'){
+     this.editHoliday(id)
+      return true;
+    }} 
+ 
+    this.sweet()
+    return false;
+  
 }
+}
+    
+onClickCreate():any {
+  const rolesString = localStorage.getItem('roles');
+  if(rolesString!=null){
+    const rolesArray = JSON.parse(rolesString); 
+    for(const role of rolesArray){
+    if (role  == 'Holiday.Create'){
+      return true;
+    } 
+  }
+
+    this.sweet()
+    return false;
+  }
+
+}
+onClickDelete(id:any):any{
+  const rolesString = localStorage.getItem('roles');
+  if(rolesString!=null){
+    const rolesArray = JSON.parse(rolesString); 
+    for(const role of rolesArray){
+    if (role  == 'Holiday.Delete'){
+      this.deleteHoliday(id);
+      return true;
+    } }
+  
+    this.sweet()
+    return false;
+  
+}
+}
+
+} 

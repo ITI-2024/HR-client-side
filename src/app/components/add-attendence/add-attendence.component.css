@@ -62,26 +62,36 @@ label {
 }
 
 .role-select {
-    height: 6vh; 
+    height: 6vh;
     border-color: #2a6889;
 }
+
 .btn-save {
     background-color: #2a6889;
     color: white;
 }
-.form-group input:focus{
+
+.form-group input:focus {
     height: 5vh;
     margin: 0;
     padding: 0;
 }
-.form-group input:focus~label{
-   
+
+.form-group input:focus~label {
+
     margin: 0;
     padding: 0;
 }
 
 .input-g {
     margin: 2vh 0;
+}
 
+.normalfont {
+    font-family: sans-serif;
+    font-size: medium;
+}
 
+.errorWrapper {
+    height: 15vh;
 }

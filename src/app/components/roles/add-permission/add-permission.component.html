@@ -43,23 +43,20 @@
             <tr *ngFor="let prem of permissions; let i = index"  >
               <td class="col">{{prem.name}}</td>
               <td class="col text-center">
-                <input type="checkbox" name="view" [id]="prem.name + '_view'" [checked]="prem.view">
+                <input type="checkbox" name="view" [id]="prem.name + '_view'" [checked]="prem.view" >
 
               </td>
               <td class="col text-center">
-                  <input type="checkbox" name="create" [id]="prem.name + '_create'" [checked]="prem.create">
+                  <input type="checkbox" name="create" [id]="prem.name + '_create'" [checked]="prem.create" [disabled]="prem.name == 'SalaryReport' ||prem.name == 'Groups'" >
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="update" [id]="prem.name + '_update'" [checked]="prem.update">
+                <input type="checkbox" name="update" [id]="prem.name + '_update'" [checked]="prem.update" [disabled]="prem.name == 'Users' || prem.name == 'SalaryReport' ||prem.name == 'Groups'">
 
               </td>
               <td class="col text-center">
-                <input type="checkbox" name="delete" [id]="prem.name + '_delete'" [checked]="prem.delete">
+                <input type="checkbox" name="delete" [id]="prem.name + '_delete'" [checked]="prem.delete" [disabled]="prem.name == 'Users' || prem.name == 'SalaryReport'||prem.name == 'Groups'||prem.name =='PublicSetting'">
               </td>
           </tr>
-
-
-
           </tbody>
         </table>
         <button type="submit"class="btn-seve" >Save changes</button>

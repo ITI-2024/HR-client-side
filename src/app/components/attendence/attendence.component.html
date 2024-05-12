@@ -24,7 +24,7 @@
                             <label class="mylabel">To</label>
                             <input type="date" class="form-control date" id="to" name="toDate" [(ngModel)]="toDate"
                                 (change)="enabledSearch()">
-                            <i (click)="downloadTable()" class="bi bi-filetype-xlsx"></i>
+                            <i (click)="downloadTable()" class="bi bi-filetype-xlsx text-success"></i>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
         </div>
     </div>
 </div>
-<table class="table table-hover text-center" id="attendneceTable" style="visibility: hidden;">
+<table class="table table-hover text-center" id="attendneceTable" style="display: none;">
     <thead>
         <tr>
             <th scope="col">#</th>
