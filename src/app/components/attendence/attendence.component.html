@@ -19,11 +19,13 @@
                     <div class="d-flex">
                         <div class="d-flex ps-3 inputContainer">
                             <label class="mylabel">From</label>
-                            <input type="date"class="form-control date" id="from" name="fromDate"  [(ngModel)]="fromDate" (change)="enabledSearch()">
+                            <input type="date" class="form-control date" id="from" name="fromDate"
+                                [(ngModel)]="fromDate" (change)="enabledSearch()">
                             <label class="mylabel">To</label>
-                            <input type="date"class="form-control date" id="to" name="toDate" [(ngModel)]="toDate" (change)="enabledSearch()">
-                            <i class="bi bi-printer-fill fs-3 ms-3"></i>
-                        </div>     
+                            <input type="date" class="form-control date" id="to" name="toDate" [(ngModel)]="toDate"
+                                (change)="enabledSearch()">
+                            <i (click)="downloadTable()" class="bi bi-filetype-xlsx text-success"></i>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-search px-5 me-2" [disabled]="disablesSearch">
@@ -53,8 +55,10 @@
                             <td>{{ attendence.dayName + ' : ' + attendence.dayDate }}</td>
 
                             <td>
-                                <i [routerLink]="['/addAttendence', attendence.id , 'edit']"class="bi bi-pencil-fill fs-4 mx-2"></i>
-                                <i (click)="deleteAttendanceHandler(attendence.id)"class="bi bi-trash text-danger fs-4 mx-2"></i> 
+                                <i [routerLink]="['/addAttendence', attendence.id , 'edit']"
+                                    class="bi bi-pencil-fill fs-4 mx-2"></i>
+                                <i (click)="deleteAttendanceHandler(attendence.id)"
+                                    class="bi bi-trash text-danger fs-4 mx-2"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -66,3 +70,25 @@
         </div>
     </div>
 </div>
+<table class="table table-hover text-center" id="attendneceTable" style="display: none;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Arriving Time</th>
+            <th scope="col">Leaving Time</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let attendence of attendences;let index = index;">
+        <tr>
+            <th scope="row">{{index+1}}</th>
+            <td>{{attendence.employeeName}}</td>
+            <td>{{attendence.departmentName}}</td>
+            <td>{{attendence.arrivingTime}}</td>
+            <td>{{attendence.leavingTime}}</td>
+            <td>{{ attendence.dayName + ' : ' + attendence.dayDate }}</td>
+        </tr>
+    </tbody>
+</table>

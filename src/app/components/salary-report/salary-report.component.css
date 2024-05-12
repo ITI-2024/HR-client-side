@@ -44,17 +44,20 @@ i {
 .modal-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6vh;
+    align-items: start;
+    margin-bottom: 2vh;
 }
 
 .modal-title {
-    margin-left: 35%;
+    margin-left: 34%;
+    margin-top: 10vh;
     color: #2a6889;
 }
 
 .salaryimg {
-    width: 10vw;
-    margin-right: 35%;
+    width: 15vw;
+    margin-right: 33%;
+    margin-top: 2vh;
 }
 
 .inputWrapper {
@@ -94,7 +97,7 @@ i {
 }
 
 .tableContainer {
-    height: 45vh;
+    height: 38vh;
     background-color: white;
     overflow-y: scroll;
     position: relative;
@@ -108,7 +111,11 @@ th {
     align-content: center;
     text-align: center;
     position: sticky;
-    top:0px;
+    top: 0px;
+}
+
+td {
+    align-content: center;
 }
 
 .spinner-border {

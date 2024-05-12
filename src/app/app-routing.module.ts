@@ -89,6 +89,13 @@ const routes: Routes = [
     role:["Admin","Users.View"]
   },
   },
+  { path: 'employees', component: EmployeesComponent },
+
+  { path: '', component: HomeComponent },
+  { path: 'salaryReport', component: SalaryReportComponent },
+  { path: 'attendenceReport', component: AttendenceComponent },
+  { path: 'holidays', component: HolidysComponent },
+  { path: 'public-setting', component: PublicSettingComponent },
   //{ path: '**', component: NotFoundComponent },
   {path:'user', component:UserComponent
   ,
@@ -102,6 +109,8 @@ const routes: Routes = [
 
   },
   //pemission
+  { path: 'user', component: UserComponent },
+  { path: 'login', component: LoginComponent },
   /*{ path: 'permissions/:id', component: AddPermissionComponent },*/
   { path: 'permissions/:id/edit', component: AddPermissionComponent
   ,
@@ -126,6 +135,14 @@ const routes: Routes = [
     role:["Admin","Attendence.Create"]
   },
   }
+  { path: 'permissions/:id/edit', component: AddPermissionComponent },
+
+  { path: 'roles', component: RolesComponent },
+  { path: 'allUsers', component: AllUsersComponent },
+  { path: 'employee/:id/edit', component: AddEmployeeComponent },
+  { path: 'employeedetails/:id', component: EmployeeDetailsComponent },
+  { path: 'attendenceReport', component: AttendenceComponent },
+  { path: 'addAttendence/:id/edit', component: AddAttendenceComponent }
 
 ];
 

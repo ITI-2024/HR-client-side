@@ -9,8 +9,9 @@ input {
 .modal-header {
     position: relative;
     background-color: #2a6889;
-    border-radius: 0px;
+    border-radius: 20px 20px 0px 0px;
 }
+
 .modal-title {
     margin: auto;
     color: white;
@@ -32,5 +33,5 @@ input {
 }
 
 .modal-content {
-    border-radius: 0px;
+    border-radius: 20px 20px 20px 20px;
 }

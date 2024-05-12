@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="wrapper">
-        <div class="modal-header">
+        <div class="modal-header ">
             <h3 class="modal-title " id="header">Salary Report</h3>
-            <img class="salaryimg" src="../../../assets/images/salaryReport.png" alt="">
+            <img class="salaryimg" src="../../../assets/images/salaryReport2.png" alt="">
         </div>
-        <div class="container mt-5" id="pdfContent" style="height: 1vh;">
+        <div class="container mt-3" id="pdfContent" style="height: 1vh;">
         </div>
         <div class="modal-body">
             <form (submit)="search()">
@@ -72,7 +72,7 @@
                             <td>{{item.totalDiscount}}</td>
                             <td>{{item.totalNetSalary | currency:'EG'}}</td>
                             <td><button class="printbtn" (click)="generatePDF(index)"><i
-                                        class="bi bi-printer-fill"></i></button></td>
+                                        class="bi bi-filetype-pdf fs-4 text-danger"></i></button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,14 +1,16 @@
 .container-fluid {
-    height: 105vh;
-    padding-top: 5vh;
+    height: 100vh;
+    padding-top: 4vh;
+    padding-bottom: 5vh;
 }
+
 i {
     color: #2a6889;
 }
 
 .wrapper {
     width: 67vw;
-    margin-left:20%;
+    margin-left: 20%;
     background-color: white;
     padding-bottom: 3vh;
     padding-inline: 1vw;
@@ -58,7 +60,7 @@ i {
 }
 
 .tableContainer {
-    height: 45vh;
+    height: 37vh;
     width: 65vw;
     background-color: white;
     overflow-y: scroll;
@@ -73,7 +75,10 @@ th {
     align-content: center;
     text-align: center;
     position: sticky;
-    top:0px;
+    top: 0px;
+}
+td{
+    align-content: center;  
 }
 
 .spinner-border {
@@ -86,4 +91,14 @@ th {
 
 .mylabel {
     padding: 10px;
+}
+
+.bi-filetype-xlsx {
+    font-size: 32px;
+    margin-left: 2vw;
+
+}
+
+i {
+    cursor: pointer;
 }
