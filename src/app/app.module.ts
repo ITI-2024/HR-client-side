@@ -10,7 +10,7 @@ import { SalaryReportComponent } from './components/salary-report/salary-report.
 import { EmployeesComponent } from './components/employees/employees.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PublicSettingPopUpComponent } from './components/public-setting/public-setting-pop-up/public-setting-pop-up.component';
 import { AddPermissionComponent } from './components/roles/add-permission/add-permission.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +23,7 @@ import { AddAttendenceComponent } from './components/add-attendence/add-attenden
 import { PdfContentComponent } from './components/salary-report/pdf-content/pdf-content.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { HomeComponent } from './components/home/home.component';
+import { authGuard } from './components/services/auth.guard';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import { HomeComponent } from './components/home/home.component';
     HttpClientModule,
 
   ],
-  providers: [],
+  providers: [HttpClient], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

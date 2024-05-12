@@ -34,7 +34,7 @@ import Swal from 'sweetalert2';
     "update":false
   },
   {
-    "name": 'Public Setting',
+    "name": 'PublicSetting',
     "create": false,
     "delete": false,
     "view": false,
@@ -48,14 +48,14 @@ import Swal from 'sweetalert2';
     "update":false
   },
   {
-    "name": 'Permissions',
+    "name": 'Groups',
     "create": false,
     "delete": false,
     "view": false,
     "update":false
   },
   {
-    "name": 'Salary Report',
+    "name": 'SalaryReport',
     "create": false,
     "delete": false,
     "view": false,
@@ -97,7 +97,9 @@ import Swal from 'sweetalert2';
           const createCheckbox = document.getElementById(`${perm.name}_create`) as HTMLInputElement;
           const updateCheckbox = document.getElementById(`${perm.name}_update`) as HTMLInputElement;
           const deleteCheckbox = document.getElementById(`${perm.name}_delete`) as HTMLInputElement;
-
+       
+       
+     
 
           if (perm.view) {
               viewCheckbox.checked = true;
@@ -109,12 +111,35 @@ import Swal from 'sweetalert2';
               createCheckbox.setAttribute('checked', 'true');
           }
           if (perm.update) {
+          
               updateCheckbox.checked = true;
               updateCheckbox.setAttribute('checked', 'true');
           }
           if (perm.delete) {
               deleteCheckbox.checked = true;
               deleteCheckbox.setAttribute('checked', 'true');
+          }
+
+          if (perm.name == 'SalaryReport'||perm.name == 'Groups') {
+            updateCheckbox.disabled = true;
+            updateCheckbox.setAttribute('disabled', 'true');
+            deleteCheckbox.disabled =true;
+            createCheckbox.disabled =true;
+
+            // deletePermission.disabled = true;
+          }
+          else if(perm.name =='PublicSetting'){
+            deleteCheckbox.disabled =true;
+          }
+          else if(perm.name == 'Users' ){
+            updateCheckbox.disabled = true;
+            updateCheckbox.setAttribute('disabled', 'true');
+            deleteCheckbox.disabled =true;
+          }
+          else{
+            updateCheckbox.disabled = false;
+            updateCheckbox.setAttribute('disabled', 'false');
+            deleteCheckbox.disabled =false;
           }
       });
       },
@@ -140,6 +165,9 @@ import Swal from 'sweetalert2';
       this.permissions[index].delete=deelete.checked;
       this.permissions[index].view=view.checked;
 
+if (create.checked || update.checked || deelete.checked) {
+  this.permissions[index].view = true;
+} 
     })
 
     this.uniqueError = '';
@@ -203,7 +231,10 @@ error: (err:any)=>{console.log(err)
         this.permissions[index].update=update.checked;
         this.permissions[index].delete=deelete.checked;
         this.permissions[index].view=view.checked;
-
+// Check 'view' permission if any other permission is checked
+  if (create.checked || update.checked || deelete.checked) {
+    this.permissions[index].view = true;
+  } 
       })
 
       this.uniqueError = '';
@@ -241,8 +272,6 @@ error: (err:any)=>{console.log(err)
       error: (err:any)=>{console.log(err)
         console.log(getName.value);
         console.log(newrole);
-
-
       }
     })
 
@@ -256,7 +285,7 @@ error: (err:any)=>{console.log(err)
 
   }
 
-
+ 
 
 
  }
