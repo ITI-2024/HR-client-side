@@ -5,7 +5,8 @@ import Swal from 'sweetalert2';
 export const priventLoginGuard: CanActivateFn = (route, state) => {
   const token=localStorage.getItem('token');
   const router=inject(Router);
-  if(!token) return true;
+  if(!token) 
+    return true;
   else {
     Swal.fire({
       title: 'You are already logged in!',
@@ -15,7 +16,7 @@ export const priventLoginGuard: CanActivateFn = (route, state) => {
       timer: 1500 
     });
 
-   router.navigate(['/']);
+   router.navigate(['']);
     return false;
   }
 };
