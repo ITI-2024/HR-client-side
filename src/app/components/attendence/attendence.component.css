@@ -77,6 +77,9 @@ th {
     position: sticky;
     top: 0px;
 }
+td{
+    align-content: center;  
+}
 
 .spinner-border {
     position: absolute;
