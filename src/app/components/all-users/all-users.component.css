@@ -8,8 +8,8 @@ i {
 }
 
 .wrapper {
-    width: 92%;
-    margin-left: 7%;
+    width: 67vw;
+    margin-left: 20%;
     background-color: white;
     padding-bottom: 3vh;
     padding-inline: 1vw;
@@ -20,7 +20,7 @@ i {
     display: flex;
     justify-content: space-between;
     margin-bottom: 6vh;
-   
+
 }
 
 .modal-title {
@@ -45,8 +45,8 @@ i {
     background-color: #2a6889;
     color: white;
     margin-block: 7vh;
-    margin-left: 80%;
-    
+    margin-left: 85%;
+
 }
 
 .tableContainer {
@@ -62,11 +62,16 @@ thead {
 
 th {
     align-content: center;
-    text-align: justify;
+    text-align: center;
+    position: sticky;
+    top: 0px;
 }
-td{
-    text-align: justify;
+
+td {
+    text-align: center;
+    align-content: center;
 }
+
 .spinner-border {
     position: absolute;
     top: 50%;

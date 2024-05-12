@@ -27,13 +27,16 @@
                         </div>
                         <div class="mb-3 mt-4 inputwrapper">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" formControlName="name"
-                                placeholder="Enter Name">
+                            <input (input)="removedublicateEmpNameError()" type="text" class="form-control" id="name"
+                                name="name" formControlName="name" placeholder="Enter Name">
                             <ng-container *ngIf="getEmployeename.touched">
                                 <div *ngIf="getEmployeename.hasError('required')" id="emailHelp"
                                     class="form-text text-danger normalfont"> Name is Required </div>
                                 <div *ngIf="getEmployeename.hasError('minlength')" id="emailHelp"
                                     class="form-text text-danger normalfont">Name Must be more than 3 characters
+                                </div>
+                                <div *ngIf="dublicateEmpName" id="emailHelp" class="form-text text-danger normalfont">
+                                    There is another employee with the same name
                                 </div>
                             </ng-container>
                         </div>
@@ -102,7 +105,7 @@
                         <div class="mb-3 inputwrapper">
                             <label for="id" class="form-label">National ID</label>
                             <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                                placeholder="Enter National ID">
+                                placeholder="Enter National ID" (input)="removeInvalidId()">
                             <ng-container *ngIf="getEmployeeid.touched">
                                 <div *ngIf="getEmployeeid.hasError('required')" id="emailHelp"
                                     class="form-text text-danger normalfont"> National ID is Required </div>

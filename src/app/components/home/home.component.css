@@ -1,34 +1,25 @@
 .wrapper {
     height: 100vh;
     display: flex;
-    justify-content: end;
-    background-image: url("../../../assets/images/welcome7.jpg");
+    flex-direction: column;
+    /* Align items vertically */
+    align-items: center;
+    /* Center items horizontally */
+    background-image: url("../../../assets/images/backgroundhome20.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-
+    background-size: cover;
+    /* Adjust background size */
 }
 
 .welcomeWrapper {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    width: 10vw;
-    text-align: center;
-    margin-right: 2vw;
-    font-weight: 200;
-
+    margin-top: 5vh;
 }
 
-.welcomeParagraph {
-    color: white;
-    line-height: 10vh;
-    letter-spacing: 1vw;
+.welcometxt {
+    color: #1273ba;
+    letter-spacing: 0.5vw;
     font-style: italic;
-}
-
-.welcome {
-    width: 3vw;
-    height: 7vh;
-    margin-bottom: 5vh;
+    font-size: 40px;
+    margin-left: 5vw;
 }

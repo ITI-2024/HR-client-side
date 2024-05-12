@@ -1,6 +1,7 @@
 .container-fluid {
-    height: 105vh;
-    padding-top: 5vh;
+    height: 100vh;
+    padding-top: 4vh;
+    padding-bottom: 5vh;
 }
 
 i {
@@ -59,7 +60,7 @@ i {
 }
 
 .tableContainer {
-    height: 45vh;
+    height: 37vh;
     width: 65vw;
     background-color: white;
     overflow-y: scroll;

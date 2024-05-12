@@ -10,15 +10,16 @@ export const navbarData = [
         label: 'Attendence Report'
     },
     {
-        routeLink: 'allUsers',
-        icon: 'fal fa-solid fa-user-plus', //us
-        label: 'User'
-    },
-    {
         routeLink: '/addAttendence/0/edit',
         icon: 'fal fa-solid fa-clipboard-user',//at
         label: 'Add Attendence'
     },
+    {
+        routeLink: 'allUsers',
+        icon: 'fal fa-solid fa-user-plus', //us
+        label: 'User'
+    },
+
     {
         routeLink: 'holidays',
         icon: 'fal fa-solid fa-calendar-minus',//h
