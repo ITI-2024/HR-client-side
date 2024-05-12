@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       } else {
         clearInterval(this.animationInterval);
       }
-    }, 70); 
+    }, 70);
   }
 
   addPublicSetting(data: any) {

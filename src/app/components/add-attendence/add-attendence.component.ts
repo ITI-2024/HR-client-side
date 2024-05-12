@@ -30,6 +30,7 @@ export class AddAttendenceComponent implements OnInit {
   unValidDate: boolean = false;
   dateError: any;
   employeesList: any;
+  isDateBeforeContract: boolean = false;
 
 
   constructor(
@@ -152,103 +153,116 @@ export class AddAttendenceComponent implements OnInit {
         formData.arrivingTime = null;
         formData.leavingTime = null;
       }
+      this.employeesService.getAllEmployees().subscribe({
+        next: data => {
+          var emps: any = data;
+          emps.forEach((emp: any) => {
+            if (formData.employeeName == emp.name) {
+              if (formData.dayDate < emp.contractDate) this.isDateBeforeContract = true
+              else {
+                this.isDateBeforeContract = false;
+                if (this.attendanceId == '0') {
+                  // Add new employee
+                  this.attendanceService.addAttendance(formData).subscribe({
+                    next: (data) => {
+                      this.router.navigate(['/attendenceReport']);
+                      this.officialHoliday = false;
+                      this.weekendHoliday = false;
+                    },
+                    error: (error) => {
+                      if (error.error == "This day is official holiday") {
+                        this.officialHoliday = true;
+                        this.attendanceExist = false;
+                        this.unValidDate = false;
+                        if (error.error == "this is weekend holiday") {
+                          this.weekendHoliday = true;
+                        } else {
+                          this.weekendHoliday = false;
+                        }
+                      }
+                      else if (error.error == "this is weekend holiday") {
+                        this.unValidDate = false;
+                        this.weekendHoliday = true;
+                        this.officialHoliday = false;
+                        this.attendanceExist = false;
+                      }
+                      else if (error.error == "This attendence already exist") {
+                        this.unValidDate = false;
+                        this.attendanceExist = true;
+                      }
+                      else {
+                        this.unValidDate = true;
+                        this.dateError = error.error;
+                        this.officialHoliday = false;
+                        this.weekendHoliday = false;
+                        this.attendanceExist = false;
+                      }; console.log(error.error)
+                    }
+                  });
+                }
+                else {
+                  // Edit existing employee
+                  if (this.getArrivingTime.value == "") this.getArrivingTime.setValue(null);
+                  if (this.getLeavingTime.value == "") this.getLeavingTime.setValue(null);
+                  formData.employeeName = this.getName.value
+                  formData.id = this.attendanceId;
+                  var dataupdated = {
+                    employeeName: this.getName.value,
+                    dayDate: this.getDate.value,
+                    arrivingTime: this.getArrivingTime.value,
+                    leavingTime: this.getLeavingTime.value
+                  }
+                  console.log("dataupdated", this.attendanceId, dataupdated);
+                  console.log({
+                    employeeName: this.getName.value,
+                    arrivingTime: this.getArrivingTime.value,
+                    leavingTime: this.getLeavingTime.value,
+                    dayDate: this.getDate.value
+                  });
 
-      if (this.attendanceId == '0') {
-        // Add new employee
-        this.attendanceService.addAttendance(formData).subscribe({
-          next: (data) => {
-            this.router.navigate(['/attendenceReport']);
-            this.officialHoliday = false;
-            this.weekendHoliday = false;
-          },
-          error: (error) => {
-            if (error.error == "This day is official holiday") {
-              this.officialHoliday = true;
-              this.attendanceExist = false;
-              this.unValidDate = false;
-              if (error.error == "this is weekend holiday") {
-                this.weekendHoliday = true;
-              } else {
-                this.weekendHoliday = false;
+                  this.attendanceService.editAttendance(this.attendanceId, dataupdated).subscribe({
+                    next: data => {
+                      this.router.navigate(['/attendenceReport']);
+                    },
+                    error: (error) => {
+                      if (error.error == "This day is official holiday") {
+                        this.unValidDate = false;
+                        this.officialHoliday = true;
+                        this.attendanceExist = false;
+                        if (error.error == "this is weekend holiday") {
+                          this.weekendHoliday = true;
+                        } else {
+                          this.weekendHoliday = false;
+                        }
+                      }
+                      else if (error.error == "this is weekend holiday") {
+                        this.weekendHoliday = true;
+                        this.officialHoliday = false;
+                        this.attendanceExist = false;
+                        this.unValidDate = false;
+                      }
+                      else if (error.error == "This Attendence Already Exist") {
+                        this.attendanceExist = true;
+                        console.log("exist error")
+                        this.unValidDate = false;
+                      }
+                      else {
+                        this.unValidDate = true;
+                        this.dateError = error.error;
+                        this.officialHoliday = false;
+                        this.weekendHoliday = false;
+                        this.attendanceExist = false;
+                      }; console.log(error.error)
+                    }
+                  }
+                  );
+
+                }
               }
             }
-            else if (error.error == "this is weekend holiday") {
-              this.unValidDate = false;
-              this.weekendHoliday = true;
-              this.officialHoliday = false;
-              this.attendanceExist = false;
-            }
-            else if (error.error == "This attendence already exist") {
-              this.unValidDate = false;
-              this.attendanceExist = true;
-            }
-            else {
-              this.unValidDate = true;
-              this.dateError = error.error;
-              this.officialHoliday = false;
-              this.weekendHoliday = false;
-              this.attendanceExist = false;
-            }; console.log(error.error)
-          }
-        });
-      }
-      else {
-        // Edit existing employee
-
-        formData.employeeName = this.getName.value
-        formData.id = this.attendanceId;
-        var dataupdated = {
-          employeeName: this.getName.value,
-          dayDate: this.getDate.value,
-          arrivingTime: this.getArrivingTime.value,
-          leavingTime: this.getLeavingTime.value
+          });
         }
-        console.log("dataupdated", this.attendanceId, dataupdated);
-        console.log({
-          employeeName: this.getName.value,
-          arrivingTime: this.getArrivingTime.value,
-          leavingTime: this.getLeavingTime.value,
-          dayDate: this.getDate.value
-        });
-
-        this.attendanceService.editAttendance(this.attendanceId, dataupdated).subscribe({
-          next: data => {
-            this.router.navigate(['/attendenceReport']);
-          },
-          error: (error) => {
-            if (error.error == "This day is official holiday") {
-              this.unValidDate = false;
-              this.officialHoliday = true;
-              this.attendanceExist = false;
-              if (error.error == "this is weekend holiday") {
-                this.weekendHoliday = true;
-              } else {
-                this.weekendHoliday = false;
-              }
-            }
-            else if (error.error == "this is weekend holiday") {
-              this.weekendHoliday = true;
-              this.officialHoliday = false;
-              this.attendanceExist = false;
-              this.unValidDate = false;
-            }
-            else if (error.error == "This Attendence Already Exist") {
-              this.attendanceExist = true;
-              console.log("exist error")
-              this.unValidDate = false;
-            }
-            else {
-              this.unValidDate = true;
-              this.dateError = error.error;
-              this.officialHoliday = false;
-              this.weekendHoliday = false;
-              this.attendanceExist = false;
-            }; console.log(error.error)
-          }
-        }
-        );
-
-      }
+      })
     } else if (this.isArrivingEmpty == false) {
       this.leavingError = true;
       this.arrivingError = false;

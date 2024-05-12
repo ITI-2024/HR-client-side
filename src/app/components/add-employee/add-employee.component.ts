@@ -18,6 +18,8 @@ export class AddEmployeeComponent implements OnInit {
   tempData: any;
   empId: any;
   invalidId: boolean = false;
+  dublicateEmpName: boolean = false;
+  iseditMode: boolean = false;
 
 
   constructor(
@@ -75,6 +77,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.employeeId = this.activatedRoute.snapshot.params['id'];
     this.loadDepartments();
     this.activatedRoute.params.subscribe({
@@ -96,6 +99,8 @@ export class AddEmployeeComponent implements OnInit {
       }
     });
     if (this.employeeId != 0) {
+      this.addempform.get('id')?.disable();
+      this.iseditMode = true;
       this.employeesService.getEmployee(this.empId).subscribe({
         next: data => {
           this.tempData = data;
@@ -117,6 +122,10 @@ export class AddEmployeeComponent implements OnInit {
 
       )
     }
+    else {
+      this.iseditMode = false;
+      this.addempform.get('id')?.enable();
+    }
 
   }
   get getEmployeename() {
@@ -132,7 +141,6 @@ export class AddEmployeeComponent implements OnInit {
     return this.addempform.controls['nationality'];
   }
   get getEmployeeid() {
-    this.invalidId = false;
     return this.addempform.controls['id'];
   }
   get getEmployeecontractDate() {
@@ -176,7 +184,7 @@ export class AddEmployeeComponent implements OnInit {
     formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
     formData.idDept = parseInt(formData.idDept, 10);
 
-    this.invalidId = false;
+
     if (this.employeeId == '0') {
       // Add new employee
       this.employeesService.AddEmployee(formData).subscribe({
@@ -184,8 +192,12 @@ export class AddEmployeeComponent implements OnInit {
           this.router.navigate(['/employees']);
         },
         error: (error) => {
-          console.log(error);
-          if (error.error == "Employee already exist") this.invalidId = true
+          if (error.error == "Employee already exist") {
+            this.invalidId = true;
+          }
+          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
+
+
         }
       });
     } else {
@@ -196,10 +208,14 @@ export class AddEmployeeComponent implements OnInit {
       this.employeesService.editEmployee(formData).subscribe({
         next: data => {
           this.router.navigate(['/employees']);
+        },
+        error: (error) => {
+          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
         }
       }
       );
     }
+
   }
 
   convertToTimeSpan(inputValue: string): string {
@@ -212,5 +228,11 @@ export class AddEmployeeComponent implements OnInit {
 
   resetForm() {
     this.addempform.reset();
+  }
+  removeInvalidId() {
+    this.invalidId = false;
+  }
+  removedublicateEmpNameError() {
+    this.dublicateEmpName = false;
   }
 }

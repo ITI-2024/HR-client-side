@@ -50,6 +50,9 @@
                                     This attendence already exist</div>
                                 <div *ngIf="unValidDate" id="emailHelp" class="form-text text-danger normalfont">
                                     {{dateError}}</div>
+                                <div *ngIf="isDateBeforeContract" id="emailHelp"
+                                    class="form-text text-danger normalfont">
+                                    This Date Before Contract Date</div>
                             </ng-container>
                         </div>
                         <div class="col-sm-5  input-g errorWrapper">

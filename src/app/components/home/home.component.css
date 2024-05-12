@@ -1,16 +1,19 @@
 .wrapper {
     height: 100vh;
     display: flex;
-    flex-direction: column; /* Align items vertically */
-    align-items: center; /* Center items horizontally */
+    flex-direction: column;
+    /* Align items vertically */
+    align-items: center;
+    /* Center items horizontally */
     background-image: url("../../../assets/images/backgroundhome20.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; /* Adjust background size */
+    background-size: cover;
+    /* Adjust background size */
 }
 
 .welcomeWrapper {
-    margin-top: 5vh; 
+    margin-top: 5vh;
 }
 
 .welcometxt {
