@@ -59,8 +59,19 @@
                     <ng-container *ngIf="getPassword.touched">
                         <div *ngIf="getPassword.hasError('required')" class="form-text text-danger  p-0 m-0 " style="position: absolute; top: 100%; left: 0;">
                             *Field is Required</div>
-                        <div *ngIf="getPassword.hasError('invalidPassword')" class="form-text text-danger  p-0 m-0" style="position: absolute; top: 100%; left: 0;">
-                            *This password does not match format</div>
+                     
+                            <div *ngIf="getPassword.hasError('invalidPassword')" id="emailHelp"
+                            class="form-text text-danger normalfont "  style="position: absolute; top: 100%; left: -3vw; font-size: 12px;" >
+                           
+                            <ul>
+                              <li *ngIf="getPassword.value && !hasUpperCase()">At least one uppercase letter</li>
+                              <li *ngIf="getPassword.value && !hasLowerCase()">At least one lowercase letter</li>
+                              <li *ngIf="getPassword.value && !hasSpecialChar()">At least one special character</li>
+                              <li *ngIf="getPassword.value && !hasDigit()">At least one digit</li>
+                              <li *ngIf="getPassword.value && !isLengthValid()">At least 8 characters</li>
+                            </ul>
+                        
+                        </div>
                     </ng-container>
                     </div>
                 </div>

@@ -121,6 +121,48 @@ export class UserComponent implements OnInit {
   get getPassword() {
     return this.registerForm.controls['password'];
   }
+  
+  hasUpperCase(): boolean {
+    const value = this.getPassword.value;
+    if (value === null || value === undefined) {
+      return false;
+    }
+    return /[A-Z]/.test(value.toString());
+  }
+  
+  hasLowerCase(): boolean {
+    const value = this.getPassword.value;
+    if (value === null || value === undefined) {
+      return false;
+    }
+    return /[a-z]/.test(value.toString());
+  }
+  
+  hasDigit(): boolean {
+    const value = this.getPassword.value;
+    if (value === null || value === undefined) {
+      return false;
+    }
+    return /\d/.test(value.toString());
+  }
+  
+  hasSpecialChar(): boolean {
+    const value = this.getPassword.value;
+    if (value === null || value === undefined) {
+      return false;
+    }
+    return /[@$!%*?&]/.test(value.toString());
+  }
+  
+  isLengthValid(): boolean {
+    const value = this.getPassword.value;
+    if (value === null || value === undefined) {
+      return false;
+    }
+    return value.toString().length >= 8;
+  }
+  
+  
   adduser(e:any){
     e.preventDefault();
     if(this.registerForm.status == 'VALID'){

@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   user: any;
   myerror: any;
   email: string = '';
-  password: string = '';
+  password: any ;
   showPassword: boolean = false;
   constructor(public userServies: LoginService, public router: Router) {
 
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.emailFormatValidator
       ]
     ),
-    password: new FormControl(null,
+    password: new FormControl('',
       [
         Validators.required,
         this.passwordFormatValidator
@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
   get getPassword() {
     return this.loginForm.controls['password'];
   }
+
   loginHandler(e: any) {
     e.preventDefault();
     this.userServies.getlogin({
@@ -96,6 +97,5 @@ export class LoginComponent implements OnInit {
 
     });
   }
-  
 
 }
