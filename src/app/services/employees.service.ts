@@ -24,7 +24,9 @@ export class EmployeesService {
   editEmployee(employee: any) {
     return this.http.put(`${this.baseUrl}`, employee);
   }
-
+  importexcel(file:any){
+    return this.http.post(`${this.baseUrl}/import-excel`,file);
+  }
  
 }
 

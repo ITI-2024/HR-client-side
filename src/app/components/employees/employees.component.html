@@ -4,9 +4,15 @@
       <h3 class="modal-title " id="header">Employees</h3>
       <img class="employeesImg" src="../../../assets/images/emplyees.png" alt="">
     </div>
+    <div class="btn-upload">
+      
+    <input type="file" style="display: none" #importexcel (change)="fileSelection($event)" >
+    <i (click)="importexcel.click();" class="bi bi-file-earmark-arrow-up fs-2 ms-1 text-success me-2"></i>
     <button class="btn btn-addemp" [routerLink]="['/employee', '0', 'edit']">
       Add Employee
     </button>
+
+    </div>
     <div class="tableContainer">
       <table class="table table-hover mb-0">
         <thead>
