@@ -1,3 +1,5 @@
+
+
 export const navbarData = [
     {
         routeLink: '',
@@ -10,7 +12,7 @@ export const navbarData = [
         label: 'Attendence Report'
     },
     {
-        routeLink: '/addAttendence/0/edit',
+        routeLink: `/addAttendence/0/edit`,
         icon: 'fal fa-solid fa-clipboard-user',//at
         label: 'Add Attendence'
     },

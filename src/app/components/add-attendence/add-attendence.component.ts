@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceService } from 'src/app/services/attendance.service';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { EncryptionService } from 'src/app/services/encryption.service';
 import Swal from 'sweetalert2';
 
 
@@ -25,6 +26,7 @@ export class AddAttendenceComponent implements OnInit {
   officialHoliday: boolean = false;
   weekendHoliday: boolean = false;
   attendanceExist: boolean = false;
+
   isEditMode: boolean = false;
   isArrivingEmpty: boolean = false;
   isLeavingEmpty: boolean = false;
@@ -32,6 +34,7 @@ export class AddAttendenceComponent implements OnInit {
   dateError: any;
   employeesList: any;
   isDateBeforeContract: boolean = false;
+  decryptId:any
 
 
   constructor(
@@ -41,6 +44,7 @@ export class AddAttendenceComponent implements OnInit {
     public attendanceService: AttendanceService,
     public router: Router,
     public employeesService: EmployeesService,
+    public encryptionService:EncryptionService
   ) {
     this.addAttendanceForm = this.formBuilder.group({
       employeeName: new FormControl('', [Validators.required]),
@@ -50,7 +54,10 @@ export class AddAttendenceComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.attendanceId = this.activatedRoute.snapshot.params['id'];
+    const encryptId=this.activatedRoute.snapshot.params['id'];
+    this.decryptId=this.encryptionService.decryptData(encryptId);
+
+    this.attendanceId =this.decryptId;
     this.isEditMode = this.attendanceId !== '0';
     this.loadDepartments();
     this.loadEmployees(); // Load the list of employees
@@ -58,7 +65,7 @@ export class AddAttendenceComponent implements OnInit {
 
     this.activatedRoute.params.subscribe({
       next: data => {
-        this.attendanceId = parseInt(data['id']);
+   
         if (this.attendanceId != 0) {
           this.attendanceService.getAttendanceById(this.attendanceId).subscribe({
             next: data => {

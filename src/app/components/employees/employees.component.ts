@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { EncryptionService } from 'src/app/services/encryption.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +12,7 @@ import Swal from 'sweetalert2';
 export class EmployeesComponent implements OnInit {
   employees: any;
 
-  constructor(public x: EmployeesService) {}
+  constructor(public x: EmployeesService,public router:Router,public encryptionService:EncryptionService) {}
 
   ngOnInit(): void {
     this.employees = this.x.getAllEmployees().subscribe({
@@ -54,6 +56,58 @@ export class EmployeesComponent implements OnInit {
         });
       }
     });
+  }
+  sweet(){
+    Swal.fire({
+      title: "Don't have permission",
+      text: "You don't have permission to access this page.",
+      icon: 'warning',// Replace with your custom HTML icon
+      timer: 1600,
+      showConfirmButton: false,
+      position: 'top'
+    });
+
+
+  }
+  
+  navigateToDetails(id: number): void {
+
+
+    const encryptedId = this.encryptionService.encryptData(id);
+    this.router.navigate(['/employeedetails',  encryptedId ]);
+  }
+  onClickUpdate(id:any):any {
+    const rolesString = localStorage.getItem('roles');
+    if(rolesString!=null){
+      const rolesArray = JSON.parse(rolesString);
+      for(const role of rolesArray){
+      if (role  == 'Employee.Update'|| role=='Admin'){
+        const encryptedId = this.encryptionService.encryptData(id);
+        this.router.navigate(['/employee', encryptedId , 'edit'])
+
+        return true;
+      }}
+
+      this.sweet()
+      return false;
+
+  }
+  }
+
+  onClickDelete(id:any):any{
+    const rolesString = localStorage.getItem('roles');
+    if(rolesString!=null){
+      const rolesArray = JSON.parse(rolesString);
+      for(const role of rolesArray){
+      if (role  == 'Employee.Delete'||role=='Admin'){
+        this.deleteEmployeeHandler(id);
+        return true;
+      } }
+
+      this.sweet()
+      return false;
+
+  }
   }
  
 }
