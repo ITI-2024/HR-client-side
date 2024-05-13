@@ -6,6 +6,12 @@
             <img class="attendanceimg" src="../../../assets/images/attendence.jpg" alt="">
         </div>
         <div class="modal-body">
+            <div>
+                <label>select a file:</label>
+                <button (click)="importexcel.click();">Browse</button>
+                <input type="file" style="display: none" #importexcel (change)="fileSelection($event)">
+                 
+            </div>
             <form (submit)="search()">
                 <div class="inputWrapper pe-3">
                     <div class="input-group rounded searchContainer  px-3">

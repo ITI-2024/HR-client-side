@@ -72,7 +72,7 @@ export class AttendenceComponent implements OnInit {
     Swal.fire({
       title: 'Are you sure you want to delete?',
       text: 'Once deleted, you will not be able to recover data',
-      iconHtml: '<i class="bi bi-trash text-danger"></i>', // Custom icon HTML
+      icon: 'warning', // Custom icon HTML
       showCancelButton: true,
       confirmButtonColor: '#dc3545',
       cancelButtonColor: '#036088',
@@ -148,5 +148,13 @@ export class AttendenceComponent implements OnInit {
       return false;
 
   }
+  }
+  fileSelection(event:any):void{
+     const formDate=new FormData();
+     formDate.append('file', event.target.files[0]);
+       this.x.importexcel(formDate).subscribe(data=>{
+        console.log(data);
+       });
+       window.location.reload();
   }
 }

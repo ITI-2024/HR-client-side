@@ -31,4 +31,8 @@ export class AttendanceService {
     }
      return this.http.get(`${this.baseUrl}/search?fromDate=${fromDate}&toDate=${toDate}&name=${name}`);
   }
+  importexcel (file:any){
+    return this.http.post(`${this.baseUrl}/import-excel`,file);
+  }
+
 }
