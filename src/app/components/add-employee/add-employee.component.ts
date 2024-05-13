@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/department.service';
+import { EncryptionService } from 'src/app/services/encryption.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-employee',
@@ -11,7 +13,7 @@ import { DepartmentService } from 'src/app/services/department.service';
 })
 
 export class AddEmployeeComponent implements OnInit {
-
+  loading = false;
   addempform: FormGroup;
   departments: any;
   employeeId: any;
@@ -20,6 +22,7 @@ export class AddEmployeeComponent implements OnInit {
   invalidId: boolean = false;
   dublicateEmpName: boolean = false;
   iseditMode: boolean = false;
+  decryptId: any;
 
 
   constructor(
@@ -27,7 +30,8 @@ export class AddEmployeeComponent implements OnInit {
     public x: DepartmentService,
     public activatedRoute: ActivatedRoute,
     public employeesService: EmployeesService,
-    public router: Router
+    public router: Router,
+    public encryptionService: EncryptionService
   ) {
     function ageValidator(minAge: number): ValidatorFn {
       return (control: AbstractControl): { [key: string]: any } | null => {
@@ -77,12 +81,10 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.employeeId = this.activatedRoute.snapshot.params['id'];
     this.loadDepartments();
     this.activatedRoute.params.subscribe({
       next: data => {
-        this.employeeId = data['id'];
         this.empId = this.employeeId.toString();
         this.getEmployeename.setValue('');
         this.getEmployeeaddress.setValue('');
@@ -99,11 +101,17 @@ export class AddEmployeeComponent implements OnInit {
       }
     });
     if (this.employeeId != 0) {
+      this.loading = true;
+      this.decryptId = this.encryptionService.decryptData(this.employeeId);
+      this.employeeId = this.decryptId;
+      this.empId = this.employeeId;
       this.addempform.get('id')?.disable();
       this.iseditMode = true;
+      console.log(this.empId)
       this.employeesService.getEmployee(this.empId).subscribe({
         next: data => {
           this.tempData = data;
+          console.log(this.tempData)
           this.getEmployeename.setValue(this.tempData.name);
           this.getEmployeeaddress.setValue(this.tempData.address);
           this.getEmployeegender.setValue(this.tempData.gender);
@@ -116,7 +124,7 @@ export class AddEmployeeComponent implements OnInit {
           this.getEmployeeidDept.setValue(this.tempData.idDept);
           this.getEmployeebirthDate.setValue(this.tempData.birthDate);
           this.getEmployeephoneNumber.setValue(this.tempData.phoneNumber);
-
+          this.loading = false;
         }
       }
 
@@ -184,38 +192,51 @@ export class AddEmployeeComponent implements OnInit {
     formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
     formData.idDept = parseInt(formData.idDept, 10);
 
+    Swal.fire({
+      title: "Do you want to edited employee data?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        if (this.employeeId == '0') {
+          // Add new employee
+          this.employeesService.AddEmployee(formData).subscribe({
+            next: (data) => {
+              this.router.navigate(['/employees']);
+            },
+            error: (error) => {
+              if (error.error == "Employee already exist") {
+                this.invalidId = true;
+              }
+              if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
 
-    if (this.employeeId == '0') {
-      // Add new employee
-      this.employeesService.AddEmployee(formData).subscribe({
-        next: (data) => {
-          this.router.navigate(['/employees']);
-        },
-        error: (error) => {
-          if (error.error == "Employee already exist") {
-            this.invalidId = true;
+
+            }
+          });
+        } else {
+          // Edit existing employee 
+          formData.id = this.employeeId;
+          formData.arrivingTime = this.convertToTimeSpan(formData.arrivingTime);
+          formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
+          this.employeesService.editEmployee(formData).subscribe({
+            next: data => {
+              this.router.navigate(['/employees']);
+            },
+            error: (error) => {
+              if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
+            }
           }
-          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
-
-
+          );
         }
-      });
-    } else {
-      // Edit existing employee 
-      formData.id = this.employeeId;
-      formData.arrivingTime = this.convertToTimeSpan(formData.arrivingTime);
-      formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
-      this.employeesService.editEmployee(formData).subscribe({
-        next: data => {
-          this.router.navigate(['/employees']);
-        },
-        error: (error) => {
-          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
-        }
+
+        Swal.fire("Employee edited successfully", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
       }
-      );
-    }
-
+    });
   }
 
   convertToTimeSpan(inputValue: string): string {
@@ -226,8 +247,20 @@ export class AddEmployeeComponent implements OnInit {
     return timeSpan;
   }
 
-  resetForm() {
-    this.addempform.reset();
+  resetForm(event: MouseEvent) {
+    event.preventDefault();
+    Swal.fire({
+      title: "Do you want to clear the form?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ok"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.addempform.reset();
+      }
+    });
   }
   removeInvalidId() {
     this.invalidId = false;

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from 'src/app/services/attendance.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
+import { EncryptionService } from 'src/app/services/encryption.service';
 @Component({
   selector: 'app-attendence',
   templateUrl: './attendence.component.html',
@@ -17,7 +18,11 @@ export class AttendenceComponent implements OnInit {
   fromDate: any;
   toDate: any;
 
-  constructor(public x: AttendanceService, public router: Router) { }
+  constructor(public x: AttendanceService, public router: Router,public encryptionService:EncryptionService) { }
+  
+
+
+  
   ngOnInit(): void {
     this.tableLoading = true;
     this.attendences = this.x.getAttendance().subscribe({
@@ -99,11 +104,31 @@ export class AttendenceComponent implements OnInit {
     });
   }
   downloadTable() {
-    let data = document.getElementById("attendneceTable");
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'Attendence Report.xlsx');
+   
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You Will Download it",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Download it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let data = document.getElementById("attendneceTable");
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+        XLSX.writeFile(wb, 'Attendence Report.xlsx');
+  
+        Swal.fire({
+          title: "Downloaded!",
+          text: "Your Sheet has been Downloaded.",
+          icon: "success"
+        });
+      }
+    });
+
   }
   sweet(){
     Swal.fire({
@@ -123,7 +148,8 @@ export class AttendenceComponent implements OnInit {
       const rolesArray = JSON.parse(rolesString);
       for(const role of rolesArray){
       if (role  == 'Attendance.Update'|| role=='Admin'){
-        this.router.navigate(['/addAttendence', id , 'edit'])
+        const encryptedId = this.encryptionService.encryptData(id);
+        this.router.navigate(['/addAttendence', encryptedId , 'edit'])
 
         return true;
       }}

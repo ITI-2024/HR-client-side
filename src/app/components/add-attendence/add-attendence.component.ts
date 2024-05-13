@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceService } from 'src/app/services/attendance.service';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { EncryptionService } from 'src/app/services/encryption.service';
 import Swal from 'sweetalert2';
 
 
@@ -25,6 +26,7 @@ export class AddAttendenceComponent implements OnInit {
   officialHoliday: boolean = false;
   weekendHoliday: boolean = false;
   attendanceExist: boolean = false;
+
   isEditMode: boolean = false;
   isArrivingEmpty: boolean = false;
   isLeavingEmpty: boolean = false;
@@ -32,7 +34,8 @@ export class AddAttendenceComponent implements OnInit {
   dateError: any;
   employeesList: any;
   isDateBeforeContract: boolean = false;
-
+  decryptId: any
+  loading: boolean = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -41,6 +44,7 @@ export class AddAttendenceComponent implements OnInit {
     public attendanceService: AttendanceService,
     public router: Router,
     public employeesService: EmployeesService,
+    public encryptionService: EncryptionService
   ) {
     this.addAttendanceForm = this.formBuilder.group({
       employeeName: new FormControl('', [Validators.required]),
@@ -50,16 +54,16 @@ export class AddAttendenceComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.attendanceId = this.activatedRoute.snapshot.params['id'];
     this.isEditMode = this.attendanceId !== '0';
+    this.loading = true;
     this.loadDepartments();
     this.loadEmployees(); // Load the list of employees
-    console.log(this.addAttendanceForm);
-
     this.activatedRoute.params.subscribe({
-      next: data => {
-        this.attendanceId = parseInt(data['id']);
+      next: (params) => {
+        this.attendanceId = params['id'];
         if (this.attendanceId != 0) {
+          this.decryptId = this.encryptionService.decryptData(this.attendanceId);
+          this.attendanceId = this.decryptId;
           this.attendanceService.getAttendanceById(this.attendanceId).subscribe({
             next: data => {
               this.tempData = data;
@@ -76,10 +80,11 @@ export class AddAttendenceComponent implements OnInit {
                   this.getArrivingTime.setValue(this.tempData.arrivingTime);
                   this.getLeavingTime.setValue(this.tempData.leavingTime);
                   console.log(this.addAttendanceForm);
-
+                  this.loading = false;
                 },
                 error: (error) => {
                   console.log(error);
+                  this.loading = false;
                 },
               });
             }
@@ -92,6 +97,7 @@ export class AddAttendenceComponent implements OnInit {
           this.getDate.setValue('');
           this.getArrivingTime.setValue('');
           this.getLeavingTime.setValue('');
+          this.loading = false;
         }
       }
 
@@ -166,6 +172,11 @@ export class AddAttendenceComponent implements OnInit {
                   // Add new employee
                   this.attendanceService.addAttendance(formData).subscribe({
                     next: (data) => {
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Attendance added successfully!'
+                      });
                       this.router.navigate(['/attendenceReport']);
                       this.officialHoliday = false;
                       this.weekendHoliday = false;
@@ -223,6 +234,11 @@ export class AddAttendenceComponent implements OnInit {
 
                   this.attendanceService.editAttendance(this.attendanceId, dataupdated).subscribe({
                     next: data => {
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Attendance edited successfully!'
+                      });
                       this.router.navigate(['/attendenceReport']);
                     },
                     error: (error) => {
@@ -253,6 +269,7 @@ export class AddAttendenceComponent implements OnInit {
                         this.officialHoliday = false;
                         this.weekendHoliday = false;
                         this.attendanceExist = false;
+
                       }; console.log(error.error)
                     }
                   }

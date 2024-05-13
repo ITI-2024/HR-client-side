@@ -1,12 +1,12 @@
-
-.page  {
+.page {
   border-radius: 20px;
   height: 95vh;
   background-color: white;
   padding-bottom: 0;
 
 
-  overflow: hidden; /* Hide overflow to prevent table border from extending beyond page border */
+  overflow: hidden;
+  /* Hide overflow to prevent table border from extending beyond page border */
 }
 
 .page-title {
@@ -19,10 +19,11 @@
   font-size: 30px;
   border-bottom: 2px solid #036088;
 }
-.container{
+
+.container {
   height: 100vh;
   padding-top: 10px;
-margin-left: 10vw;
+  margin-left: 10vw;
 
 }
 
@@ -56,12 +57,14 @@ table {
   border: 1px solid;
 }
 
-th, td {
+th,
+td {
   padding: 8px 10px;
 }
 
 .table-fixed tbody tr {
-  border-bottom: 1px solid #ddd; /* Add a border to the bottom of each row */
+  border-bottom: 1px solid #ddd;
+  /* Add a border to the bottom of each row */
 }
 
 .table-fixed tbody tr td {
@@ -96,6 +99,7 @@ th, td {
   height: max-content;
   overflow-y: auto;
 }
+
 .table-fixed tr {
   display: block;
 }
@@ -166,34 +170,48 @@ th, td {
   border-radius: 50px;
   display: inline-block;
 }
-.all:focus{
+
+.all:focus {
   background-color: rgb(7, 148, 230);
   box-shadow: #ddd 0px 0px 0px 1px;
 }
-.custom:focus{
+
+.custom:focus {
   background-color: rgb(7, 148, 230);
   box-shadow: #ddd 0px 0px 0px 1px;
 }
+
 /* Additional styles for the checkboxes within table cells */
 td input[type="checkbox"] {
   width: 20px;
   height: 20px;
   padding: 5px;
 }
-.validation-msg{
+
+.validation-msg {
   margin-left: 12vw;
 }
-.btn-seve{
+
+.btn-seve {
   background-color: #036088;
-  color:white;
+  color: white;
   border-radius: 10px;
   padding: 1.5vh 1vw;
   width: 10vw;
   border: none;
   margin-top: 2vh;
-  margin-left: 53vw;
+  margin-left: 48.5vw;
 }
-.error{
-  color: red ;
+
+.error {
+  color: red;
   margin-left: 55%;
+}
+
+.spinner-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { EncryptionService } from 'src/app/services/encryption.service';
 
 @Component({
   selector: 'app-employee-details',
@@ -12,16 +13,20 @@ export class EmployeeDetailsComponent implements OnInit {
   employeeId: any;
   employee: any;
   department: any;
+  decryptId:any;
 
   constructor(
     public activatedRoute: ActivatedRoute,
     public employeeService: EmployeesService,
     public router: Router,
-    public departmentService: DepartmentService
+    public departmentService: DepartmentService,
+    public encryptionService:EncryptionService
   ) {}
 
   ngOnInit(): void {
-    this.employeeId = this.activatedRoute.snapshot.params['id'];
+    const encryptId=this.activatedRoute.snapshot.params['id'];
+    this.decryptId=this.encryptionService.decryptData(encryptId); 
+    this.employeeId = this.decryptId;
     this.employeeService.getEmployee(this.employeeId).subscribe({
       next: (data: any) => {
         this.employee = data;

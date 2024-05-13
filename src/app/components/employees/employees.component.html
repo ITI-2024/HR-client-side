@@ -1,56 +1,48 @@
+<div class="container-fluid">
+  <div class="card m-0">
+    <div class="modal-header ">
+      <h3 class="modal-title " id="header">Employees</h3>
+      <img class="employeesImg" src="../../../assets/images/emplyees.png" alt="">
+    </div>
+    <button class="btn btn-addemp" [routerLink]="['/employee', '0', 'edit']">
+      Add Employee
+    </button>
+    <div class="tableContainer">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Address</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Arriving Time</th>
+            <th scope="col">Leaving Time</th>
+            <th scope="col">Department Name</th>
+            <th scope="col" colspan="3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.gender }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.salary }}</td>
+            <td>{{ employee.arrivingTime }}</td>
+            <td>{{ employee.leavingTime }}</td>
+            <td>{{ employee.departmentName }}</td>
 
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-hover mb-0">
-                    <thead>
-                      <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Contract Date</th>
-                        <th scope="col">Salary</th>
-                        <th scope="col">Arriving Time</th>
-                        <th scope="col">Leaving Time</th>
-                        <th scope="col">Department Name</th>
-                        <th scope="col" colspan="3">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+            <td>
+              <i (click)="onClickUpdate(employee.nationalID)" class="bi bi-pencil-fill fs-4 mx-2"></i>
+              <i (click)="onClickDelete(employee.nationalID)" class="bi bi-trash text-danger fs-4 mx-2"></i>
+              <i (click)="navigateToDetails(employee.nationalID)" class="bi bi-person-vcard fs-4 mx-2"></i>
+            </td>
 
-              <!-- get employees from database -->
-                      <tr *ngFor="let employee of employees">
-                        <td>{{ employee.name }}</td>
-                        <td>{{ employee.gender }}</td>
-                        <td>{{ employee.address }}</td>
-                        <td>{{ employee.contractDate }}</td>
-                        <td>{{ employee.salary }}</td>
-                        <td>{{ employee.arrivingTime }}</td>
-                        <td>{{ employee.leavingTime }}</td>
-                        <td>{{ employee.departmentName }}</td>
-
-                       <!-- icons  -->
-                        <td>
-                          <i [routerLink]="['/employee', employee.nationalID , 'edit']"class="bi bi-pencil-fill fs-3 mx-2"></i>
-                          <i (click)="deleteEmployeeHandler(employee.nationalID)" class="bi bi-trash text-danger fs-3 mx-2"></i>
-                          <i [routerLink]="['/employeedetails', employee.nationalID]" class="bi bi-person-vcard fs-3 mx-2"></i>
-                        </td>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="btn btn-addemp px-5 me-2" [routerLink]="['/employee', '0', 'edit']">
-          Add Employee
-       </button>
-      </div>
-
-
-
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="loading" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PublicSettingService } from 'src/app/services/public-setting.service';
+import Swal from 'sweetalert2';
 declare var window: any;
 @Component({
   selector: 'app-public-setting-pop-up',
@@ -63,14 +64,29 @@ export class PublicSettingPopUpComponent implements OnInit {
     else this.deductionHoursInValid = false;
 
     if (!this.extraHoursField && !this.deductionHoursField && !this.weekendDay1Field && !this.extraHoursInValid && !this.deductionHoursInValid) {
-      this.publicSetting.emit({
-        "extraHours": this.extraHours,
-        "deductionHours": this.deductionHours,
-        "firstWeekend": this.weekendDay1,
-        "secondWeekend": this.weekendDay2 == undefined ? null : this.weekendDay2
+      Swal.fire({
+        title: "Do you want to save the changes?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.publicSetting.emit({
+            "extraHours": this.extraHours,
+            "deductionHours": this.deductionHours,
+            "firstWeekend": this.weekendDay1,
+            "secondWeekend": this.weekendDay2 == undefined ? null : this.weekendDay2
 
-      })
-      this.formModal.hide();
+          })
+          this.formModal.hide();
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+
     }
   }
 

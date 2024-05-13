@@ -1,36 +1,56 @@
-.container {
-    height: 1250px;
+.container-fluid {
+    height: 100%;
+    width: 100%;
+    margin-left: -80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.header {
-    padding-block: 30px;
-    margin-left: 60px;
-    font-family: Poppins-Regular;
-    line-height: 1.2;
-    font-weight: unset !important;
-    /* Remove default font weight */
+.container-fluid .card {
+    border-radius: .8rem;
+    width: 55vw;
+    margin-left: 20%;
+    padding-inline: 1vw;
+    height: 120vh;
+    position: relative;
 }
+
+.container-fluid .card .headerWrapper {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.container-fluid .card .headerWrapper .addEmpImg {
+    width: 8vw;
+    height: 13vh;
+    margin-left: 13vw;
+}
+
+.container-fluid .card .headerWrapper .main .header__title {
+    color: #2a6889;
+    text-align: center;
+}
+
+.headerWrapper {
+    justify-content: center;
+    align-items: center;
+    margin-left: -7vw;
+}
+
 
 .header__description {
     color: #666;
     font-size: 17px;
 }
 
-img {
-    margin-left: 250px;
-}
-
-.main {
-    margin-top: 40px;
-    margin-left: -140px;
-}
-
-.illustration {
-    width: 40%;
-}
 
 .inputwrapper {
-    height: 12vh;
+    height: 13vh;
+    width: 70%;
 }
 
 .button {
@@ -50,9 +70,7 @@ img {
     border-color: #444e83;
 }
 
-label {
-    margin-left: 1vw;
-}
+
 
 input {
     width: 80%;
@@ -84,17 +102,7 @@ input {
     color: white;
 }
 
-.modal-body {
-    padding-left: 5vw;
-    padding-right: 2vw;
-    padding-block: 5vh;
-    background-color: #fff;
-    margin-top: -3px;
-    width: 70vw;
-    margin-left: 190px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
+
 
 .title {
     color: #2a6889;
@@ -118,14 +126,14 @@ input {
     position: relative;
     background-color: #2a6889;
     border-radius: 20px;
-    margin-left: 5px;
     width: 12vw;
+
 }
 
 .personaldata,
 .employmentdata {
     font-family: Poppins-Regular;
-    padding: 5px;
+    padding: 3px;
     font-weight: unset !important;
     /* Remove default font weight */
     text-align: center;
@@ -136,14 +144,39 @@ input {
     position: relative;
     background-color: #2a6889;
     border-radius: 20px;
-    margin-left: 10px;
     width: 15vw;
+
 }
 
-.custom-select {
-    width: 80%;
+#dept {
+    width: 70% !important;
+    /* Adjust the width as needed */
 }
 
-.img-fluid {
-    width: 10vw;
+
+.btnsWrapper {
+    position: absolute;
+    bottom: 3vh;
+    right: 1vw;
+}
+
+.form-control {
+    width: 95%;
+}
+
+.form-text {
+    font-size: 10px;
+}
+
+.normalfont {
+    font-family: sans-serif;
+    font-size: medium;
+}
+
+.spinner-border {
+    position: absolute;
+    top: 45%;
+    left: 52%;
+    width: 3rem;
+    height: 3rem;
 }

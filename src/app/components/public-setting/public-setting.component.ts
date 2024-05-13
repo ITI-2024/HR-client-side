@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./public-setting.component.css']
 })
 export class PublicSettingComponent implements OnInit {
+  loading: boolean = false;
   disabled: boolean = true;
   extraHours: any;
   deductionHours: any;
@@ -24,6 +25,7 @@ export class PublicSettingComponent implements OnInit {
 
   constructor(public publicSettingsSerivices: PublicSettingService) { }
   ngOnInit(): void {
+    this.loading = true;
     this.publicSettingsSerivices.getPuplicSetting().subscribe({
       next: data => {
         this.setting = data;
@@ -32,7 +34,7 @@ export class PublicSettingComponent implements OnInit {
         this.deductionHours = this.setting.deductionHours;
         this.weekendDay1 = this.setting.firstWeekend;
         this.weekendDay2 = (this.setting.secondWeekend == null) ? null : this.setting.secondWeekend
-
+        this.loading = false;
       }
     })
   }
@@ -47,23 +49,36 @@ export class PublicSettingComponent implements OnInit {
     else this.extraHoursInValid = false;
     if (this.deductionHours < 1 || this.deductionHours > 4) this.deductionHoursInValid = true;
     else this.deductionHoursInValid = false;
-
     if (!this.extraHoursField && !this.deductionHoursField && !this.weekendDay1Field && !this.extraHoursInValid && !this.deductionHoursInValid) {
-      this.publicSettingsSerivices.editPublicSetting(this.setting.id, {
-        "extraHours": this.extraHours,
-        "deductionHours": this.deductionHours,
-        "firstWeekend": this.weekendDay1,
-        "secondWeekend": this.weekendDay2 == 'none' ? null : this.weekendDay2
-      }).subscribe({
-        next: data => this.toggleDisabled()
+      Swal.fire({
+        title: "Do you want to save the changes?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.publicSettingsSerivices.editPublicSetting(this.setting.id, {
+            "extraHours": this.extraHours,
+            "deductionHours": this.deductionHours,
+            "firstWeekend": this.weekendDay1,
+            "secondWeekend": this.weekendDay2 == 'none' ? null : this.weekendDay2
+          }).subscribe({
+            next: data => this.toggleDisabled()
 
-      })
+          })
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     }
   }
   toggleDisabled() {
     this.disabled = !this.disabled
   }
-  sweet(){
+  sweet() {
     Swal.fire({
       title: "Don't have permission",
       text: "You don't have permission to access this page.",
@@ -72,22 +87,23 @@ export class PublicSettingComponent implements OnInit {
       showConfirmButton: false,
       position: 'top'
     });
-    
-   
+
+
   }
-  onClickUpdate():any {
+  onClickUpdate(): any {
     const rolesString = localStorage.getItem('roles');
-    if(rolesString!=null){
-      const rolesArray = JSON.parse(rolesString); 
-      for(const role of rolesArray){
-      if (role  === 'PublicSetting.Update'|| role=='Admin'){
-       this.toggleDisabled();
-        return true;
-      }} 
-   
+    if (rolesString != null) {
+      const rolesArray = JSON.parse(rolesString);
+      for (const role of rolesArray) {
+        if (role === 'PublicSetting.Update' || role == 'Admin') {
+          this.toggleDisabled();
+          return true;
+        }
+      }
+
       this.sweet()
       return false;
-    
-  }
+
+    }
   }
 }

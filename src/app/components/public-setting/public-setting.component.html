@@ -4,12 +4,12 @@
             <h5 class="modal-title " id="exampleModalLabel">Public Setting</h5>
         </div>
         <div class="modal-body">
-            <form (submit)="save($event)" >
+            <form (submit)="save($event)">
                 <div class="form-group row mb-2">
                     <label for="extraHours" class="col-sm-10 col-form-label">Extra Hours</label>
                     <div class="col-sm-12 d-flex ps-4">
                         <input type="number" min="1" max="4" class="form-control" id="extraHours" name="extraHours"
-                            placeholder="Enter Extra Hours Value"  [(ngModel)]="extraHours"   [disabled]="disabled">
+                            placeholder="Enter Extra Hours Value" [(ngModel)]="extraHours" [disabled]="disabled">
                         <div *ngIf="extraHoursField" id="require1" class="form-text text-danger ms-5">
                             Field is Required
                         </div>
@@ -85,5 +85,8 @@
                 </div>
             </form>
         </div>
+    </div>
+    <div *ngIf="loading" class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
 </div>
