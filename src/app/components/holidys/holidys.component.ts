@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./holidys.component.css']
 })
 export class HolidysComponent implements OnInit {
-  
+
   disabledHolidaybtn: boolean = true;
   holidayName: any;
   holidayDate: any;
@@ -38,7 +38,7 @@ export class HolidysComponent implements OnInit {
     return holidaysList;
   }
   ngOnInit(): void {
-    
+
     this.tableLoading = true
     this.holidayServices.getHolidays().subscribe({
       next: data => {
@@ -144,6 +144,7 @@ export class HolidysComponent implements OnInit {
   }
   deleteHoliday(id: any) {
     this.tableLoading = true;
+    
     this.holidayServices.deleteHoliday(id).subscribe({
       next: data => {
         this.tempForDelete = data;
@@ -166,39 +167,39 @@ export class HolidysComponent implements OnInit {
     Swal.fire({
       title: "Don't have permission",
       text: "You don't have permission to access this page.",
-      iconHtml: 'warning',// Replace with your custom HTML icon
+      icon: 'warning',// Replace with your custom HTML icon
       timer: 1600,
       showConfirmButton: false,
       position: 'top'
     });
-    
-   
+
+
   }
 
  onClickUpdate(id:any):any {
   const rolesString = localStorage.getItem('roles');
   if(rolesString!=null){
-    const rolesArray = JSON.parse(rolesString); 
+    const rolesArray = JSON.parse(rolesString);
     for(const role of rolesArray){
-    if (role  === 'Holiday.Update'){
+    if (role  === 'Holiday.Update'|| role=='Admin'){
      this.editHoliday(id)
       return true;
-    }} 
- 
+    }}
+
     this.sweet()
     return false;
-  
+
 }
 }
-    
+
 onClickCreate():any {
   const rolesString = localStorage.getItem('roles');
   if(rolesString!=null){
-    const rolesArray = JSON.parse(rolesString); 
+    const rolesArray = JSON.parse(rolesString);
     for(const role of rolesArray){
-    if (role  == 'Holiday.Create'){
+    if (role  == 'Holiday.Create' || role=='Admin'){
       return true;
-    } 
+    }
   }
 
     this.sweet()
@@ -209,17 +210,17 @@ onClickCreate():any {
 onClickDelete(id:any):any{
   const rolesString = localStorage.getItem('roles');
   if(rolesString!=null){
-    const rolesArray = JSON.parse(rolesString); 
+    const rolesArray = JSON.parse(rolesString);
     for(const role of rolesArray){
-    if (role  == 'Holiday.Delete'){
+    if (role  == 'Holiday.Delete' || role=='Admin'){
       this.deleteHoliday(id);
       return true;
     } }
-  
+
     this.sweet()
     return false;
-  
+
 }
 }
 
-} 
+}

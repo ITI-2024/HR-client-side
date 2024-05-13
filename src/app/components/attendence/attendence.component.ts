@@ -1,8 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from 'src/app/services/attendance.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
-
 @Component({
   selector: 'app-attendence',
   templateUrl: './attendence.component.html',
@@ -17,7 +17,7 @@ export class AttendenceComponent implements OnInit {
   fromDate: any;
   toDate: any;
 
-  constructor(public x: AttendanceService) { }
+  constructor(public x: AttendanceService, public router: Router) { }
   ngOnInit(): void {
     this.tableLoading = true;
     this.attendences = this.x.getAttendance().subscribe({
@@ -114,38 +114,39 @@ export class AttendenceComponent implements OnInit {
       showConfirmButton: false,
       position: 'top'
     });
-    
-   
+
+
   }
-  onClickUpdate():any {
+  onClickUpdate(id:any):any {
     const rolesString = localStorage.getItem('roles');
     if(rolesString!=null){
-      const rolesArray = JSON.parse(rolesString); 
+      const rolesArray = JSON.parse(rolesString);
       for(const role of rolesArray){
-      if (role  === 'Attendance.Update'){
-      
+      if (role  == 'Attendance.Update'|| role=='Admin'){
+        this.router.navigate(['/addAttendence', id , 'edit'])
+
         return true;
-      }} 
-   
+      }}
+
       this.sweet()
       return false;
-    
+
   }
   }
 
   onClickDelete(id:any):any{
     const rolesString = localStorage.getItem('roles');
     if(rolesString!=null){
-      const rolesArray = JSON.parse(rolesString); 
+      const rolesArray = JSON.parse(rolesString);
       for(const role of rolesArray){
-      if (role  == 'Attendance.Delete'){
+      if (role  == 'Attendance.Delete'||role=='Admin'){
         this.deleteAttendanceHandler(id);
         return true;
       } }
-    
+
       this.sweet()
       return false;
-    
+
   }
   }
 }

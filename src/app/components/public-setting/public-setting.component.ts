@@ -80,7 +80,7 @@ export class PublicSettingComponent implements OnInit {
     if(rolesString!=null){
       const rolesArray = JSON.parse(rolesString); 
       for(const role of rolesArray){
-      if (role  === 'PublicSetting.Update'){
+      if (role  === 'PublicSetting.Update'|| role=='Admin'){
        this.toggleDisabled();
         return true;
       }} 

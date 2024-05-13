@@ -72,7 +72,7 @@ const routes: Routes = [
    ,
    canActivate: [authGuard,roleAuthGuard],
    data:{
-     role:["Admin","Attendance.Create","Attendance.Update"]
+     role:["Admin","Attendance.Create"]
    },
    },
    //holidays

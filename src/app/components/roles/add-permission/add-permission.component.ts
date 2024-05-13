@@ -221,7 +221,10 @@ if (create.checked || update.checked || deelete.checked) {
 
    },
 error: (err:any)=>{console.log(err)
-  this.uniqueError=err.error;}
+  this.uniqueError=err.error;
+if(err.error==null)
+  this.uniqueError="Group Name Can't contain special character"
+}
 })
   //end getbyname
 
