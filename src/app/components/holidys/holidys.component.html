@@ -30,10 +30,11 @@
                         </ng-container>
                     </div>
                 </div>
-                <button type="click" *ngIf="!update" class="btn btn-save px-5 me-2" (click)="onClickCreate()" [disabled]="disabledHolidaybtn">
+                <button type="click" *ngIf="!update" class="btn btn-save px-5 me-2" (click)="onClickCreate()"
+                    [disabled]="disabledHolidaybtn">
                     Add
                 </button>
-                <button type="click" *ngIf="update"  class="btn btn-save px-5 me-2"  [disabled]="disabledHolidaybtn">
+                <button type="click" *ngIf="update" class="btn btn-save px-5 me-2" [disabled]="disabledHolidaybtn">
                     Update
                 </button>
             </form>
@@ -52,10 +53,10 @@
                             <th scope="row">{{index+1}}</th>
                             <td>{{item.name}}</td>
                             <td><span class="text-secondary">{{item.dayName}} , </span>{{item.holidayDate}}</td>
-                           
-                            <td><i (click)="onClickUpdate(item.id)"  class="bi bi-pencil-fill"></i><i
-                                    (click)="onClickDelete(item.id)"  class="bi bi-trash text-danger"></i></td>
-                                    <!-- deleteHoliday(item.id)
+
+                            <td><i (click)="onClickUpdate(item.id)" class="bi bi-pencil-fill fs-4"></i><i
+                                    (click)="onClickDelete(item.id)" class="bi bi-trash text-danger fs-4"></i></td>
+                            <!-- deleteHoliday(item.id)
                                     editHoliday(item.id) -->
                         </tr>
                     </tbody>

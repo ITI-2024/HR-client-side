@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SalaryReportService } from 'src/app/services/salary-report.service';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-salary-report',
@@ -88,44 +89,62 @@ export class SalaryReportComponent implements OnInit {
     })
   }
   generatePDF(index: any) {
-    const elementToPrint: any = document.getElementById("pdfContent");
-    html2canvas(elementToPrint, { scale: 2 }).then((canvas) => {
-      const pdf = new jsPDF();
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
-      pdf.setFont("helvetica", "bold");
-      pdf.text("Name:", 10, 10);
-      pdf.setFont("helvetica", "normal");
-      pdf.text(this.salaryReports[index].empName, 28, 10);
-      pdf.setFont("helvetica", "bold");
-      pdf.text("Department:", 10, 20);
-      pdf.setFont("helvetica", "normal");
-      pdf.text(this.salaryReports[index].deptName, 44, 20);
-      pdf.setFont("helvetica", "bold");
-      pdf.text("Date:", 10, 30);
-      pdf.setFont("helvetica", "normal");
-      pdf.text(`${this.salaryReports[index].nameMonth},${this.salaryReports[index].nameYear}`, 25, 30);
-      pdf.text("-----------------------------------------------------------------------------------------------------", 10, 37);
-      pdf.setFont("helvetica", "normal");
-      pdf.text("Main Salary:", 20, 55);
-      pdf.text(`${this.salaryReports[index].mainSalary} EG`, 160, 55);
-      pdf.text("Attend Days:", 20, 75);
-      pdf.text(`${this.salaryReports[index].attendDay}`, 168, 75);
-      pdf.text("Absent Days:", 20, 95);
-      pdf.text(`${this.salaryReports[index].absentDay}`, 168, 95);
-      pdf.text("OverTime Hours:", 20, 115);
-      pdf.text(`${this.salaryReports[index].extraHours}`, 168, 115);
-      pdf.text("Deductions Hours:", 20, 135);
-      pdf.text(`${this.salaryReports[index].dedectionHours}`, 168, 135);
-      pdf.text("Total OverTime:", 20, 155);
-      pdf.text(`${this.salaryReports[index].totalExtra}`, 168, 155);
-      pdf.text("Total Deductions:", 20, 175);
-      pdf.text(`${this.salaryReports[index].totalDiscount}`, 168, 175);
-      pdf.text("Net Salary:", 20, 195);
-      pdf.text(`${this.salaryReports[index].totalNetSalary} EG`, 160, 195);
-      pdf.text("-----------------------------------------------------------------------------------------------------", 10, 283);
-      pdf.setFont("helvetica", "bold");
-      pdf.text("sales@pioneers-solutions.com", 117, 290);
-      pdf.save(`${this.salaryReports[index].empName} Salary Report.pdf`);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You Will Download it",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Download it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const elementToPrint: any = document.getElementById("pdfContent");
+        html2canvas(elementToPrint, { scale: 2 }).then((canvas) => {
+          const pdf = new jsPDF();
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
+          pdf.setFont("helvetica", "bold");
+          pdf.text("Name:", 10, 10);
+          pdf.setFont("helvetica", "normal");
+          pdf.text(this.salaryReports[index].empName, 28, 10);
+          pdf.setFont("helvetica", "bold");
+          pdf.text("Department:", 10, 20);
+          pdf.setFont("helvetica", "normal");
+          pdf.text(this.salaryReports[index].deptName, 44, 20);
+          pdf.setFont("helvetica", "bold");
+          pdf.text("Date:", 10, 30);
+          pdf.setFont("helvetica", "normal");
+          pdf.text(`${this.salaryReports[index].nameMonth},${this.salaryReports[index].nameYear}`, 25, 30);
+          pdf.text("-----------------------------------------------------------------------------------------------------", 10, 37);
+          pdf.setFont("helvetica", "normal");
+          pdf.text("Main Salary:", 20, 55);
+          pdf.text(`${this.salaryReports[index].mainSalary} EG`, 160, 55);
+          pdf.text("Attend Days:", 20, 75);
+          pdf.text(`${this.salaryReports[index].attendDay}`, 168, 75);
+          pdf.text("Absent Days:", 20, 95);
+          pdf.text(`${this.salaryReports[index].absentDay}`, 168, 95);
+          pdf.text("OverTime Hours:", 20, 115);
+          pdf.text(`${this.salaryReports[index].extraHours}`, 168, 115);
+          pdf.text("Deductions Hours:", 20, 135);
+          pdf.text(`${this.salaryReports[index].dedectionHours}`, 168, 135);
+          pdf.text("Total OverTime:", 20, 155);
+          pdf.text(`${this.salaryReports[index].totalExtra}`, 168, 155);
+          pdf.text("Total Deductions:", 20, 175);
+          pdf.text(`${this.salaryReports[index].totalDiscount}`, 168, 175);
+          pdf.text("Net Salary:", 20, 195);
+          pdf.text(`${this.salaryReports[index].totalNetSalary} EG`, 160, 195);
+          pdf.text("-----------------------------------------------------------------------------------------------------", 10, 283);
+          pdf.setFont("helvetica", "bold");
+          pdf.text("sales@pioneers-solutions.com", 117, 290);
+          pdf.save(`${this.salaryReports[index].empName} Salary Report.pdf`);
+        });
+        Swal.fire({
+          title: "Downloaded!",
+          text: "Your PDF has been Downloaded.",
+          icon: "success"
+        });
+      }
     });
+
   }
 }

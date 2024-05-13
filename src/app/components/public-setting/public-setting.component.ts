@@ -47,23 +47,36 @@ export class PublicSettingComponent implements OnInit {
     else this.extraHoursInValid = false;
     if (this.deductionHours < 1 || this.deductionHours > 4) this.deductionHoursInValid = true;
     else this.deductionHoursInValid = false;
-
     if (!this.extraHoursField && !this.deductionHoursField && !this.weekendDay1Field && !this.extraHoursInValid && !this.deductionHoursInValid) {
-      this.publicSettingsSerivices.editPublicSetting(this.setting.id, {
-        "extraHours": this.extraHours,
-        "deductionHours": this.deductionHours,
-        "firstWeekend": this.weekendDay1,
-        "secondWeekend": this.weekendDay2 == 'none' ? null : this.weekendDay2
-      }).subscribe({
-        next: data => this.toggleDisabled()
+      Swal.fire({
+        title: "Do you want to save the changes?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.publicSettingsSerivices.editPublicSetting(this.setting.id, {
+            "extraHours": this.extraHours,
+            "deductionHours": this.deductionHours,
+            "firstWeekend": this.weekendDay1,
+            "secondWeekend": this.weekendDay2 == 'none' ? null : this.weekendDay2
+          }).subscribe({
+            next: data => this.toggleDisabled()
 
-      })
+          })
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     }
   }
   toggleDisabled() {
     this.disabled = !this.disabled
   }
-  sweet(){
+  sweet() {
     Swal.fire({
       title: "Don't have permission",
       text: "You don't have permission to access this page.",
@@ -72,22 +85,23 @@ export class PublicSettingComponent implements OnInit {
       showConfirmButton: false,
       position: 'top'
     });
-    
-   
+
+
   }
-  onClickUpdate():any {
+  onClickUpdate(): any {
     const rolesString = localStorage.getItem('roles');
-    if(rolesString!=null){
-      const rolesArray = JSON.parse(rolesString); 
-      for(const role of rolesArray){
-      if (role  === 'PublicSetting.Update'|| role=='Admin'){
-       this.toggleDisabled();
-        return true;
-      }} 
-   
+    if (rolesString != null) {
+      const rolesArray = JSON.parse(rolesString);
+      for (const role of rolesArray) {
+        if (role === 'PublicSetting.Update' || role == 'Admin') {
+          this.toggleDisabled();
+          return true;
+        }
+      }
+
       this.sweet()
       return false;
-    
-  }
+
+    }
   }
 }
