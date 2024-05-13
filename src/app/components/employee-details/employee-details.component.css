@@ -1,35 +1,35 @@
 * {
   box-sizing: border-box;
 }
+
 .wrapper {
-  height: auto;
   min-height: 100vh;
-  padding: 1000px 20px 100px 100px;
-  padding-top: 100px;
   display: flex;
-  margin-left: 50px;
+  align-items: center;
+  justify-content: center;
+
 }
 
 body {
   font-family: Poppins-Regular;
   line-height: 1.2;
-  font-weight: unset!important;
+  font-weight: unset !important;
   color: #666;
 }
 
 .profile-card {
-  width: 100%;
-  min-height: 460px;
-  margin: auto;
+  width: 67vw;
+  height: 82vh;
+  margin-left: 8%;
   box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
   background: #fff;
   border-radius: 12px;
   max-width: 900px;
   position: relative;
-  margin-top: 40px;
+  margin-top: 9vh;
 }
 
- 
+
 
 .profile-card-img {
   width: 150px;
@@ -43,7 +43,7 @@ body {
   z-index: 4;
   box-shadow: 0px 5px 50px 0px rgb(34, 174, 255), 0px 0px 0px 7px rgb(164, 162, 162);
 }
- 
+
 .profile-card-img img {
   display: block;
   width: 100%;
@@ -51,31 +51,34 @@ body {
   object-fit: cover;
   border-radius: 50%;
 }
-.modal-header-personal{
+
+.modal-header-personal {
   position: relative;
   background-color: #2a6889;
   border-radius: 20px;
   margin-left: 50px;
-  width: 12vw;  
+  width: 12vw;
 }
-.modal-header-employmentdata{
+
+.modal-header-employmentdata {
   position: relative;
   background-color: #2a6889;
   border-radius: 20px;
   margin-left: 50px;
-  width: 15vw;  
+  width: 15vw;
 }
-.personaldata,.employmentdata{
+
+.personaldata,
+.employmentdata {
   font-family: Poppins-Regular;
-  font-weight: unset!important; /* Remove default font weight */
+  font-weight: unset !important;
+  /* Remove default font weight */
   text-align: center;
   color: white;
 }
-.lead{
-  padding-left: 70px; 
-}
- 
 
- 
+.lead {
+  padding-left: 70px;
+}
 
  
