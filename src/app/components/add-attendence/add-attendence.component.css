@@ -95,3 +95,11 @@ label {
 .errorWrapper {
     height: 15vh;
 }
+
+.spinner-border {
+    position: absolute;
+    top: 40%;
+    left: 52%;
+    width: 4rem;
+    height: 4rem;
+}

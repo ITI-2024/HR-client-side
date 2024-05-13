@@ -99,7 +99,10 @@ td {
   margin-top: 2vh;
 }
 
-/*::-webkit-scrollbar {
-  height: 1vh;
-  margin-top: 0px;
-}*/
+.spinner-border {
+  position: absolute;
+  top: 58%;
+  left: 52%;
+  width: 3rem;
+  height: 3rem;
+}

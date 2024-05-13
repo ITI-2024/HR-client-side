@@ -34,8 +34,8 @@ export class AddAttendenceComponent implements OnInit {
   dateError: any;
   employeesList: any;
   isDateBeforeContract: boolean = false;
-  decryptId:any
-
+  decryptId: any
+  loading: boolean = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -44,7 +44,7 @@ export class AddAttendenceComponent implements OnInit {
     public attendanceService: AttendanceService,
     public router: Router,
     public employeesService: EmployeesService,
-    public encryptionService:EncryptionService
+    public encryptionService: EncryptionService
   ) {
     this.addAttendanceForm = this.formBuilder.group({
       employeeName: new FormControl('', [Validators.required]),
@@ -55,14 +55,15 @@ export class AddAttendenceComponent implements OnInit {
   }
   ngOnInit(): void {
     this.isEditMode = this.attendanceId !== '0';
+    this.loading = true;
     this.loadDepartments();
     this.loadEmployees(); // Load the list of employees
     this.activatedRoute.params.subscribe({
       next: (params) => {
-        this.attendanceId= params['id'];
+        this.attendanceId = params['id'];
         if (this.attendanceId != 0) {
-          this.decryptId=this.encryptionService.decryptData(this.attendanceId);
-          this.attendanceId =this.decryptId;
+          this.decryptId = this.encryptionService.decryptData(this.attendanceId);
+          this.attendanceId = this.decryptId;
           this.attendanceService.getAttendanceById(this.attendanceId).subscribe({
             next: data => {
               this.tempData = data;
@@ -79,10 +80,11 @@ export class AddAttendenceComponent implements OnInit {
                   this.getArrivingTime.setValue(this.tempData.arrivingTime);
                   this.getLeavingTime.setValue(this.tempData.leavingTime);
                   console.log(this.addAttendanceForm);
-
+                  this.loading = false;
                 },
                 error: (error) => {
                   console.log(error);
+                  this.loading = false;
                 },
               });
             }
@@ -95,6 +97,7 @@ export class AddAttendenceComponent implements OnInit {
           this.getDate.setValue('');
           this.getArrivingTime.setValue('');
           this.getLeavingTime.setValue('');
+          this.loading = false;
         }
       }
 
@@ -266,6 +269,7 @@ export class AddAttendenceComponent implements OnInit {
                         this.officialHoliday = false;
                         this.weekendHoliday = false;
                         this.attendanceExist = false;
+
                       }; console.log(error.error)
                     }
                   }

@@ -11,17 +11,21 @@ import Swal from 'sweetalert2';
 })
 export class EmployeesComponent implements OnInit {
   employees: any;
+  loading: boolean = false;
 
-  constructor(public x: EmployeesService,public router:Router,public encryptionService:EncryptionService) {}
+  constructor(public x: EmployeesService, public router: Router, public encryptionService: EncryptionService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.employees = this.x.getAllEmployees().subscribe({
       next: (data) => {
         this.employees = data;
         console.log(this.employees);
+        this.loading = false;
       },
       error: (error) => {
         console.log(error);
+        this.loading = false;
       },
     });
   }
@@ -57,7 +61,7 @@ export class EmployeesComponent implements OnInit {
       }
     });
   }
-  sweet(){
+  sweet() {
     Swal.fire({
       title: "Don't have permission",
       text: "You don't have permission to access this page.",
@@ -69,45 +73,47 @@ export class EmployeesComponent implements OnInit {
 
 
   }
-  
+
   navigateToDetails(id: number): void {
 
 
     const encryptedId = this.encryptionService.encryptData(id);
-    this.router.navigate(['/employeedetails',  encryptedId ]);
+    this.router.navigate(['/employeedetails', encryptedId]);
   }
-  onClickUpdate(id:any):any {
+  onClickUpdate(id: any): any {
     const rolesString = localStorage.getItem('roles');
-    if(rolesString!=null){
+    if (rolesString != null) {
       const rolesArray = JSON.parse(rolesString);
-      for(const role of rolesArray){
-      if (role  == 'Employee.Update'|| role=='Admin'){
-        const encryptedId = this.encryptionService.encryptData(id);
-        this.router.navigate(['/employee', encryptedId , 'edit'])
+      for (const role of rolesArray) {
+        if (role == 'Employee.Update' || role == 'Admin') {
+          const encryptedId = this.encryptionService.encryptData(id);
+          this.router.navigate(['/employee', encryptedId, 'edit'])
 
-        return true;
-      }}
+          return true;
+        }
+      }
 
       this.sweet()
       return false;
 
-  }
+    }
   }
 
-  onClickDelete(id:any):any{
+  onClickDelete(id: any): any {
     const rolesString = localStorage.getItem('roles');
-    if(rolesString!=null){
+    if (rolesString != null) {
       const rolesArray = JSON.parse(rolesString);
-      for(const role of rolesArray){
-      if (role  == 'Employee.Delete'||role=='Admin'){
-        this.deleteEmployeeHandler(id);
-        return true;
-      } }
+      for (const role of rolesArray) {
+        if (role == 'Employee.Delete' || role == 'Admin') {
+          this.deleteEmployeeHandler(id);
+          return true;
+        }
+      }
 
       this.sweet()
       return false;
 
+    }
   }
-  }
- 
+
 }

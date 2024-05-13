@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./public-setting.component.css']
 })
 export class PublicSettingComponent implements OnInit {
+  loading: boolean = false;
   disabled: boolean = true;
   extraHours: any;
   deductionHours: any;
@@ -24,6 +25,7 @@ export class PublicSettingComponent implements OnInit {
 
   constructor(public publicSettingsSerivices: PublicSettingService) { }
   ngOnInit(): void {
+    this.loading = true;
     this.publicSettingsSerivices.getPuplicSetting().subscribe({
       next: data => {
         this.setting = data;
@@ -32,7 +34,7 @@ export class PublicSettingComponent implements OnInit {
         this.deductionHours = this.setting.deductionHours;
         this.weekendDay1 = this.setting.firstWeekend;
         this.weekendDay2 = (this.setting.secondWeekend == null) ? null : this.setting.secondWeekend
-
+        this.loading = false;
       }
     })
   }

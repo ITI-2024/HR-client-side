@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 
 export class AddEmployeeComponent implements OnInit {
-
+  loading = false;
   addempform: FormGroup;
   departments: any;
   employeeId: any;
@@ -22,7 +22,7 @@ export class AddEmployeeComponent implements OnInit {
   invalidId: boolean = false;
   dublicateEmpName: boolean = false;
   iseditMode: boolean = false;
-  decryptId:any;
+  decryptId: any;
 
 
   constructor(
@@ -31,7 +31,7 @@ export class AddEmployeeComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public employeesService: EmployeesService,
     public router: Router,
-    public encryptionService:EncryptionService
+    public encryptionService: EncryptionService
   ) {
     function ageValidator(minAge: number): ValidatorFn {
       return (control: AbstractControl): { [key: string]: any } | null => {
@@ -81,7 +81,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employeeId=this.activatedRoute.snapshot.params['id'];
+    this.employeeId = this.activatedRoute.snapshot.params['id'];
     this.loadDepartments();
     this.activatedRoute.params.subscribe({
       next: data => {
@@ -101,9 +101,10 @@ export class AddEmployeeComponent implements OnInit {
       }
     });
     if (this.employeeId != 0) {
-      this.decryptId=this.encryptionService.decryptData(this.employeeId);
+      this.loading = true;
+      this.decryptId = this.encryptionService.decryptData(this.employeeId);
       this.employeeId = this.decryptId;
-      this.empId=this.employeeId;
+      this.empId = this.employeeId;
       this.addempform.get('id')?.disable();
       this.iseditMode = true;
       console.log(this.empId)
@@ -123,7 +124,7 @@ export class AddEmployeeComponent implements OnInit {
           this.getEmployeeidDept.setValue(this.tempData.idDept);
           this.getEmployeebirthDate.setValue(this.tempData.birthDate);
           this.getEmployeephoneNumber.setValue(this.tempData.phoneNumber);
-
+          this.loading = false;
         }
       }
 
@@ -211,8 +212,8 @@ export class AddEmployeeComponent implements OnInit {
                 this.invalidId = true;
               }
               if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
-    
-    
+
+
             }
           });
         } else {
@@ -230,7 +231,7 @@ export class AddEmployeeComponent implements OnInit {
           }
           );
         }
-        
+
         Swal.fire("Employee edited successfully", "", "success");
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");

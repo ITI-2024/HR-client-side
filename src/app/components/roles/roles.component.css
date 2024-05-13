@@ -1,12 +1,12 @@
-
-.page  {
+.page {
   border-radius: 20px;
   height: 80vh;
   background-color: white;
   padding-bottom: 200px;
-  width:67vw;
+  width: 67vw;
   margin-left: 10%;
-  overflow: hidden; /* Hide overflow to prevent table border from extending beyond page border */
+  overflow: hidden;
+  /* Hide overflow to prevent table border from extending beyond page border */
 }
 
 .page-title {
@@ -19,7 +19,8 @@
   font-size: 30px;
   border-bottom: 2px solid #036088;
 }
-.container{
+
+.container {
   height: 100vh;
   padding-top: 50px;
   margin-left: 10vw;
@@ -31,21 +32,25 @@
   margin: 0 5vw;
   margin-top: 50px;
   margin-bottom: 300px;
-    overflow: auto;
-    height: 40vh;
+  overflow: auto;
+  height: 40vh;
 
 }
-.icon{
+
+.icon {
   padding-left: 50vw;
   cursor: pointer;
 }
-td{
+
+td {
   cursor: pointer;
 }
-td i{
+
+td i {
 
   font-size: 25px;
 }
+
 .table thead th {
   position: sticky;
   top: 0;
@@ -81,4 +86,12 @@ td i{
   padding: 1vh 0vw;
   margin-left: 42vw;
   text-align: center;
+}
+
+.spinner-border {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
 }
