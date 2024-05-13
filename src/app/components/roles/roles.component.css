@@ -4,8 +4,8 @@
   height: 80vh;
   background-color: white;
   padding-bottom: 200px;
-
-
+  width:67vw;
+  margin-left: 10%;
   overflow: hidden; /* Hide overflow to prevent table border from extending beyond page border */
 }
 
@@ -50,14 +50,9 @@ td i{
   position: sticky;
   top: 0;
   z-index: 1;
-
   border: none;
-border-bottom: 3px solid #036088;
+  border-bottom: 3px solid #036088;
 }
-
-
-
-
 
 /* Additional styles for the form position */
 .form-position {
@@ -84,7 +79,6 @@ border-bottom: 3px solid #036088;
   outline: #036088;
   width: 10vw;
   padding: 1vh 0vw;
-  margin-left: 50vw;
-
+  margin-left: 42vw;
   text-align: center;
 }

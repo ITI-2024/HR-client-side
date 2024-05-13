@@ -178,19 +178,34 @@ if (create.checked || update.checked || deelete.checked) {
   this.permissions[index].view = true;
 }
     })
-
+    let getName=document.getElementById("roleName")as HTMLInputElement;
     this.uniqueError = '';
     this.validPemission = '';
     const hasPermission = this.permissions.some((prem:any) => prem.view || prem.create || prem.update || prem.delete);
-    if (!hasPermission) {
-      this.validPemission = 'You must determine at least one permission';
+    if(getName.value==null||getName.value ==''){
+      if (!hasPermission) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You must add group name and determine at least one permission",
+        });
+        return;
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You must add group first",
+        });
+        return;
+      }
+    }else if (!hasPermission) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You must determine at least one permission",
+      });
       return;
     }
-
-
-   let getName=document.getElementById("roleName")as HTMLInputElement;
-
-
 
    let newrole={
     name:getName.value,

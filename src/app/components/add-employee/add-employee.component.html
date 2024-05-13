@@ -179,7 +179,7 @@
             <div class=" d-flex justify-content-end btnsWrapper">
                 <button [disabled]="!addempform.valid" class="btn btn-addemp" type="submit">{{ employeeId == 0 ?
                     "Add" : "Edit" }}</button>
-                <button class="btn btn-reset ms-4" (click)="resetForm()">Clear</button>
+                <button class="btn btn-reset ms-4" (click)="resetForm($event)">Clear</button>
             </div>
 
         </form>

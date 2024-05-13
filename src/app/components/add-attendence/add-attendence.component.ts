@@ -54,19 +54,15 @@ export class AddAttendenceComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    const encryptId=this.activatedRoute.snapshot.params['id'];
-    this.decryptId=this.encryptionService.decryptData(encryptId);
-
-    this.attendanceId =this.decryptId;
     this.isEditMode = this.attendanceId !== '0';
     this.loadDepartments();
     this.loadEmployees(); // Load the list of employees
-    console.log(this.addAttendanceForm);
-
     this.activatedRoute.params.subscribe({
-      next: data => {
-   
+      next: (params) => {
+        this.attendanceId= params['id'];
         if (this.attendanceId != 0) {
+          this.decryptId=this.encryptionService.decryptData(this.attendanceId);
+          this.attendanceId =this.decryptId;
           this.attendanceService.getAttendanceById(this.attendanceId).subscribe({
             next: data => {
               this.tempData = data;
@@ -173,6 +169,11 @@ export class AddAttendenceComponent implements OnInit {
                   // Add new employee
                   this.attendanceService.addAttendance(formData).subscribe({
                     next: (data) => {
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Attendance added successfully!'
+                      });
                       this.router.navigate(['/attendenceReport']);
                       this.officialHoliday = false;
                       this.weekendHoliday = false;
@@ -230,6 +231,11 @@ export class AddAttendenceComponent implements OnInit {
 
                   this.attendanceService.editAttendance(this.attendanceId, dataupdated).subscribe({
                     next: data => {
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Attendance edited successfully!'
+                      });
                       this.router.navigate(['/attendenceReport']);
                     },
                     error: (error) => {
