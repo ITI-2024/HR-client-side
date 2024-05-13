@@ -62,8 +62,8 @@ td {
   background-color: #036088;
   color: #fff;
   width: 13vw;
-  margin-block: 5vh;
-  margin-left: 83%;
+ 
+  
 }
 
 .modal-header {
@@ -105,4 +105,13 @@ td {
   left: 52%;
   width: 3rem;
   height: 3rem;
+}
+.btn-upload{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:20vw;
+
+  margin-left: 62vw;
+  margin-block: 5vh;
 }

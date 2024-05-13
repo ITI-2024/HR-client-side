@@ -115,5 +115,12 @@ export class EmployeesComponent implements OnInit {
 
     }
   }
-
+  fileSelection(event:any):void{
+    const formDate=new FormData();
+    formDate.append('file', event.target.files[0]);
+      this.x.importexcel(formDate).subscribe(data=>{
+       console.log(data);
+      });
+      window.location.reload();
+ }
 }

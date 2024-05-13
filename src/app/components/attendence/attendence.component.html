@@ -6,12 +6,7 @@
             <img class="attendanceimg" src="../../../assets/images/attendence.jpg" alt="">
         </div>
         <div class="modal-body">
-            <div>
-                <label>select a file:</label>
-                <button (click)="importexcel.click();">Browse</button>
-                <input type="file" style="display: none" #importexcel (change)="fileSelection($event)">
-                 
-            </div>
+        
             <form (submit)="search()">
                 <div class="inputWrapper pe-3">
                     <div class="input-group rounded searchContainer  px-3">
@@ -30,7 +25,10 @@
                             <label class="mylabel">To</label>
                             <input type="date" class="form-control date" id="to" name="toDate" [(ngModel)]="toDate"
                                 (change)="enabledSearch()">
-                            <i (click)="downloadTable()" class="bi bi-filetype-xlsx text-success"></i>
+                           
+                            <i (click)="downloadTable()"  class="bi bi-file-earmark-arrow-down fs-2 ms-1 text-success"></i>
+                            <input type="file" style="display: none" #importexcel (change)="fileSelection($event)" >
+                            <i (click)="importexcel.click();" class="bi bi-file-earmark-arrow-up fs-2 ms-1 text-success"></i>
                         </div>
                     </div>
                 </div>
