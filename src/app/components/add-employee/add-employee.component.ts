@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/department.service';
+import { EncryptionService } from 'src/app/services/encryption.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -20,6 +21,7 @@ export class AddEmployeeComponent implements OnInit {
   invalidId: boolean = false;
   dublicateEmpName: boolean = false;
   iseditMode: boolean = false;
+  decryptId:any;
 
 
   constructor(
@@ -27,7 +29,8 @@ export class AddEmployeeComponent implements OnInit {
     public x: DepartmentService,
     public activatedRoute: ActivatedRoute,
     public employeesService: EmployeesService,
-    public router: Router
+    public router: Router,
+    public encryptionService:EncryptionService
   ) {
     function ageValidator(minAge: number): ValidatorFn {
       return (control: AbstractControl): { [key: string]: any } | null => {
@@ -77,12 +80,15 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const encryptId=this.activatedRoute.snapshot.params['id'];
+    this.decryptId=this.encryptionService.decryptData(encryptId);
+    this.employeeId = this.decryptId;
 
-    this.employeeId = this.activatedRoute.snapshot.params['id'];
+    
     this.loadDepartments();
     this.activatedRoute.params.subscribe({
       next: data => {
-        this.employeeId = data['id'];
+        
         this.empId = this.employeeId.toString();
         this.getEmployeename.setValue('');
         this.getEmployeeaddress.setValue('');

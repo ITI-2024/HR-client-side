@@ -32,9 +32,9 @@
             <td>{{ employee.departmentName }}</td>
 
             <td>
-              <i [routerLink]="['/employee', employee.nationalID , 'edit']" class="bi bi-pencil-fill fs-4 mx-2"></i>
-              <i (click)="deleteEmployeeHandler(employee.nationalID)" class="bi bi-trash text-danger fs-4 mx-2"></i>
-              <i [routerLink]="['/employeedetails', employee.nationalID]" class="bi bi-person-vcard fs-4 mx-2"></i>
+              <i (click)="onClickUpdate(employee.nationalID)" class="bi bi-pencil-fill fs-4 mx-2"></i>
+              <i (click)="onClickDelete(employee.nationalID)" class="bi bi-trash text-danger fs-4 mx-2"></i>
+              <i (click)="navigateToDetails(employee.nationalID)" class="bi bi-person-vcard fs-4 mx-2"></i>
             </td>
 
           </tr>

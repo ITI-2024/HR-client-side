@@ -91,7 +91,7 @@ import Swal from 'sweetalert2';
    if(encryptedId==null) return
    this.decryptedId = this.encryptionService.decryptData(encryptedId);
    this.roleId=this.decryptedId
-   console.log(this.roleId);
+   
 
     this.roleservice.getById(this.decryptedId).subscribe({
       next: (data:any) => {
