@@ -24,6 +24,7 @@ export class EmployeesService {
   editEmployee(employee: any) {
     return this.http.put(`${this.baseUrl}`, employee);
   }
+
  
 }
 
