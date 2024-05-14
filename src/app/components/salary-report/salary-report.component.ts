@@ -135,7 +135,7 @@ export class SalaryReportComponent implements OnInit {
           pdf.text(`${this.salaryReports[index].totalNetSalary} EG`, 160, 195);
           pdf.text("-----------------------------------------------------------------------------------------------------", 10, 283);
           pdf.setFont("helvetica", "bold");
-          pdf.text("sales@pioneers-solutions.com", 117, 290);
+          pdf.text("sales@pioneers-solutions.com", 118, 287);
           pdf.save(`${this.salaryReports[index].empName} Salary Report.pdf`);
         });
         Swal.fire({
