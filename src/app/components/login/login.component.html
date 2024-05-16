@@ -37,7 +37,7 @@
             <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text normalfont">
               Password is Required</div>
 
-            <div *ngIf="getPassword.hasError('invalidPassword')" class="form-text p-0 m-0"
+            <div *ngIf="getPassword.hasError('invalidPassword')" class="form-text p-0 m-0 normalfont" 
               style="position: absolute; top: 100%; left: 0; ">
               *This password does not match format
 
@@ -48,7 +48,7 @@
         <div class="row">
           <button type="submit" class="btn">Login</button>
         </div>
-        <p *ngIf="myerror !== ''&& myerror!='[object Object]'" class="text-danger mt-1">{{ myerror }}</p>
+        <p *ngIf="myerror !== ''&& myerror!='[object Object]'" class=" normalfont mt-1">{{ myerror }}</p>
       </form>
 
     </div>
