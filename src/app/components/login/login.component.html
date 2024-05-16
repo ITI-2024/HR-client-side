@@ -16,9 +16,9 @@
             formControlName="email">
           <label for="email">Email</label>
           <ng-container *ngIf="getEmail.touched">
-            <div *ngIf="getEmail.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">Email is
+            <div *ngIf="getEmail.hasError('required')" id="emailHelp" class="form-text normalfont">Email is
               Required</div>
-            <div *ngIf="getEmail.hasError('invalidEmail')" id="emailHelp" class="form-text text-danger normalfont"> does
+            <div *ngIf="getEmail.hasError('invalidEmail')" id="emailHelp" class="form-text normalfont"> does
               not match right email format</div>
           </ng-container>
 
@@ -34,10 +34,10 @@
           </span>
 
           <ng-container *ngIf="getPassword.touched">
-            <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">
+            <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text normalfont">
               Password is Required</div>
 
-            <div *ngIf="getPassword.hasError('invalidPassword')" class="form-text text-danger  p-0 m-0"
+            <div *ngIf="getPassword.hasError('invalidPassword')" class="form-text p-0 m-0"
               style="position: absolute; top: 100%; left: 0; ">
               *This password does not match format
 
