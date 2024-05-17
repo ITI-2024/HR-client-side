@@ -22,7 +22,7 @@ export class SalaryReportComponent implements OnInit {
   salaryReports: any;
   disablesSearch: boolean = true;
   tableLoading: boolean = false;
-  englishMonth :any;
+  englishMonth: any;
   constructor(public salaryReportsServices: SalaryReportService) {
     const currentYear = new Date().getFullYear();
     for (let year = 2008; year <= currentYear; year++) {
@@ -60,7 +60,7 @@ export class SalaryReportComponent implements OnInit {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text:"Data not found",
+            text: "Data not found",
           });
 
         }
@@ -69,14 +69,20 @@ export class SalaryReportComponent implements OnInit {
         next: data => {
           this.salaryReports = data;
           this.tableLoading = false;
+          if (this.salaryReports.length == 0) Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Employee Name not found",
+          });
 
         }, error: e => {
           this.tableLoading = false;
           this.salaryReports = [];
+
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text:"Data not found",
+            text: "Data not found",
           });
 
         }
@@ -94,7 +100,7 @@ export class SalaryReportComponent implements OnInit {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text:"Data not found",
+          text: "Data not found",
         });
 
       }
@@ -112,8 +118,8 @@ export class SalaryReportComponent implements OnInit {
       confirmButtonText: "Yes, Download it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        const elementToPrint:any = document.getElementById("pdfContent");
-        const arabicMonthNames:any = {
+        const elementToPrint: any = document.getElementById("pdfContent");
+        const arabicMonthNames: any = {
           "يناير": "January",
           "فبراير": "February",
           "مارس": "March",
@@ -127,17 +133,18 @@ export class SalaryReportComponent implements OnInit {
           "نوفمبر": "November",
           "ديسمبر": "December"
         };
-  
+
         const monthName = this.salaryReports[index].nameMonth;
         // Get the English month name
         this.englishMonth = '';
         if (arabicMonthNames.hasOwnProperty(monthName)) {
           this.englishMonth = arabicMonthNames[monthName];
-        
+
         } else {
           // If the month name is already in English, use it directly
-         this. englishMonth = this.salaryReports[index].nameMonth};
-        
+          this.englishMonth = this.salaryReports[index].nameMonth
+        };
+
         const year = this.salaryReports[index].nameYear;
         // Ensure proper formatting of the date
         const formattedDate = `${this.englishMonth}, ${year}`;
@@ -159,7 +166,7 @@ export class SalaryReportComponent implements OnInit {
           pdf.text("-----------------------------------------------------------------------------------------------------", 10, 37);
           pdf.setFont("helvetica", "normal");
           pdf.text("Main Salary:", 20, 55);
-          pdf.text(`${this.salaryReports[index].mainSalary} EG`, 160, 55);
+          pdf.text(`${this.salaryReports[index].mainSalary} EGP`, 160, 55);
           pdf.text("Attend Days:", 20, 75);
           pdf.text(`${this.salaryReports[index].attendDay}`, 168, 75);
           pdf.text("Absent Days:", 20, 95);
@@ -169,15 +176,15 @@ export class SalaryReportComponent implements OnInit {
           pdf.text("Deductions Hours:", 20, 135);
           pdf.text(`${this.salaryReports[index].dedectionHours}`, 168, 135);
           pdf.text("Total OverTime:", 20, 155);
-          pdf.text(`${this.salaryReports[index].totalExtra}`, 168, 155);
+          pdf.text(`${this.salaryReports[index].totalExtra} EGP`, 160, 155);
           pdf.text("Total Deductions:", 20, 175);
-          pdf.text(`${this.salaryReports[index].totalDiscount}`, 168, 175);
+          pdf.text(`${this.salaryReports[index].totalDiscount} EGP`, 160, 175);
           pdf.text("Net Salary:", 20, 195);
-          pdf.text(`${this.salaryReports[index].totalNetSalary} EG`, 160, 195);
+          pdf.text(`${this.salaryReports[index].totalNetSalary} EGP`, 160, 195);
           pdf.text("-----------------------------------------------------------------------------------------------------", 10, 283);
           pdf.setFont("helvetica", "bold");
           pdf.text("sales@pioneers-solutions.com", 118, 287);
-          pdf.save(`${this.salaryReports[index].empName} Salary Report.pdf`);
+          pdf.save(`${this.salaryReports[index].empName} Salary Report (${formattedDate}).pdf`);
         });
         Swal.fire({
           title: "Downloaded!",
