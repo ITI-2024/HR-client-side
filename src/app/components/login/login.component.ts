@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: any ;
   showPassword: boolean = false;
+  validationErrors: any = {};
   constructor(public userServies: LoginService, public router: Router) {
 
   }
@@ -29,34 +30,34 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  emailFormatValidator(control: FormControl): { [key: string]: any } | null {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (control.value && !emailPattern.test(control.value)) {
-      return { 'invalidEmail': true };
-    }
-    return null;
-  }
+  // emailFormatValidator(control: FormControl): { [key: string]: any } | null {
+  //   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  //   if (control.value && !emailPattern.test(control.value)) {
+  //     return { 'invalidEmail': true };
+  //   }
+  //   return null;
+  // }
   // Custom validator function for password format 
-  passwordFormatValidator(control: FormControl): { [key: string]: any } | null {
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
-    if (control.value && !passwordPattern.test(control.value)) {
-      return { 'invalidPassword': true };
-    }
-    return null;
-  }
+  // passwordFormatValidator(control: FormControl): { [key: string]: any } | null {
+  //   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
+  //   if (control.value && !passwordPattern.test(control.value)) {
+  //     return { 'invalidPassword': true };
+  //   }
+  //   return null;
+  // }
 
   loginForm = new FormGroup({
 
     email: new FormControl(null,
       [
         Validators.required,
-        this.emailFormatValidator
+
       ]
     ),
     password: new FormControl('',
       [
         Validators.required,
-        this.passwordFormatValidator
+    
 
       ]
     )
@@ -70,6 +71,10 @@ export class LoginComponent implements OnInit {
 
   loginHandler(e: any) {
     e.preventDefault();
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
     this.userServies.getlogin({
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
@@ -89,10 +94,12 @@ export class LoginComponent implements OnInit {
         }
 
       },
-      error: data => {
-        this.myerror = data.error;
-        console.log(this.myerror);
-
+      error: err => {
+        if (err.error) {
+          this.validationErrors = err.error;
+          console.log(this.validationErrors);
+        }
+        this.myerror = err.error.message;
       }
 
     });

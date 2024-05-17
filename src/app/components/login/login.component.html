@@ -15,11 +15,14 @@
           <input type="email" name="email" placeholder="" id="email" [(ngModel)]="email" class="normalfont"
             formControlName="email"  style="color: white;">
           <label for="email">Email</label>
-          <ng-container *ngIf="getEmail.touched">
-            <div *ngIf="getEmail.hasError('required')" id="emailHelp" class="form-text normalfont">Email is
-              Required</div>
-            <div *ngIf="getEmail.hasError('invalidEmail')" id="emailHelp" class="form-text normalfont"> does
-              not match right email format</div>
+   
+          <ng-container *ngIf="getEmail.touched|| validationErrors.Email">
+            <div *ngIf="getEmail.hasError('required')" id="emailHelp" class="form-text normalfont">
+              Email is Required
+            </div>
+            <div *ngIf="validationErrors.Email" id="emailHelp" class="form-text normalfont">
+              {{ validationErrors.Email[0] }}
+            </div>
           </ng-container>
 
         </div>
@@ -29,26 +32,22 @@
           <input type="password" name="password" placeholder="" id="password" class="normalfont"
             formControlName="password">
           <label for="passward">Password</label>
-          <!-- <span class="toggle-password" (click)="togglePasswordVisibility()">
+          <span class="toggle-password" (click)="togglePasswordVisibility()">
             <i class="bi" [ngClass]="{ 'bi-eye': !showPassword, 'bi-eye-slash': showPassword }"></i>
-          </span> -->
+          </span>
 
           <ng-container *ngIf="getPassword.touched">
             <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text normalfont">
               Password is Required</div>
-
-            <div *ngIf="getPassword.hasError('invalidPassword')" class="form-text p-0 m-0 normalfont" 
-              style="position: absolute; top: 100%; left: 0; ">
-              *This password does not match format
-
-            </div>
+  
           </ng-container>
 
         </div>
         <div class="row">
+       
           <button type="submit" class="btn">Login</button>
         </div>
-        <p *ngIf="myerror !== ''&& myerror!='[object Object]'" class=" normalfont mt-1">{{ myerror }}</p>
+        <p *ngIf="this.validationErrors !== ''&& this.validationErrors!='[object Object]'" class=" normalfont mt-1">{{ validationErrors }}</p>
       </form>
 
     </div>
