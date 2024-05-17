@@ -49,9 +49,9 @@
                 <table class="table table-hover text-center">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <!-- <th scope="col">#</th> -->
                             <th scope="col">Name</th>
-                            <th scope="col">Department</th>
+                            <th scope="col">Date</th>
                             <th scope="col">Main Salary</th>
                             <th scope="col">Attend Days</th>
                             <th scope="col">Absent Days</th>
@@ -59,23 +59,25 @@
                             <th scope="col">Deductions Hours</th>
                             <th scope="col">Total OverTime</th>
                             <th scope="col">Total Deductions</th>
+                        
                             <th scope="col">Net Salary</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let item of salaryReports;let index = index;">
                         <tr>
-                            <th scope="row">{{index+1}}</th>
+                            <!-- <th scope="row">{{index+1}}</th> -->
                             <td>{{item.empName}}</td>
-                            <td>{{item.deptName}}</td>
-                            <td>{{item.mainSalary | currency:'EG'}}</td>
+                            <td>{{item.nameMonth}}-{{item.nameYear}}</td>
+                            <td>{{item.mainSalary | currency:'EGP'}}</td>
                             <td>{{item.attendDay}}</td>
                             <td>{{item.absentDay}}</td>
                             <td>{{item.extraHours}}</td>
                             <td>{{item.dedectionHours}}</td>
-                            <td>{{item.totalExtra}}</td>
-                            <td>{{item.totalDiscount}}</td>
-                            <td>{{item.totalNetSalary | currency:'EG'}}</td>
+                            <td>{{item.totalExtra| currency:'EGP'}}</td>
+                            <td>{{item.totalDiscount| currency:'EGP'}}</td>
+                         
+                            <td>{{item.totalNetSalary | currency:'EGP'}}</td>
                             <td><button class="printbtn" (click)="generatePDF(index)"><i
                                         class="bi bi-filetype-pdf fs-4 text-danger"></i></button></td>
                         </tr>
