@@ -22,6 +22,7 @@ export class SalaryReportComponent implements OnInit {
   salaryReports: any;
   disablesSearch: boolean = true;
   tableLoading: boolean = false;
+  englishMonth :any;
   constructor(public salaryReportsServices: SalaryReportService) {
     const currentYear = new Date().getFullYear();
     for (let year = 2008; year <= currentYear; year++) {
@@ -99,7 +100,35 @@ export class SalaryReportComponent implements OnInit {
       confirmButtonText: "Yes, Download it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        const elementToPrint: any = document.getElementById("pdfContent");
+        const elementToPrint:any = document.getElementById("pdfContent");
+        const arabicMonthNames:any = {
+          "يناير": "January",
+          "فبراير": "February",
+          "مارس": "March",
+          "أبريل": "April",
+          "مايو": "May",
+          "يونيو": "June",
+          "يوليو": "July",
+          "أغسطس": "August",
+          "سبتمبر": "September",
+          "أكتوبر": "October",
+          "نوفمبر": "November",
+          "ديسمبر": "December"
+        };
+  
+        const monthName = this.salaryReports[index].nameMonth;
+        // Get the English month name
+        this.englishMonth = '';
+        if (arabicMonthNames.hasOwnProperty(monthName)) {
+          this.englishMonth = arabicMonthNames[monthName];
+        
+        } else {
+          // If the month name is already in English, use it directly
+         this. englishMonth = this.salaryReports[index].nameMonth};
+        
+        const year = this.salaryReports[index].nameYear;
+        // Ensure proper formatting of the date
+        const formattedDate = `${this.englishMonth}, ${year}`;
         html2canvas(elementToPrint, { scale: 2 }).then((canvas) => {
           const pdf = new jsPDF();
           pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
@@ -114,7 +143,7 @@ export class SalaryReportComponent implements OnInit {
           pdf.setFont("helvetica", "bold");
           pdf.text("Date:", 10, 30);
           pdf.setFont("helvetica", "normal");
-          pdf.text(`${this.salaryReports[index].nameMonth},${this.salaryReports[index].nameYear}`, 25, 30);
+          pdf.text(formattedDate, 25, 30);
           pdf.text("-----------------------------------------------------------------------------------------------------", 10, 37);
           pdf.setFont("helvetica", "normal");
           pdf.text("Main Salary:", 20, 55);
