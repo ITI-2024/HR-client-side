@@ -64,7 +64,11 @@ export class AttendenceComponent implements OnInit {
       error: e => {
         this.tableLoading = false;
         this.attendences = [];
-        alert(e.error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The date you enter is invalid",
+        });
       }
     });
 

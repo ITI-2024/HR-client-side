@@ -191,52 +191,64 @@ export class AddEmployeeComponent implements OnInit {
     formData.arrivingTime = this.convertToTimeSpan(formData.arrivingTime);
     formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
     formData.idDept = parseInt(formData.idDept, 10);
-
-    Swal.fire({
-      title: "Do you want to edited employee data?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Yes",
-      denyButtonText: `No`
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        if (this.employeeId == '0') {
-          // Add new employee
-          this.employeesService.AddEmployee(formData).subscribe({
-            next: (data) => {
+    if (this.employeeId == '0') {
+      // Add new employee
+      this.employeesService.AddEmployee(formData).subscribe({
+        next: (data) => {
+          Swal.fire({
+            title: "Do you want to save employee data?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: `No`
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
               this.router.navigate(['/employees']);
-            },
-            error: (error) => {
-              if (error.error == "Employee already exist") {
-                this.invalidId = true;
-              }
-              if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
-
-
+              Swal.fire("Employee data saved successfully", "", "success");
+            } else if (result.isDenied) {
+              Swal.fire("Changes are not saved", "", "info");
             }
           });
-        } else {
-          // Edit existing employee 
-          formData.id = this.employeeId;
-          formData.arrivingTime = this.convertToTimeSpan(formData.arrivingTime);
-          formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
-          this.employeesService.editEmployee(formData).subscribe({
-            next: data => {
-              this.router.navigate(['/employees']);
-            },
-            error: (error) => {
-              if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
-            }
+        },
+        error: (error) => {
+          if (error.error == "Employee already exist") {
+            this.invalidId = true;
           }
-          );
-        }
+          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
 
-        Swal.fire("Employee edited successfully", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+
+        }
+      });
+    } else {
+      // Edit existing employee 
+      formData.id = this.employeeId;
+      formData.arrivingTime = this.convertToTimeSpan(formData.arrivingTime);
+      formData.leavingTime = this.convertToTimeSpan(formData.leavingTime);
+      this.employeesService.editEmployee(formData).subscribe({
+        next: data => {
+          Swal.fire({
+            title: "Do you want to save employee data?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: `No`
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              this.router.navigate(['/employees']);
+              Swal.fire("Employee data saved successfully", "", "success");
+            } else if (result.isDenied) {
+              Swal.fire("Changes are not saved", "", "info");
+            }
+          });
+        },
+        error: (error) => {
+          if (error.error == "There is another employee with the same name") this.dublicateEmpName = true;
+        }
       }
-    });
+      );
+    }
   }
 
   convertToTimeSpan(inputValue: string): string {
