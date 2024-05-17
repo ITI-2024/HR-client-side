@@ -263,6 +263,14 @@ export class AddAttendenceComponent implements OnInit {
                         console.log("exist error")
                         this.unValidDate = false;
                       }
+                      else if (error.error == "Not allowed to update attendence in this month"){
+                        Swal.fire({
+                          icon: "error",
+                          title: "Oops...",
+                          text: "You are not allowed to update attendence in this month",
+                        });
+                        this.router.navigate(['/attendenceReport']);
+                      }
                       else {
                         this.unValidDate = true;
                         this.dateError = error.error;

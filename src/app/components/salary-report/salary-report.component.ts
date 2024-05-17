@@ -57,7 +57,11 @@ export class SalaryReportComponent implements OnInit {
         }, error: e => {
           this.tableLoading = false;
           this.salaryReports = [];
-          alert(e.error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text:"Data not found",
+          });
 
         }
       })
@@ -69,7 +73,11 @@ export class SalaryReportComponent implements OnInit {
         }, error: e => {
           this.tableLoading = false;
           this.salaryReports = [];
-          alert(e.error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text:"Data not found",
+          });
 
         }
 
@@ -83,7 +91,11 @@ export class SalaryReportComponent implements OnInit {
       }, error: e => {
         this.tableLoading = false;
         this.salaryReports = [];
-        alert(e.error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text:"Data not found",
+        });
 
       }
 

@@ -53,9 +53,9 @@
                     <div class="m-0 p-0 d-block" style="position: relative;">
                     <input type="password" id="passworduser" placeholder="*******" class="form-control"
                         name="passworduser" formControlName="password" [(ngModel)]="passworduser" />
-                        <span class="toggle-password" (click)="togglePasswordVisibility()">
+                        <!-- <span class="toggle-password" (click)="togglePasswordVisibility()">
                             <i class="bi" style="position: absolute; top:1vh; left:23vw;" [ngClass]="{ 'bi-eye': !showPassword, 'bi-eye-slash': showPassword }"></i>
-                        </span>
+                        </span> -->
                     <ng-container *ngIf="getPassword.touched">
                         <div *ngIf="getPassword.hasError('required')" class="form-text text-danger  p-0 m-0 " style="position: absolute; top: 100%; left: 0;">
                             *Field is Required</div>

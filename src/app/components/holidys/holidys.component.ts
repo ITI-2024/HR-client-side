@@ -174,7 +174,7 @@ export class HolidysComponent implements OnInit {
             this.tempForDelete = data;
             this.holidays = this.holidays.filter((h: any) => h.id != this.tempForDelete.id)
             this.tableLoading = false;
-            Swal.fire('Employee Record deleted Successfully', '', 'success');
+            Swal.fire('Holiday deleted Successfully', '', 'success');
           }, error: e => {
             this.tableLoading = false;
             this.holidays = [];

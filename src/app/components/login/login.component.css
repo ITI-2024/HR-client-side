@@ -213,3 +213,8 @@
     width: 15%;
     height: 15%;
 }
+.normalfont {
+    font-family: sans-serif;
+    font-size: medium;
+    color:rgb(161, 22, 22);
+}
