@@ -32,9 +32,9 @@
           <input type="password" name="password" placeholder="" id="password" class="normalfont"
             formControlName="password">
           <label for="passward">Password</label>
-          <span class="toggle-password" (click)="togglePasswordVisibility()">
+          <!-- <span class="toggle-password" (click)="togglePasswordVisibility()">
             <i class="bi" [ngClass]="{ 'bi-eye': !showPassword, 'bi-eye-slash': showPassword }"></i>
-          </span>
+          </span> -->
 
           <ng-container *ngIf="getPassword.touched">
             <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text normalfont">

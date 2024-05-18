@@ -8,7 +8,7 @@
             <!-- [formGroup]="registerForm" -->
             <form (submit)="adduser($event)" [formGroup]="registerForm"  >
                 <div class="form-group " style="position: relative;">
-                    <span class="text-danger" style="position: absolute; top: -5vh; left: 0;">{{errorRegister}}</span>
+                    <!-- <span class="text-danger" style="position: absolute; top: -1vh; left: 0;">{{errorRegister}}</span> -->
                 <div class="row justify-content-sm-around">
                   <div class="col-sm-5 input-g"> 
                         <label for="fullName">Full Name</label>
@@ -92,6 +92,7 @@
             <button type="submit" class="btn btn-save px-5 ms-5 mt-4" [disabled]="!registerForm.valid">
                 Add
             </button>
+            <span class="text-danger" style="position: absolute; top:46vh ; left: 2vw;">{{errorRegister}}</span>
            
             </form>
             <div class="img-bage">
