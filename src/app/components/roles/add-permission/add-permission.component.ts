@@ -208,56 +208,48 @@ export class AddPermissionComponent implements OnInit {
         });
         return;
       }else{
-        Swal.fire({
-          title: "Do you want to save the changes?",
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Save",
-          denyButtonText: `Don't save`
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            let newrole = {
-              name: getName.value,
-              permissions: this.permissions
-            }
-            this.roleservice.getByName(getName.value).subscribe({
+        let newrole = {
+          name: getName.value,
+          permissions: this.permissions
+        }
+        this.roleservice.getByName(getName.value).subscribe({
+          next: (data: any) => {
+            this.roleservice.addRole(newrole).subscribe({
               next: (data: any) => {
-                this.roleservice.addRole(newrole).subscribe({
-                  next: (data: any) => {
-                    console.log(data);
-      
-                    Swal.fire({
-                      title: 'Success!',
-                      text: 'Group Added Successfully',
-                      icon: 'success', // Custom icon HTML
-                      showCancelButton: false,
-                      confirmButtonColor: 'purple',
-                      confirmButtonText: 'Ok',
-      
-                    }).then((result) => {
-                      result.isConfirmed ? this.router.navigate(['/roles']) : null
-                    })
-                  },
-                  error: (err: any) => {
-                    console.log(err)
-      
+                console.log(data);
+                Swal.fire({
+                  title: "Do you want to save the changes?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Save",
+                  denyButtonText: `Don't save`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                     this.router.navigate(['/roles'])
+
+                    Swal.fire("Saved!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
                   }
                 });
-      
+
               },
               error: (err: any) => {
                 console.log(err)
-                this.uniqueError = err.error;
-                if (err.error == null)
-                  this.uniqueError = "Group Name Can't contain special character"
+
               }
-            })
-            Swal.fire("Saved!", "", "success");
-          } else if (result.isDenied) {
-            Swal.fire("Changes are not saved", "", "info");
+            });
+
+          },
+          error: (err: any) => {
+            console.log(err)
+            this.uniqueError = err.error;
+            if (err.error == null)
+              this.uniqueError = "Group Name Can't contain special character"
           }
-        });
+        })
+
       }
       //end getbyname
 
@@ -313,7 +305,7 @@ export class AddPermissionComponent implements OnInit {
             this.roleservice.updateRole(newrole, this.decryptedId).subscribe({
               next: (data: any) => {
                 console.log(data);
-      
+
                 Swal.fire({
                   title: 'Success!',
                   text: 'Group updated Successfully',
@@ -321,7 +313,7 @@ export class AddPermissionComponent implements OnInit {
                   showCancelButton: false,
                   confirmButtonColor: 'purple',
                   confirmButtonText: 'Ok',
-      
+
                 }).then((result) => {
                   result.isConfirmed ? this.router.navigate(['/roles']) : null
                 })
